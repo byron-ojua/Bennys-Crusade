@@ -3,33 +3,87 @@ body {
     background-color: blue;
 }
 
-#map-overlay {
+/* #map-overlay {
     position: absolute;
     left: 0px;
     margin: 0px;
     padding: 0px;
     border: 0px;
+} */
+
+.north-america{
+    fill: yellow;
 }
 
-#svg_5:hover{
-    fill: blue;
-    /* scale: 110%; */
+.south-america{
+    fill: red;
 }
+
+.africa{
+    fill: brown;
+}
+
+.australia{
+    fill: orange;
+}
+
+.europe{
+    fill: lightskyblue;
+}
+
+.asia{
+    fill: green;
+}
+
+
+.north-america:hover{
+    fill: lightgray;
+}
+
+.south-america:hover{
+    fill: lightgray;
+}
+
+.africa:hover{
+    fill: lightgray;
+}
+
+.australia:hover{
+    fill: lightgray;
+}
+
+.europe:hover{
+    fill: lightgray;
+}
+
+.asia:hover{
+    fill: lightgray;
+}
+
 
 #map-container {
     display: flex;
     width: 100%;
     height: 100%;
-    border-color: black;
-    border-width: 5px;
     align-items: center;
     justify-content: center;
 }
 
 #map-overlay {
-    scale: 75%;
+    /* margin: 0px;
+    padding: 0px;
+    height: 830px;
+    width: 1200px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    scale: 75%; */
+    height: 830px;
+    width: 1200px;
+    scale: 100%;
 }
 
 #map-background {
-    scale: 75%;
+    margin: 0px;
+    /* scale: 75%; */
 }
