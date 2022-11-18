@@ -1,8 +1,5 @@
-var svg5 = document.getElementById("svg_5")
+var playGame = document.getElementById("play-game")
 
-svg5.addEventListener("click", function () {
-    console.log("svg_5 clicked!")
+playGame.addEventListener("click", function () {
+    window.location.replace("/game.html")
 })
-
-
-var map = document.getElementById("map-overlay")
