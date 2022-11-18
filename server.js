@@ -15,6 +15,7 @@ var gameJS = ""
 var styleCSS = ""
 var page404 = ""
 var compassPNG = ""
+var gameCSS = ""
 
 
 //Read index.html
@@ -84,6 +85,19 @@ var compassPNG = ""
             console.log("No error, saving style.css")
         } else {
             console.log("There was an error reading style.css")
+        }
+    })
+}
+
+//Read game.css
+{
+    console.log("Reading game.css")
+    fs.readFile("./public/game.css", "utf8", function (err, data){
+        if (!err){
+            styleCSS = data
+            console.log("No error, saving game.css")
+        } else {
+            console.log("There was an error reading game.css")
         }
     })
 }
