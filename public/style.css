@@ -1,30 +1,28 @@
-body {
-    margin: 0px;
-    background-color: blue;
+@font-face {
+    font-family: Treasure Map;
+    src: "/treasuremap.ttf";
 }
 
-/* #map-overlay {
-    position: absolute;
-    left: 0px;
+body {
     margin: 0px;
-    padding: 0px;
-    border: 0px;
-} */
+    /* Image source: https://www.textures4photoshop.com/tex/paper/grunge-stained-old-paper-texture.aspx */
+    background-image: url("https://cdn.textures4photoshop.com/tex/thumbs/grunge-stained-old-paper-texture-130.jpg");
+}
 
 .north-america{
-    fill: yellow;
+    fill: rgb(248, 248, 93);
 }
 
 .south-america{
-    fill: red;
+    fill: rgb(255, 68, 68);
 }
 
 .africa{
-    fill: brown;
+    fill: rgb(158, 55, 55);
 }
 
 .australia{
-    fill: orange;
+    fill: rgb(255, 193, 79);
 }
 
 .europe{
@@ -32,9 +30,8 @@ body {
 }
 
 .asia{
-    fill: green;
+    fill: rgb(97, 192, 97);
 }
-
 
 .north-america:hover{
     fill: lightgray;
@@ -60,7 +57,6 @@ body {
     fill: lightgray;
 }
 
-
 #map-container {
     display: flex;
     width: 100%;
@@ -70,14 +66,6 @@ body {
 }
 
 #map-overlay {
-    /* margin: 0px;
-    padding: 0px;
-    height: 830px;
-    width: 1200px;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    scale: 75%; */
     height: 830px;
     width: 1200px;
     scale: 100%;
@@ -85,5 +73,39 @@ body {
 
 #map-background {
     margin: 0px;
-    /* scale: 75%; */
+}
+
+#compass{
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 200px;
+}
+
+#home-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    /* background-color: blue; */
+}
+
+#play-game{
+    border-radius: 25px;
+    color: black;
+    background-color: lightskyblue;
+    width: 200px;
+    height: 50px;
+}
+
+h1{
+    font-family: "Treasure Map";
+    -webkit-text-stroke: 3px black;
+    font-weight:400;
+    font-size: 100px;
+    margin: 0px;
+    color: transparent;
+    /* font-style: italic; */
 }
