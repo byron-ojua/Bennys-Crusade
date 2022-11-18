@@ -10,9 +10,12 @@ var port = 3000
 
 var indexHTML = ""
 var indexJS = ""
+var gameHTML = ""
+var gameJS = ""
 var styleCSS = ""
 var page404 = ""
-var bennyJPG = ""
+var compassPNG = ""
+
 
 //Read index.html
 {
@@ -43,6 +46,35 @@ var bennyJPG = ""
     })
 }
 
+//Read game.html
+{
+    console.log("Reading game.html")
+    fs.readFile("./public/game.html", "utf8", function (err, data){
+
+        if (!err){
+            gameHTML = data
+            console.log("No error, saving game.html")
+            // console.log(indexHTML)
+        } else {
+            console.log("There was an error reading game.html")
+        }
+    })
+}
+
+//Read game.js
+{
+    console.log("Reading game.js")
+    fs.readFile("./public/game.js", "utf8", function (err, data){
+        if (!err){
+            gameJS = data
+            console.log("No error, saving game.js")
+            // console.log(gameJS)
+        } else {
+            console.log("There was an error reading game.js")
+        }
+    })
+}
+
 //Read style.css
 {
     console.log("Reading style.css")
@@ -65,6 +97,19 @@ var bennyJPG = ""
             console.log("No error, saving 404.index")
         } else {
             console.log("There was an error reading 404.html")
+        }
+    })
+}
+
+//Read compass.png
+{
+    console.log("Reading compass.png")
+    fs.readFile("./public/compass.png", function (err, data){
+        if (!err){
+            compassPNG = data
+            console.log("No error, saving compass.png")
+        } else {
+            console.log("There was an error reading compass.png")
         }
     })
 }
@@ -97,6 +142,20 @@ var server = http.createServer(function (req, res) {
         res.setHeader("Content-Type", "application/javascript")
         res.write(indexJS)
 
+    } else if (req.url === '/game.html'){
+        console.log("Pushing game.html content")
+
+        res.statusCode = 200
+        res.setHeader("Content-Type", "text/html")
+        res.write(gameHTML)
+
+    } else if(req.url === '/game.js'){
+        console.log("Pushing game.js content")
+
+        res.statusCode = 200
+        res.setHeader("Content-Type", "application/javascript")
+        res.write(gameJS)
+
     } else if(req.url === '/style.css'){
         console.log("Pushing style.css content")
 
@@ -113,6 +172,12 @@ var server = http.createServer(function (req, res) {
 
 
     } else if (req.url === '/favicon.ico'){
+    } else if(req.url === '/compass.png'){
+        console.log("Pushing compass.png content")
+
+        res.statusCode = 200
+        res.setHeader("Content-Type", "image/jpeg")
+        res.write(compassPNG)
     } else{
         console.log("Redirecting to 404.html")
 
