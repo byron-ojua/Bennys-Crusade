@@ -108,7 +108,7 @@ var gameCSS = ""
     fs.readFile("./public/404.html", "utf8", function (err, data){
         if (!err){
             page404 = data
-            console.log("No error, saving 404.index")
+            console.log("No error, saving 404.html")
         } else {
             console.log("There was an error reading 404.html")
         }
