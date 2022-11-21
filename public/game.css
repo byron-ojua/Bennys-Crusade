@@ -44,14 +44,6 @@
     stroke: black;
 }
 
-
-/* .continent-border:hover{
-    fill: lightgray;
-    scale: 101%;
-} */
-
-
-
 #map-container {
     display: flex;
     width: 100%;

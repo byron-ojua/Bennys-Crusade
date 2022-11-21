@@ -1,3 +1,6 @@
+var compass = document.getElementById("compass")
+
+
 document.querySelectorAll('.territory').forEach(item => {
     item.addEventListener('click', event => {
       var territory = event.currentTarget
@@ -7,3 +10,16 @@ document.querySelectorAll('.territory').forEach(item => {
       console.log("--Troops:", territoryTroops)
     })
   })
+
+var sign = .25
+var x = 0
+window.onload = function() {
+  setInterval(function () {
+    x = x + sign
+        
+    compass.style.transform = 'rotate('+x+'deg)'
+    if(x % 20 === 0){
+      sign = sign * -1
+    }
+  }, 100)
+}

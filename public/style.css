@@ -7,13 +7,31 @@ body {
     margin: 0px;
     /* Image source: https://www.textures4photoshop.com/tex/paper/grunge-stained-old-paper-texture.aspx */
     background-image: url("https://cdn.textures4photoshop.com/tex/thumbs/grunge-stained-old-paper-texture-130.jpg");
+    overflow: hidden;
 }
 
 #compass{
     position: absolute;
     left: 20px;
     bottom: 20px;
+    width: 150px;
+}
+
+#cannon{
+    position: absolute;
     width: 200px;
+    top: 20px;
+    left: 0px;
+    width: 100px;
+}
+
+#calvery{
+    position: absolute;
+    width: 200px;
+    bottom: 20px;
+    right: 20px;
+    width: 200px;
+    transform: scaleX(-1)
 }
 
 #home-menu{
@@ -26,12 +44,16 @@ body {
     /* background-color: blue; */
 }
 
-#play-game{
+.menu-button{
     border-radius: 25px;
     color: black;
-    background-color: lightskyblue;
+    background-color: transparent;
     width: 200px;
     height: 50px;
+    margin-top: 10px;
+    font-size: 20px;
+    border-color: black;
+    font-family: "Treasure Map";
 }
 
 h1{
@@ -41,5 +63,8 @@ h1{
     font-size: 100px;
     margin: 0px;
     color: transparent;
-    /* font-style: italic; */
+}
+
+#benny-logo{
+    margin-top: 50px;
 }
