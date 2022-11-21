@@ -16,6 +16,7 @@ var styleCSS = ""
 var page404 = ""
 var compassPNG = ""
 var gameCSS = ""
+var favicon = ""
 
 
 //Read index.html
@@ -94,7 +95,7 @@ var gameCSS = ""
     console.log("Reading game.css")
     fs.readFile("./public/game.css", "utf8", function (err, data){
         if (!err){
-            styleCSS = data
+            gameCSS = data
             console.log("No error, saving game.css")
         } else {
             console.log("There was an error reading game.css")
@@ -124,6 +125,19 @@ var gameCSS = ""
             console.log("No error, saving compass.png")
         } else {
             console.log("There was an error reading compass.png")
+        }
+    })
+}
+
+//Read compass.png
+{
+    console.log("Reading favcon.ico")
+    fs.readFile("./public/favcon.ico", function (err, data){
+        if (!err){
+            favicon = data
+            console.log("No error, saving favcon.ico")
+        } else {
+            console.log("There was an error reading favcon.ico")
         }
     })
 }
@@ -186,6 +200,11 @@ var server = http.createServer(function (req, res) {
 
 
     } else if (req.url === '/favicon.ico'){
+        console.log("Pushing favcon.ico content")
+
+        res.statusCode = 200
+        res.setHeader("Content-Type", "image/x-con")
+        res.write(favicon)
     } else if(req.url === '/compass.png'){
         console.log("Pushing compass.png content")
 
