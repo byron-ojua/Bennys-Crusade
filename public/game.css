@@ -11,7 +11,7 @@
 }
 
 .australia{
-    fill: rgb(255, 193, 79);
+    fill: rgb(170, 110, 170);
 }
 
 .europe{
@@ -22,15 +22,35 @@
     fill: rgb(97, 192, 97);
 }
 
-.continent-boarder{
-    stroke-width: 3px;
-    box-shadow: 20px;
+.territory{
+    stroke-width: 0px;
+    /* box-shadow: 20px; */
 }
 
-.continent-boarder:hover{
+.territory:hover{
     fill: lightgray;
     /* scale: 101%; */
 }
+
+.continent-border{
+    stroke-width: 3px;
+    box-shadow: 20px;
+    /* fill: transparent; */
+    z-index: 2;
+}
+
+.territory-border{
+    stroke-width: 2px;
+    stroke: black;
+}
+
+
+/* .continent-border:hover{
+    fill: lightgray;
+    scale: 101%;
+} */
+
+
 
 #map-container {
     display: flex;
@@ -40,8 +60,9 @@
     justify-content: center;
 }
 
-#map-overlay {
+.map-overlay {
     height: 830px;
     width: 1200px;
     scale: 100%;
+    /* position: absolute; */
 }

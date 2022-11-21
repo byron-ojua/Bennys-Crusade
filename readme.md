@@ -1,1 +1,1 @@
-This is a battle for OSU
+Benny's Crusade is a risk game 
