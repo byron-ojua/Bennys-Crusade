@@ -23,3 +23,5 @@ window.onload = function() {
     }
   }, 100)
 }
+
+console.log(window.innerWidth, '+', window.innerWidth)

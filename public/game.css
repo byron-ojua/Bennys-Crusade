@@ -27,12 +27,10 @@ body{
 
 .territory{
     stroke-width: 0px;
-    /* box-shadow: 20px; */
 }
 
 .territory:hover{
     fill: lightgray;
-    /* scale: 101%; */
 }
 
 .continent-border{
@@ -58,8 +56,7 @@ body{
 .map-overlay {
     height: 830px;
     width: 1200px;
-    scale: 100%;
-    /* position: absolute; */
+    scale: 90%;
 }
 
 #info-box{
