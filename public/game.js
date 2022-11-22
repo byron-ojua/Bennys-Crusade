@@ -9,7 +9,7 @@ document.querySelectorAll('.territory').forEach(item => {
       console.log("--Name(ID):", territory.id)
       console.log("--Troops:", territoryTroops)
     })
-  })
+})
 
 var sign = .25
 var x = 0
