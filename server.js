@@ -198,7 +198,6 @@ var server = http.createServer(function (req, res) {
         res.setHeader("Content-Type", "text/html")
         res.write(page404)
 
-
     } else if (req.url === '/favicon.ico'){
         console.log("Pushing favcon.ico content")
 
