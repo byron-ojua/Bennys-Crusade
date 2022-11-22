@@ -1,0 +1,33 @@
+@font-face {
+    font-family: Treasure Map;
+    src: "./treasuremap.ttf";
+}
+
+
+h2 {
+	margin-left: 20px;
+	font-family: "Treasure Map";
+    -webkit-text-stroke: 2px black;
+    font-weight:50;
+    font-size: 30px;
+}
+
+#num-players {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+#player-count {
+	margin-left: 10px; 
+}
+
+#player-nums {
+	width: 100px;
+	height: 30px;
+	border-radius: 10px;
+	font-family: "Treasure Map";
+	font-size: 19px;
+	border: 2px solid black;
+	background-color: rgb(244, 244, 148);
+}
