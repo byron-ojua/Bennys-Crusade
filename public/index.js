@@ -38,7 +38,7 @@ window.onload = function() {
 if (playGame){
     playGame.addEventListener("click", function () {
         // window.location.replace("/game.html")
-        window.location.replace("./game.html")
+        window.location.replace("./playerSignUp.html")
 		//window.location.replace("/public/game.html")
 
     })
