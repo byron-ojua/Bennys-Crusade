@@ -27,7 +27,6 @@ document.querySelectorAll('.menu-button').forEach(item => {
 window.onload = function() {
     setInterval(function () {
         x = x + sign
-        
         compass.style.transform = 'rotate('+x+'deg)'
         if(x % 20 === 0){
             sign = sign * -1
@@ -39,7 +38,9 @@ window.onload = function() {
 if (playGame){
     playGame.addEventListener("click", function () {
         // window.location.replace("/game.html")
-        window.location.replace("/public/game.html")
+        window.location.replace("./game.html")
+		//window.location.replace("/public/game.html")
+
     })
 }
 
