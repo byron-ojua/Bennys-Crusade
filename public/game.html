@@ -10,6 +10,7 @@
     </head>
 
     <body>
+        <img id="compass" src="compass.png" alt="Small compass">
         <div id="map-container">
             <svg viewBox="0 0 1200 830" class="map-overlay">
                 
@@ -221,13 +222,21 @@
         </div>
 
         <div id="info-box">
-            <div id="attacker-info" class="country-info"></div>
-            <div id = "attack-box">
-                <input type="image" id="attack-button" src="fire.gif"/>
-                <div id="attack-text">ATTACK</div>
+            <div id="attacker-info" class="country-info">
+                <div class="info" id="region"> Region:</div>
+                <div class="info" id="troops">Troops:</div>
+                <div class="info" id="owner">Owner:</div>
             </div>
-            <div id="defender-info" class="country-info"></div>
+            <div id="defender-info" class="country-info">
+                <div class="info" id="region"> Region:</div>
+                <div class="info" id="troops">Troops:</div>
+                <div class="info" id="owner">Owner:</div>
+            </div>
         </div>  
-        <img id="compass" src="compass.png" alt="Small compass">
+        <div id = "attack-box">
+            <input type="image" id="attack-button" src="fire.gif"/>
+            <div id="attack-text">ATTACK</div>
+        </div>
+        
     </body>
 </html>
