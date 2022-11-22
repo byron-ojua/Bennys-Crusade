@@ -5,22 +5,31 @@ var defender
 
 document.querySelectorAll('.territory').forEach(item => {
     item.addEventListener('click', event => {
+
       var territory = event.currentTarget
       var territoryTroops = document.getElementById(territory.id + "-troops").textContent
-      var ownerRegion = document.getElementById(content+"-region")
-      var ownerTroops = document.getElementById(content+"-troops")
+      
       console.log("Territory selected")
       console.log("--Name(ID):", territory.id)
-      ownerRegion.textContent = territory.id
       console.log("--Troops:", territoryTroops)
+      if (attacker != undefined){
+        var neighbors = attacker.dataset.neighbor
+        console.log("--Neighbors:", neighbors)
+        for (var i; i < neighbors.length; i++){
+          console.log("-->>neighbor:",neighbors[i])
+          if (territory.id == neighbors[i]){
+            content = "defender"
+          }
+        }
+      }
+      var ownerRegion = document.getElementById(content+"-region")
+      var ownerTroops = document.getElementById(content+"-troops")
+      ownerRegion.textContent = territory.id
       ownerTroops.textContent = territoryTroops
       if (content === "attacker"){
-        attacker = event.currentTarget
-        content = "defender"
-      } else {
-        defender = event.currentTarget
-        content = "attacker"
+        attacker = event.current
       }
+      content = "attacker"
     })
 })
 var attackButton = document.getElementById("attack-box")
@@ -33,6 +42,7 @@ attackButton.addEventListener('click', function(){
   }else{ 
     console.log("--Not enough troops")
   }
+  
 })
 
 var sign = .25
