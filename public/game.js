@@ -12,26 +12,35 @@ document.querySelectorAll('.territory').forEach(item => {
       console.log("Territory selected")
       console.log("--Name(ID):", territory.id)
       console.log("--Troops:", territoryTroops)
+      console.log("Attacker:", attacker)
       if (attacker != undefined){
-        var neighbors = attacker.dataset.neighbor
+        neighbors = attacker.dataset.neighbor
         console.log("--Neighbors:", neighbors)
-        for (var i; i < neighbors.length; i++){
-          console.log("-->>neighbor:",neighbors[i])
-          if (territory.id == neighbors[i]){
-            content = "defender"
-          }
+        console.log("--Neighbors.length:", neighbors.length)
+
+        if (neighbors.includes(territory.id)){
+          defender = territory
+          content = "defender"
         }
       }
+      //set the correct info box to the right values.
       var ownerRegion = document.getElementById(content+"-region")
       var ownerTroops = document.getElementById(content+"-troops")
       ownerRegion.textContent = territory.id
       ownerTroops.textContent = territoryTroops
-      if (content === "attacker"){
-        attacker = event.current
+
+      console.log("")
+      if (content == "attacker"){
+        attacker = territory
+        document.getElementById("defender-region").textContent = ""
+        document.getElementById("defender-troops").textContent = ""
       }
       content = "attacker"
+      return
     })
 })
+
+//Attack button when two 
 var attackButton = document.getElementById("attack-box")
 attackButton.addEventListener('click', function(){
   console.log("Attack clicked")
