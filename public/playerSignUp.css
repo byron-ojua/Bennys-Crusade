@@ -3,6 +3,14 @@
     src: "./treasuremap.ttf";
 }
 
+#player-data {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	height: 300px;
+	/* justify-content: space-around; */
+}
+
 
 h2 {
 	margin-left: 20px;
@@ -16,6 +24,7 @@ h2 {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	width: 900px;
 }
 
 #player-count {
@@ -71,11 +80,33 @@ h2 {
 .menu-button{
     border-radius: 25px;
     color: black;
-    background-color: transparent;
+	background-color: rgb(244, 244, 148);
     width: 200px;
     height: 50px;
     margin-top: 10px;
     font-size: 20px;
     border-color: black;
     font-family: "Treasure Map";
+}
+
+#start-button {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#player-3 {
+	display: none;
+}
+
+#player-4 {
+	display: none;
+}
+
+#player-5 {
+	display: none;
+}
+
+#player-6 {
+	display: none;
 }

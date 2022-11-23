@@ -6,55 +6,110 @@
         <link rel="stylesheet" href="./style.css">
 		<link rel="stylesheet" href="./playerSignUp.css">
         <script src="./playerSignUp.js" charset="utf-8" defer></script>
-
-		
     </head>
 	<body>
+		
 		<img id="compass" src="./compass.png" alt="Small compass">
 
 		<div id="num-players">
 			<h2>How many players are in the game?</h2> 
 			<div id="player-count">
 				<div class="player-count-element">
-				  <select id="player-nums">
+				<select id="player-nums">
 					<option selected value="2">2</option>
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option>
 					<option value="6">6</option>
-				  </select>
+				</select>
 				</div>
 			</div>
 		</div>
 		
-		<div id="player-name-and-color">
-			<div id="player-1" class="player-input">
-				<div id="player-text-input">
-					<p>Player 1 Name:</p>
-					<input type="text" id="player-text">
+		<div id="player-data">
+			<div id="player-name-and-color">
+				<div id="player-1" class="player-input" name="1">
+					<div id="player-text-input">
+						<p>Player 1 Name:</p>
+						<input type="text" id="player-text">
+					</div>
+					<div id="player-color-input">
+						<p>Pick a color (Optional)</p>
+						<input type="color" value="#ff0000" id="player-color">
+					</div>
 				</div>
-				<div id="player-color-input">
-					<p>Pick a color (Optional)</p>
-					<input type="color" value="#ff0000" id="player-color">
+			</div>
+			
+			<div id="player-name-and-color">
+				<div id="player-2" class="player-input" name="2">
+					<div id="player-text-input">
+						<p>Player 2 Name:</p>
+						<input type="text" id="player-text">
+					</div>
+					<div id="player-color-input">
+						<p>Pick a color (Optional)</p>
+						<input type="color" value="#ff0000" id="player-color">
+					</div>
+				</div>
+			</div>
+
+			<div id="player-name-and-color">
+				<div id="player-3" class="player-input" name="3">
+					<div id="player-text-input">
+						<p>Player 3 Name:</p>
+						<input type="text" id="player-text">
+					</div>
+					<div id="player-color-input">
+						<p>Pick a color (Optional)</p>
+						<input type="color" value="#ff0000" id="player-color">
+					</div>
+				</div>
+			</div>
+
+			<div id="player-name-and-color">
+				<div id="player-4" class="player-input" name="4">
+					<div id="player-text-input">
+						<p>Player 4 Name:</p>
+						<input type="text" id="player-text">
+					</div>
+					<div id="player-color-input">
+						<p>Pick a color (Optional)</p>
+						<input type="color" value="#ff0000" id="player-color">
+					</div>
+				</div>
+			</div>
+
+			<div id="player-name-and-color">
+				<div id="player-5" class="player-input" name="5">
+					<div id="player-text-input">
+						<p>Player 5 Name:</p>
+						<input type="text" id="player-text">
+					</div>
+					<div id="player-color-input">
+						<p>Pick a color (Optional)</p>
+						<input type="color" value="#ff0000" id="player-color">
+					</div>
+				</div>
+			</div>
+			<div id="player-name-and-color">
+				<div id="player-6" class="player-input" name="6">
+					<div id="player-text-input">
+						<p>Player 6 Name:</p>
+						<input type="text" id="player-text">
+					</div>
+					<div id="player-color-input">
+						<p>Pick a color (Optional)</p>
+						<input type="color" value="#ff0000" id="player-color">
+					</div>
 				</div>
 			</div>
 		</div>
 		
-		<div id="player-name-and-color">
-			<div id="player-2" class="player-input">
-				<div id="player-text-input">
-					<p>Player 2 Name:</p>
-					<input type="text" id="player-text">
-				</div>
-				<div id="player-color-input">
-					<p>Pick a color (Optional)</p>
-					<input type="color" value="#ff0000" id="player-color">
-				</div>
-			</div>
+	
+		<div id="start-button">
+			<button class="menu-button" id="play-game" type="button">Start Game</button>
 		</div>
-
-
-		<button class="menu-button" id="play-game" type="button">Start Game</button>
+		
 
 
 	</body>
