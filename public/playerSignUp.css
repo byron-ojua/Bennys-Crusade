@@ -64,7 +64,7 @@ h2 {
 	margin-left: 20px;
 }
 
-#player-text {
+.player-text {
 	margin-left: 10px;
 	border: 2px solid black;
 	border-radius: 10px;
@@ -89,10 +89,23 @@ h2 {
     font-family: "Treasure Map";
 }
 
+.menu-button:hover {
+	background-color: white;
+	cursor: pointer;
+}
+
 #start-button {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+#player-1 {
+	display: block;
+}
+
+#player-2 {
+	display: block;
 }
 
 #player-3 {
