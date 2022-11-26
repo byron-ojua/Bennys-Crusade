@@ -1,5 +1,5 @@
 var compass = document.getElementById("compass")
-
+var numValUnder = 2
 
 compass.style.translate = 'rotate(90deg)'
 
@@ -19,5 +19,38 @@ window.onload = function() {
 
 var numPlayers = document.getElementById("player-nums")
 numPlayers.onchange = function () {
-	console.log("THIS IS THE VALUE, ", numPlayers.value)
+	numValUnder = parseInt(numPlayers.value)
+	var playerSignUps = document.getElementsByClassName("player-input")
+	console.log("numValUnder is ", numValUnder)
+	for(var i = 2; i < 6; i++) {
+		playerSignUps[i].parentElement.children[0].style.display = 'none'
+	}
+	
+	for(var i = 2; i < numValUnder; i++) {
+		var num = playerSignUps[i].parentElement.children[0].getAttribute('name')
+		var numInt = parseInt(num)-1
+		
+		if(numInt <= numValUnder) {
+			playerSignUps[i].parentElement.children[0].style.display = 'block'
+		}
+	}
+	
 }
+
+function beginGame(event) {
+	var playerText = document.getElementsByClassName('player-text')
+	console.log("THIS IS THE VALUE OF numValUnder", numValUnder)
+	for(var i = 0; i < numValUnder; i++) {
+		var input = playerText[i].value
+		
+		if(input == "") {
+			event.preventDefault()
+			alert("All player names must be filled out")
+			break
+		}
+	
+	} 
+}
+
+var startGame = document.getElementById("play-game")
+startGame.addEventListener('click', beginGame)
