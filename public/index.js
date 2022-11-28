@@ -28,7 +28,7 @@ window.onload = function() {
     setInterval(function () {
         x = x + sign
         compass.style.transform = 'rotate('+x+'deg)'
-        if(x % 20 === 0){
+        if(x % 15 === 0){
             sign = sign * -1
         }
     }, 100)
