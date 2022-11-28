@@ -1,11 +1,17 @@
 var compass = document.getElementById("compass")
+var tooltip = document.getElementById("tooltip")
+
+
+
 var content = "attacker"
 var attacker
 var defender
 
+var tooltipTimer
+
 document.querySelectorAll('.territory').forEach(item => {
     item.addEventListener('click', event => {
-
+      clearTimeout(tooltipTimer)
       var territory = event.currentTarget
       var territoryTroops = document.getElementById(territory.id + "-troops").textContent
       
@@ -38,6 +44,26 @@ document.querySelectorAll('.territory').forEach(item => {
       content = "attacker"
       return
     })
+
+    item.onmouseenter = function(e){
+      tooltipTimer = setTimeout(function() {
+        // console.log("Hovered");
+        tooltip.style.top =  e.pageY + "px";
+        tooltip.style.left =  e.pageX + "px";
+        tooltip.style.display =  "block";
+        // console.log(item.id);
+
+        document.getElementById("tooltip-region").innerText = "Region: " + item.id
+        document.getElementById("tooltip-troops").innerText = "Troops: " + document.getElementById(item.id + "-troops").textContent
+        document.getElementById("tooltip-owner").innerText = "Owner: " + item.dataset.owner
+      }, 700)
+    }
+
+    item.onmouseout = function() {
+      clearTimeout(tooltipTimer)
+      tooltip.style.display =  "none";
+
+    }
 })
 
 //Attack button when two 
@@ -61,7 +87,7 @@ window.onload = function() {
     x = x + sign
         
     compass.style.transform = 'rotate('+x+'deg)'
-    if(x % 20 === 0){
+    if(x % 15 === 0){
       sign = sign * -1
     }
   }, 100)
@@ -70,4 +96,3 @@ window.onload = function() {
 console.log(window.innerWidth, '+', window.innerWidth)
 
 
-//

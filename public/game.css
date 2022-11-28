@@ -136,3 +136,14 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 700;
 }
+
+#tooltip {
+    position: fixed;
+    height: 100px;
+    width: 175px;
+    border-radius: 10px;
+    display: none;
+    z-index: 3;
+    background-color: rgb(218, 152, 66) ;
+    border: 5px solid rgb(139, 96, 40);
+}
