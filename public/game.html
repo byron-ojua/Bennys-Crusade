@@ -12,7 +12,7 @@
     <body>
         <img id="compass" src="compass.png" alt="Small compass">
         <div id="map-container">
-            <svg viewBox="0 0 1200 830" class="map-overlay">
+            <svg viewBox="0 0 1200 830" id="map-overlay">
                 
                 <!-- North America -->
                 <g>
@@ -253,6 +253,11 @@
             <div class="info" id="tooltip-region"> Region:</div>
             <div class="info" id="tooltip-troops">Troops:</div>
             <div class="info" id="tooltip-owner">Owner:</div>
+        </div>
+
+        <div id="map-size-container">
+            <div class="map-sizing" id="map-size-grow"> +</div>
+            <div class="map-sizing" id="map-size-shrink">-</div>
         </div>
         
     </body>

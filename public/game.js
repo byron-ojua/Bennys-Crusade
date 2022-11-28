@@ -1,13 +1,25 @@
 var compass = document.getElementById("compass")
 var tooltip = document.getElementById("tooltip")
-
-
+var growMap = document.getElementById("map-size-grow")
+var shrinkMap = document.getElementById("map-size-shrink")
+var map = document.getElementById("map-overlay")
 
 var content = "attacker"
 var attacker
 var defender
-
 var tooltipTimer
+
+var mapScale = 90
+
+growMap.addEventListener('click', function() {
+  mapScale += 5
+  map.style.scale = mapScale + "%"
+})
+
+shrinkMap.addEventListener('click', function() {
+  mapScale -= 5
+  map.style.scale = mapScale + "%"
+})
 
 document.querySelectorAll('.territory').forEach(item => {
     item.addEventListener('click', event => {
