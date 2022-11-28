@@ -42,14 +42,19 @@ function beginGame(event) {
 	console.log("THIS IS THE VALUE OF numValUnder", numValUnder)
 	for(var i = 0; i < numValUnder; i++) {
 		var input = playerText[i].value
-		
 		if(input == "") {
 			event.preventDefault()
 			alert("All player names must be filled out")
 			break
 		}
-	
+		if(i == numValUnder-1) {
+			// var data = 
+			window.location.replace("./game.html")
+		}
 	} 
+	
+	// localStorage.setItem("storage", )
+	
 }
 
 var startGame = document.getElementById("play-game")
