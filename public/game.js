@@ -55,11 +55,9 @@ document.querySelectorAll('.territory').forEach(item => {
 
     item.onmouseenter = function(e){
       tooltipTimer = setTimeout(function() {
-        // console.log("Hovered");
         tooltip.style.top =  e.pageY + "px";
         tooltip.style.left =  e.pageX + "px";
         tooltip.style.display =  "block";
-        // console.log(item.id);
 
         document.getElementById("tooltip-region").innerText = "Region: " + item.dataset.name
         document.getElementById("tooltip-troops").innerText = "Troops: " + document.getElementById(item.id + "-troops").textContent
