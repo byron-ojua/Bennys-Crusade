@@ -74,7 +74,8 @@ document.querySelectorAll('.territory').forEach(item => {
 function updateAttackBox(territory, territoryTroops, content){
   var ownerRegion = document.getElementById(content+"-region")
   var ownerTroops = document.getElementById(content+"-troops")
-  ownerRegion.textContent = territory.id
+  ownerRegion.textContent = territory.dataset.name
+  // ownerRegion.textContent = territory.id
   ownerTroops.textContent = territoryTroops
 }
 function clearAttackBox(attackerOrDefender){
