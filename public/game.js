@@ -1,3 +1,4 @@
+
 var compass = document.getElementById("compass")
 var content = "attacker"
 var attacker
@@ -64,10 +65,11 @@ window.onload = function() {
     if(x % 20 === 0){
       sign = sign * -1
     }
-  }, 100)
+  }, 100)	
+
+//   document.getElementById("1").style.background = 'linear-gradient(to left, white 2%, rgb(89, 208, 25) 110%) right'
 }
 
 console.log(window.innerWidth, '+', window.innerWidth)
 
 
-//

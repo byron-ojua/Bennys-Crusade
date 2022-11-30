@@ -71,7 +71,7 @@ h2 {
 	background-color: rgb(244, 244, 148);
 }
 
-#player-color {
+.player-color {
 	margin-left: 10px;
 	border: 2px solid black;
 	border-radius: 10px;

@@ -249,7 +249,9 @@
             <div id="attack-text">ATTACK</div>
         </div>
 		<div id="user-sidebars">
-			
+			{{#each sidebars}}
+		  		{{> userSideBar}}
+			{{/each}}
 		</div>
         
     </body>
