@@ -1,5 +1,6 @@
 var playGame = document.getElementById("play-game")
-var highScores = document.getElementById("high-scores")
+var learnToPlay = document.getElementById("how-to-play")
+// var highScores = document.getElementById("high-scores")
 var cannon = document.getElementById("cannon")
 var compass = document.getElementById("compass")
 
@@ -35,14 +36,11 @@ window.onload = function() {
 }
 
 
-if (playGame){
-    playGame.addEventListener("click", function () {
-        // window.location.replace("/game.html")
-        window.location.replace("./playerSignUp.html")
-		//window.location.replace("/public/game.html")
-
-    })
-}
+playGame.addEventListener("click", function () {
+    window.location.replace("./playerSignUp.html")
+})
 
 
-
+learnToPlay.addEventListener("click", function () {
+    window.open("https://www.youtube.com/watch?v=5g48vXnnf30", "_blank");
+})
