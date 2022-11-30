@@ -1,40 +1,13 @@
-
 var compass = document.getElementById("compass")
 var tooltip = document.getElementById("tooltip")
 var growMap = document.getElementById("map-size-grow")
 var shrinkMap = document.getElementById("map-size-shrink")
 var map = document.getElementById("map-overlay")
-
 var content = "attacker"
 var attacker
 var defender
 var tooltipTimer
-
-var mapElems = []
-
-// var mapElems = JSON.parse(fs.readFileSync("postData.json"));
 var mapScale = 90
-
-
-function insertNewMapElem(elemName, elemTroops, elemNeighbor, elemOwner, elemId, elemClass, elemPath) {
-
-  var mapElemHtml = Handlebars.templates.mapElem({
-    name: elemName,
-    troops: elemTroops, 
-    neighbor: elemNeighbor,
-    owner: elemOwner,
-    id: elemId,
-    class: elemClass,
-    path: elemPath
-  })
-  // console.log("== postCardHtml:", postCardHtml)
-  map.insertAdjacentHTML('afterbegin', mapElemHtml)
-  // return postCardHtml
-}
-
-mapElems.forEach(function (elem) {
-  insertNewMapElem(elem.name, elem.troops, elem.neighbor, elem.owner, elem.id, elem.class, elem.path);
-});
 
 
 growMap.addEventListener('click', function() {
