@@ -13,11 +13,18 @@ var port = 3000
 
 
 var app = express();
+var mapData = require("./mapData.json")
+
+app.engine('handlebars', exphbs.engine({}))
+app.set('view engine', 'handlebars')
 
 app.use(express.static('public'));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-// app.use(favicon('favicon.ico'));
 
+
+app.get('/game/data', function (req, res, next) {
+  res.status(200).send(mapData)
+})
 
 app.get('*', function (req, res) {
 	res.status(404).render('404', ({}))

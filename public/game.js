@@ -9,7 +9,32 @@ var attacker
 var defender
 var tooltipTimer
 
+var mapElems = []
+
+// var mapElems = JSON.parse(fs.readFileSync("postData.json"));
 var mapScale = 90
+
+
+function insertNewMapElem(elemName, elemTroops, elemNeighbor, elemOwner, elemId, elemClass, elemPath) {
+
+  var mapElemHtml = Handlebars.templates.mapElem({
+    name: elemName,
+    troops: elemTroops, 
+    neighbor: elemNeighbor,
+    owner: elemOwner,
+    id: elemId,
+    class: elemClass,
+    path: elemPath
+  })
+  // console.log("== postCardHtml:", postCardHtml)
+  map.insertAdjacentHTML('afterbegin', mapElemHtml)
+  // return postCardHtml
+}
+
+mapElems.forEach(function (elem) {
+  insertNewMapElem(elem.name, elem.troops, elem.neighbor, elem.owner, elem.id, elem.class, elem.path);
+});
+
 
 growMap.addEventListener('click', function() {
   mapScale += 5
@@ -65,7 +90,7 @@ document.querySelectorAll('.territory').forEach(item => {
         tooltip.style.display =  "block";
         // console.log(item.id);
 
-        document.getElementById("tooltip-region").innerText = "Region: " + item.id
+        document.getElementById("tooltip-region").innerText = "Region: " + item.dataset.name
         document.getElementById("tooltip-troops").innerText = "Troops: " + document.getElementById(item.id + "-troops").textContent
         document.getElementById("tooltip-owner").innerText = "Owner: " + item.dataset.owner
       }, 700)
@@ -106,5 +131,3 @@ window.onload = function() {
 }
 
 console.log(window.innerWidth, '+', window.innerWidth)
-
-
