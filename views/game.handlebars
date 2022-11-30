@@ -127,7 +127,7 @@
                 </g>
             </svg>
         </div>
-
+{{!-- 
         <div id="info-box">
             <div id="attacker-info" class="country-info">
                 <div class="info" id="region"> Region:
@@ -155,8 +155,50 @@
         <div id = "attack-box">
             <input type="image" id="attack-button" src="fire.gif"/>
             <div id="attack-text">ATTACK</div>
+        </div> --}}
+<div id="info-box">
+            <div id="attacker-info" class="country-info">
+                <div class="info" id="region"> Region:
+                    <div class = "player-info" id="attacker-region"></div>
+                </div>
+                <div class="info" id="troops">Troops:
+                    <div class = "player-info" id="attacker-troops"></div>
+                </div>
+                <div class="info" id="owner">Owner:
+                    <div class = "player-info" id="attacker-owner"></div>
+                </div>
+            </div>
+            <div id="defender-info" class="country-info">
+                <div class="info" id="region"> Region:
+                    <div class = "player-info" id="defender-region"></div>
+                </div>
+                <div class="info" id="troops">Troops:
+                    <div class = "player-info" id="defender-troops"></div>
+                </div>
+                <div class="info" id="owner">Owner:
+                    <div class = "player-info" id="defender-owner"></div>
+                </div>
+            </div>
+        </div>  
+
+        <div id="dice-box">
+            <div id="attack-dice">
+                <div class = "dice" id="one"></div>
+                <div class = "dice" id="two"></div>
+                <div class = "dice" id="three"></div>
+            </div>
+            <div id="defense-dice">
+                <div class = "dice" id="one"></div>
+                <div class = "dice" id="two"></div>
+            </div>
         </div>
-                <div id="tooltip">
+
+        <div id = "attack-box">
+            <input type="image" id="attack-button" src="fire.gif"/>
+            <div id="attack-text">ATTACK</div>
+        </div>
+
+        <div id="tooltip">
             <div class="info" id="tooltip-region"> Region:</div>
             <div class="info" id="tooltip-troops">Troops:</div>
             <div class="info" id="tooltip-owner">Owner:</div>
