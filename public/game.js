@@ -49,8 +49,7 @@ document.querySelectorAll('.territory').forEach(item => {
       console.log("")
       if (content == "attacker"){
         attacker = territory
-        document.getElementById("defender-region").textContent = ""
-        document.getElementById("defender-troops").textContent = ""
+        clearAttackBox("defender")
       }
       content = "attacker"
       return
@@ -81,6 +80,10 @@ function updateAttackBox(territory, territoryTroops, content){
   var ownerTroops = document.getElementById(content+"-troops")
   ownerRegion.textContent = territory.id
   ownerTroops.textContent = territoryTroops
+}
+function clearAttackBox(attackerOrDefender){
+  document.getElementById(attackerOrDefender+"-region").textContent = ""
+  document.getElementById(attackerOrDefender+"-troops").textContent = ""
 }
 function hideDice(){
   diceBox = document.getElementById("dice-box")
@@ -148,9 +151,68 @@ attackButton.addEventListener('click', function(){
   }else{ 
     console.log("--Not enough troops")
   }
+  if (defenderTroops == 0){
+    sendTroops(attackerTroops, attacker.id, defender.id)
+  }
   updateAttackBox(attacker, attackerTroops, "attacker")
   updateAttackBox(defender, defenderTroops, "defender")
 })
+
+
+function sendTroops(troops, homeRegion, newRegion){
+  console.log("Conquered New Territory!")
+  console.log("--Total troops:", troops)
+  console.log("--Home Region:", homeRegion)
+  console.log("--New Region:", newRegion)
+  
+  hideDice()
+  
+  showConquerBox()
+
+  var homeTroops = document.getElementById("home-region")
+  console.log("homeTroops", homeTroops)
+  homeTroops.textContent = troops-1
+
+  var newTroops = document.getElementById("new-region")
+  newTroops.textContent = 1
+
+  var countryName = document.getElementById("country-names")
+  countryName.textContent = homeRegion + "  >>>  " + newRegion
+
+  var newButton = document.getElementById("new-button")
+  newButton.addEventListener('click', function(){
+    if (homeTroops.textContent <= 1){return}
+    newTroops.textContent = parseInt(newTroops.textContent) + 1
+    homeTroops.textContent = parseInt(homeTroops.textContent) - 1
+  })
+
+  var homeButton = document.getElementById("home-button")
+  homeButton.addEventListener('click', function(){
+    if (newTroops.textContent <= 1){return}
+    newTroops.textContent = parseInt(newTroops.textContent) - 1
+    homeTroops.textContent = parseInt(homeTroops.textContent) + 1
+  })
+
+  var confirm = document.getElementById("conquer-done")
+  confirm.addEventListener('click', function(){
+    document.getElementById(homeRegion + "-troops").textContent = homeTroops.textContent
+    document.getElementById(newRegion + "-troops").textContent = newTroops.textContent
+    clearAttackBox("attacker")
+    clearAttackBox("defender")
+    content = "attacker"
+    attacker = undefined
+    defender = undefined
+    hideConquerBox()
+  })
+}
+function showConquerBox(){
+  document.getElementById("conquer-box").style.display = "flex"
+  document.getElementById("conquer-backdrop").style.display = "block"
+}
+function hideConquerBox(){
+  document.getElementById("conquer-box").style.display = "none"
+  document.getElementById("conquer-backdrop").style.display = "none"
+}
 
 var sign = .25
 var x = 0
