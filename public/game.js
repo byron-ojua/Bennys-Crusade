@@ -1,4 +1,3 @@
-
 var compass = document.getElementById("compass")
 var tooltip = document.getElementById("tooltip")
 var growMap = document.getElementById("map-size-grow")
@@ -224,11 +223,7 @@ window.onload = function() {
     if(x % 15 === 0){
       sign = sign * -1
     }
-  }, 100)	
-
-//   document.getElementById("1").style.background = 'linear-gradient(to left, white 2%, rgb(89, 208, 25) 110%) right'
+  }, 100)
 }
 
 console.log(window.innerWidth, '+', window.innerWidth)
-
-
