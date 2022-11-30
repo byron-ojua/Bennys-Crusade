@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Treasure Map;
+    src: "./treasuremap.ttf";
+}
+
 .north-america{
     fill: rgb(248, 248, 93);
 }
@@ -56,13 +61,59 @@
     scale: 90%;
 }
 
+#dice-box{
+    position:fixed;
+    display: flex;
+    height: 50px;
+    width: 460px;
+    
+    bottom: 20%;
+    left: 2%;
+}
+#defense-dice{
+    position:relative;
+    display:inline-flex;
+    flex-direction:row-reverse;
+    justify-content: space-between;
+
+    left: 25%;
+    height: 100%;
+    width: 30%;
+}
+#attack-dice{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content:left;
+
+
+    height: 100%;
+    width: 45%;
+}
+.dice{
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+
+    margin-left: 20px;
+    display: none;
+
+    border: 5px solid rgb(62, 62, 62);
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+}
+
 #info-box{
 
     position:fixed;
     display: flex;
     justify-content: center;
-    height: 150px;
-    width: 300px;
+    height: 130px;
+    width: 450px;
     
     border: 5px solid rgb(139, 96, 40);
     background-color: burlywood;
@@ -70,7 +121,7 @@
     opacity: 0.7;
 
     bottom: 3%;
-    left: 4%;
+    left: 2%;
 }
 
 #info-box:hover{
@@ -82,17 +133,20 @@
     display: block;
 
     top: 50%;
-    right: 20%;
+    right: 22.5%;
     transform: translate(50%, -50%);
 
     height: 90%;
-    width: 40%;
+    width: 45%;
     background-color: rgb(218, 152, 66) ;
     border-radius: 20px;
     margin-left: 15px;
     margin-right: 15px;
 }
 
+.player-info{
+    display: inline;
+}
 .info{
     padding: 11px 0px 5px 10px;
     color:rgb(99, 65, 20);
@@ -174,6 +228,32 @@
     align-items: center;
     /* margin: 10px; */
     font-weight: bold;
+}
+#user-sidebars {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	right: 0;
+	top: 20px;
+}
+
+.sidebar {
+	background: linear-gradient(to left, white 2%, rgb(89, 208, 25) 110%) right;
+	width: 250px;
+	height: 55px;
+	border-bottom-left-radius: 20px;
+ 	border-top-left-radius: 20px;
+	border: 2px solid black;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.sidebar-text {
+	margin-left: 15px;
+	font-size: 16px;
+	text-align: left;
+	font-family: "Treasure Map";
+    -webkit-text-stroke: 1px black;
 }
 
 .troop-count{

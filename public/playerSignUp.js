@@ -6,6 +6,8 @@ compass.style.translate = 'rotate(90deg)'
 var sign = .25
 var x = 0
 
+
+
 window.onload = function() {
     setInterval(function () {
         x = x + sign
@@ -39,7 +41,10 @@ numPlayers.onchange = function () {
 
 function beginGame(event) {
 	var playerText = document.getElementsByClassName('player-text')
-	console.log("THIS IS THE VALUE OF numValUnder", numValUnder)
+	var playerColor = document.getElementsByClassName('player-color')
+	var textArray = []
+	var colorArray = []
+	var numIDArray = []
 	for(var i = 0; i < numValUnder; i++) {
 		var input = playerText[i].value
 		if(input == "") {
@@ -47,8 +52,30 @@ function beginGame(event) {
 			alert("All player names must be filled out")
 			break
 		}
+		textArray.push(input)
+		colorArray.push(playerColor[i].value)
+		numIDArray.push(i.toString())
 		if(i == numValUnder-1) {
-			// var data = 
+			var requestURL = '/userSideBars/newUsers/addNewUsers'
+			fetch(requestURL, {
+				method: 'POST', 
+				body: JSON.stringify({
+					names: textArray, 
+					numIds: numIDArray
+				}), 
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}).then(function(res) {
+				if(res.status == 200) {
+					console.log("SUCCESS")
+				} else {
+					console.log("Error occurred adding users to game screen")
+				}
+			})
+			// localStorage.setItem("playerNames", JSON.stringify(textArray))
+			localStorage.setItem("playerColors", JSON.stringify(colorArray))
+			// localStorage.setItem("numIDs", JSON.stringify(numIDArray))
 			window.location.replace("./game.html")
 		}
 	} 
