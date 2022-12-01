@@ -15,10 +15,10 @@ growMap.addEventListener('click', function() {
   map.style.scale = mapScale + "%"
 })
 
-// shrinkMap.addEventListener('click', function() {
-//   mapScale -= 5
-//   map.style.scale = mapScale + "%"
-// })
+shrinkMap.addEventListener('click', function() {
+  mapScale -= 5
+  map.style.scale = mapScale + "%"
+})
 
 //select territory
 document.querySelectorAll('.territory').forEach(item => {
