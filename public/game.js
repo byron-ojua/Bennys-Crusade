@@ -254,9 +254,6 @@ function hideAttackBox(){
   attackButton.style.display = 'none'
 }
 
-
-
-
 var sign = .25
 var x = 0
 window.onload = function() {
@@ -318,13 +315,17 @@ function claimCountries() {
   //use the 'attack countrie' code to move a sigle troop to an unclamed countire
 }
 
-var phaseIndex = 0;//keeps track of what phase the turns are currently in
-//main game loop
+//this is called when the next phase button is pushed
+var 
+function nextPhaseHandler(){
+  
+}
 
+
+var conquestTurnIndex = 0;//keeps track of what phase the turns are currently in
 //move to the next phase in a players turn
-//this is called when the next phase button is clicked
 function turnLoop() {
-  phaseIndex = (phaseIndex + 1) % 3;
+  phaseIndex = (phaseIndex + 1) % 3;//index's from 0 - 2 like a loop
   console.log(" -- Player Phase Index:", phaseIndex);
   if (phaseIndex == 0) {
     //places troops needs to be defined
