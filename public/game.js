@@ -318,21 +318,23 @@ function claimCountries() {
   //use the 'attack countrie' code to move a sigle troop to an unclamed countire
 }
 
-var playerPhaseIndex = 0;
+var phaseIndex = 0;//keeps track of what phase the turns are currently in
 //main game loop
 
 //move to the next phase in a players turn
 //this is called when the next phase button is clicked
 function turnLoop() {
-  playerPhaseIndex = (playerPhaseIndex + 1) % 3;
-  console.log(" -- Player Phase Index:", playerPhaseIndex);
-  if (playerPhaseIndex == 0) {
+  phaseIndex = (phaseIndex + 1) % 3;
+  console.log(" -- Player Phase Index:", phaseIndex);
+  if (phaseIndex == 0) {
     //places troops needs to be defined
     //placeTroopsPhase()
-  } else if (playerIndex == 1) {
+  } else if (phaseIndex == 1) {
     //initiates the attack phase of the turn
-    //attackPhase()
-  } else if (playerIndex == 2) {
+    showAttackBox();
+  } else if (phaseIndex == 2) {
+    console.log("Phase 2 so it should be doing somehting");
+    hideAttackBox();//hides the attack box
     //this moves troops at the end of your turn from one ajacent countrie to another
     //moveTroopsPhase()
   } else {
