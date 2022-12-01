@@ -8,10 +8,10 @@ templates['userSideBar'] = template({"compiler":[8,">= 4.3.0"],"main":function(c
         return undefined
     };
 
-  return "<div class=\"sidebar\" id= \""
-    + alias4(((helper = (helper = lookupProperty(helpers,"idNum") || (depth0 != null ? lookupProperty(depth0,"idNum") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"idNum","hash":{},"data":data,"loc":{"start":{"line":1,"column":26},"end":{"line":1,"column":35}}}) : helper)))
-    + "\">\r\n	<div class=\"sidebar-text\">\r\n		<p>"
+  return "<div class=\"sidebar\">\n	<div class=\"sidebar-text\" id= \""
+    + alias4(((helper = (helper = lookupProperty(helpers,"idNum") || (depth0 != null ? lookupProperty(depth0,"idNum") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"idNum","hash":{},"data":data,"loc":{"start":{"line":2,"column":32},"end":{"line":2,"column":41}}}) : helper)))
+    + "\">\n		<p>"
     + alias4(((helper = (helper = lookupProperty(helpers,"name") || (depth0 != null ? lookupProperty(depth0,"name") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data,"loc":{"start":{"line":3,"column":5},"end":{"line":3,"column":13}}}) : helper)))
-    + "</p>\r\n	</div>\r\n</div>";
+    + "</p>\n	</div>\n</div>";
 },"useData":true});
 })();
