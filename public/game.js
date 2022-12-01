@@ -288,6 +288,18 @@ function nextPlayer(){
   console.log("Next player: ", playerIndex);
 }
 
+var sectionOfTheGameIndex = 1// keeps track of what section of the game ie. 'claim contires', 'conquest' or end
+//this is called when the next phase button is pushed
+function nextPhaseHandler(){
+  if (sectionOfTheGameIndex == 0) {
+    //code for claim countires here
+  } else if (sectionOfTheGameIndex == 1) {
+    turnLoop()
+  } else {
+    //code for end of game here
+  }
+}
+
 //place troops 
 function placeTroopsPhase() {
   //while you have remaining troops
@@ -315,21 +327,6 @@ function claimCountries() {
   //use the 'attack countrie' code to move a sigle troop to an unclamed countire
 }
 
-
-var sectionOfTheGameIndex = 1// keeps track of what section of the game ie. 'claim contires', 'conquest' or end
-
-//this is called when the next phase button is pushed
-function nextPhaseHandler(){
-  if (sectionOfTheGameIndex == 0) {
-    //code for claim countires here
-  } else if (sectionOfTheGameIndex == 1) {
-    turnLoop()
-  } else {
-    //code for end of game here
-  }
-}
-
-
 var conquestTurnIndex = 0;//keeps track of what phase the turns during the conquest part of the game
 //move to the next phase in a players turn
 function turnLoop() {
@@ -349,11 +346,12 @@ function turnLoop() {
   } 
 }
 
+//Replaced the loops with global variable counters instead because I thought it made more sense this way
+
 function startGame() {
-    claimCountries()
-    //while the game is not over run turnLoop()
-    //turnLoop()
+    //display some begginging message to the players
+    //optional code for choosing player order could go here
+    
     
 }
-
 startGame()
