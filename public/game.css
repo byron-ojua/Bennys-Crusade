@@ -321,7 +321,7 @@
 }
 
 .sidebar {
-	background: linear-gradient(to right, white 2%, rgb(89, 208, 25) 110%) left;
+	/* background: linear-gradient(to right, white 2%, rgb(89, 208, 25) 110%) left; */
 	width: 150px;
 	height: 45px;
 	border-bottom-right-radius: 20px;
