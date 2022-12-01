@@ -315,37 +315,41 @@ function claimCountries() {
   //use the 'attack countrie' code to move a sigle troop to an unclamed countire
 }
 
+
+var sectionOfTheGameIndex = 1// keeps track of what section of the game ie. 'claim contires', 'conquest' or end
+
 //this is called when the next phase button is pushed
-var 
 function nextPhaseHandler(){
-  
-}
-
-
-var conquestTurnIndex = 0;//keeps track of what phase the turns are currently in
-//move to the next phase in a players turn
-function turnLoop() {
-  phaseIndex = (phaseIndex + 1) % 3;//index's from 0 - 2 like a loop
-  console.log(" -- Player Phase Index:", phaseIndex);
-  if (phaseIndex == 0) {
-    //places troops needs to be defined
-    //placeTroopsPhase()
-  } else if (phaseIndex == 1) {
-    //initiates the attack phase of the turn
-    showAttackBox();
-  } else if (phaseIndex == 2) {
-    console.log("Phase 2 so it should be doing somehting");
-    hideAttackBox();//hides the attack box
-    //this moves troops at the end of your turn from one ajacent countrie to another
-    //moveTroopsPhase()
+  if (sectionOfTheGameIndex == 0) {
+    //code for claim countires here
+  } else if (sectionOfTheGameIndex == 1) {
+    turnLoop()
   } else {
-    //this ends the players turn
-   //nextPlayer()
+    //code for end of game here
   }
 }
 
-function startGame() {
 
+var conquestTurnIndex = 0;//keeps track of what phase the turns during the conquest part of the game
+//move to the next phase in a players turn
+function turnLoop() {
+  conquestTurnIndex = (conquestTurnIndex + 1) % 3;//index's from 0 - 2 like a loop
+  console.log(" -- Player Phase Index:", conquestTurnIndex);
+  if (conquestTurnIndex == 0) {
+    nextPlayer()
+    //places troops needs to be defined
+    //placeTroopsPhase()
+  } else if (conquestTurnIndex == 1) {
+    //initiates the attack phase of the turn
+    showAttackBox();
+  } else if (conquestTurnIndex == 2) {
+    hideAttackBox();//hides the attack box
+    //this moves troops at the end of your turn from one ajacent countrie to another
+    //moveTroopsPhase()
+  } 
+}
+
+function startGame() {
     claimCountries()
     //while the game is not over run turnLoop()
     //turnLoop()
