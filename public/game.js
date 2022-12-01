@@ -11,15 +11,15 @@ var tooltipTimer
 
 var mapScale = 90
 
-growMap.addEventListener('click', function() {
-  mapScale += 5
-  map.style.scale = mapScale + "%"
-})
+// growMap.addEventListener('click', function() {
+//   mapScale += 5
+//   map.style.scale = mapScale + "%"
+// })
 
-shrinkMap.addEventListener('click', function() {
-  mapScale -= 5
-  map.style.scale = mapScale + "%"
-})
+// shrinkMap.addEventListener('click', function() {
+//   mapScale -= 5
+//   map.style.scale = mapScale + "%"
+// })
 
 document.querySelectorAll('.territory').forEach(item => {
     item.addEventListener('click', event => {
@@ -157,6 +157,15 @@ window.onload = function() {
       sign = sign * -1
     }
   }, 100)
+  var colors = localStorage.getItem("playerColors")
+  var colorsArray = JSON.parse(colors)
+  console.log("LENGTH HERE ", colorsArray.length)
+  for(var i = 0; i < colorsArray.length; i++) {
+	var id = i.toString()
+	var sidebar = document.getElementById(id)
+	sidebar.style.background = 'linear-gradient(to right, white 2%, ' + colorsArray[i] + ' 110%) left';
+  }
+  
 }
 
 console.log(window.innerWidth, '+', window.innerWidth)
