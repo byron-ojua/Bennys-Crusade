@@ -243,6 +243,17 @@ document.getElementById(attackerOrDefender+"-region").textContent = ""
 document.getElementById(attackerOrDefender+"-troops").textContent = ""
 }
 
+//hide and show attack functions
+function showAttackBox(){
+  console.log(" -- Showing attack button")
+  attackButton.style.display = 'block'
+}
+function hideAttackBox(){
+  console.log(" -- Hiding attack button")
+  attackButton.style.display = 'none'
+}
+
+
 
 
 var sign = .25
@@ -275,6 +286,14 @@ var playerIndex = 0
 
 
 
+//move to the next player
+function nextPlayer(){
+  playerIndex = (playerIndex + 1) % playerArray.length;
+  console.log("Next player: ", playerIndex);
+}
+
+
+
 //place troops 
 function placeTroopsPhase() {
   //while you have remaining troops
@@ -283,7 +302,7 @@ function placeTroopsPhase() {
 
 //attackPhase
 function attackPhase() {
-  //unhide the attack button
+  showAttackBox()
   //when the next phase button is clicked
   //re hide the attack button
 }
@@ -325,10 +344,5 @@ function startGame() {
     
 }
 
+//hideAttackBox()
 
-//startGame()
-
-function nextPlayer(){
-  playerIndex = (playerIndex + 1) % playerArray.length;
-  console.log("Next player: ", playerIndex);
-}
