@@ -342,4 +342,14 @@
 
 .troop-count{
     z-index: 4;
+    background-color: aqua;
+    border-radius: 50%;
+}
+
+#phase-bar{
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+    top: 10px;
+    /* transition: ; */
 }

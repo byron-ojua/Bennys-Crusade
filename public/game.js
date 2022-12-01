@@ -3,12 +3,21 @@ var tooltip = document.getElementById("tooltip")
 var growMap = document.getElementById("map-size-grow")
 var shrinkMap = document.getElementById("map-size-shrink")
 var map = document.getElementById("map-overlay")
+var nextPhaseButton = document.getElementById("phase-bar")
 var content = "attacker"
 var attacker
 var defender
 var tooltipTimer
-var mapScale = 90
+var mapScale = 85
 
+
+var players = localStorage.getItem("playerNames")
+var playerArray = JSON.parse(players)
+
+
+nextPhaseButton.addEventListener('click', function() {
+  nextPlayer()
+})
 
 growMap.addEventListener('click', function() {
   mapScale += 5
@@ -35,11 +44,11 @@ document.querySelectorAll('.territory').forEach(item => {
       neighbors = attacker.dataset.neighbor
       console.log("--Neighbors:", neighbors)
       console.log("--Neighbors.length:", neighbors.length)
-
-      if (neighbors.includes(territory.id)){
-        defender = territory
-        content = "defender"
-      }
+      if (playerArray[playerIndex] != territory.dataset.owner)
+        if (neighbors.includes(territory.id)){
+          defender = territory
+          content = "defender"
+        }
     }
     //set the correct info box to the right values.
     updateAttackBox(territory, territoryTroops, content)
@@ -234,6 +243,8 @@ document.getElementById(attackerOrDefender+"-region").textContent = ""
 document.getElementById(attackerOrDefender+"-troops").textContent = ""
 }
 
+
+
 var sign = .25
 var x = 0
 window.onload = function() {
@@ -253,6 +264,71 @@ window.onload = function() {
 	  var sidebar = document.getElementById(id)
 	  sidebar.style.background = 'linear-gradient(to right, white 2%, ' + colorsArray[i] + ' 110%) left';
   }
+  startGame()
 }
 
 console.log(window.innerWidth, '+', window.innerWidth)
+
+
+console.log("PLAYER ARRAY: ", playerArray)
+var playerIndex = 0
+
+
+
+//place troops 
+function placeTroopsPhase() {
+  //while you have remaining troops
+  // ?? maybe use the 'attack move' code and have the attacking country be a pool of player troops
+}
+
+//attackPhase
+function attackPhase() {
+  //unhide the attack button
+  //when the next phase button is clicked
+  //re hide the attack button
+}
+
+//moves troops 
+function moveTroopsPhase() {
+  //use the 'attack move code' to click and move troops once when they are ajacent
+}
+
+//claim the counties at the beginning of the game
+function claimCountries() {
+  //make it so when each player is claiming, their side bar slides out a bit 
+  //they claim one country at a time, then the next person chooses 
+  
+  //for number of countries
+  //use the 'attack countrie' code to move a sigle troop to an unclamed countire
+}
+
+//main game loop
+function turnLoop() {
+
+  //possiblity to draw a card
+
+  placeTroopsPhase()//places troops needs to be defined
+
+  attackPhase()//initiates the attack phase of the turn
+
+  moveTroopsPhase()//this moves troops at the end of your turn from one ajacent countrie to another
+  
+  //possibliity to exchange cards
+}
+
+function startGame() {
+
+    claimCountries()
+    
+    //while the game is not over run turnLoop()
+    turnLoop()
+    
+}
+
+
+//startGame()
+
+function nextPlayer(){
+  playerIndex = (playerIndex + 1) % playerArray.length;
+  console.log("Next player: ", playerIndex);
+}
