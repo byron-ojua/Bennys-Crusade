@@ -16,7 +16,8 @@ var playerArray = JSON.parse(players)
 
 
 nextPhaseButton.addEventListener('click', function() {
-  nextPlayer()
+  //nextPlayer()
+  turnLoop();
 })
 
 growMap.addEventListener('click', function() {
@@ -278,21 +279,17 @@ window.onload = function() {
   startGame()
 }
 
+//log stuff
 console.log(window.innerWidth, '+', window.innerWidth)
-
-
 console.log("PLAYER ARRAY: ", playerArray)
-var playerIndex = 0
-
-
+//inits for player turn and player phase within a turn
+var playerIndex = 0;
 
 //move to the next player
 function nextPlayer(){
   playerIndex = (playerIndex + 1) % playerArray.length;
   console.log("Next player: ", playerIndex);
 }
-
-
 
 //place troops 
 function placeTroopsPhase() {
@@ -321,28 +318,35 @@ function claimCountries() {
   //use the 'attack countrie' code to move a sigle troop to an unclamed countire
 }
 
+var playerPhaseIndex = 0;
 //main game loop
+
+//move to the next phase in a players turn
+//this is called when the next phase button is clicked
 function turnLoop() {
-
-  //possiblity to draw a card
-
-  placeTroopsPhase()//places troops needs to be defined
-
-  attackPhase()//initiates the attack phase of the turn
-
-  moveTroopsPhase()//this moves troops at the end of your turn from one ajacent countrie to another
-  
-  //possibliity to exchange cards
+  playerPhaseIndex = (playerPhaseIndex + 1) % 3;
+  console.log(" -- Player Phase Index:", playerPhaseIndex);
+  if (playerPhaseIndex == 0) {
+    //places troops needs to be defined
+    //placeTroopsPhase()
+  } else if (playerIndex == 1) {
+    //initiates the attack phase of the turn
+    //attackPhase()
+  } else if (playerIndex == 2) {
+    //this moves troops at the end of your turn from one ajacent countrie to another
+    //moveTroopsPhase()
+  } else {
+    //this ends the players turn
+   //nextPlayer()
+  }
 }
 
 function startGame() {
 
     claimCountries()
-    
     //while the game is not over run turnLoop()
-    turnLoop()
+    //turnLoop()
     
 }
 
-//hideAttackBox()
-
+startGame()
