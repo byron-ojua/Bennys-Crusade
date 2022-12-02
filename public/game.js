@@ -354,11 +354,30 @@ function nextPhaseHandler(){
   }
 }
 
+var territoryArray = []
 //place troops 
 function placeTroopsPhase() {
   //while you have remaining troops
   // ?? maybe use the 'attack move' code and have the attacking country be a pool of player troops
+
+  //Calculate amount of troops you get
+  var reserveCount = 0
+  var territoriesControlled = 0
+  for (var i = 0; i < territoryArray.length; i++){
+    var territory = document.getElementById(territoryArray[i])
+    if (playerArray[playerIndex] == territory.owner){
+      territoriesControlled += 1
+    }
+  }
+  reserveCount = Math.floor(territoriesControlled % 3)
+  //Continent Bonuses
+
+  //Turning in territory card sets
+
+  //Place all troops
+
 }
+
 
 //attackPhase
 function attackPhase() {
