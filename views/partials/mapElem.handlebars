@@ -1,4 +1,4 @@
-<path
+<g
 data-neighbor="{{neighbor}}"
 data-troops="{{troops}}"
 data-owner="{{owner}}"
@@ -6,6 +6,9 @@ data-name="{{name}}"
 fill="none"
 id="{{id}}"
 stroke="#000000"
-class="{{class}}"
-d="{{path}}"
-/>
+class="{{class}}">
+
+{{#each path}}
+    <path d="{{this}}"/>
+{{/each}}
+</g>

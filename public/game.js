@@ -22,7 +22,8 @@ var isClaiming = true
 
 
 nextPhaseButton.addEventListener('click', function() {
-  nextPlayer()
+  //nextPlayer()
+  turnLoop();
 })
 
 growMap.addEventListener('click', function() {
@@ -281,7 +282,15 @@ document.getElementById(attackerOrDefender+"-region").textContent = ""
 document.getElementById(attackerOrDefender+"-troops").textContent = ""
 }
 
-
+//hide and show attack functions
+function showAttackBox(){
+  console.log(" -- Showing attack button")
+  attackButton.style.display = 'block'
+}
+function hideAttackBox(){
+  console.log(" -- Hiding attack button")
+  attackButton.style.display = 'none'
+}
 
 var sign = .25
 var x = 0
@@ -311,10 +320,29 @@ window.onload = function() {
   startGame()
 }
 
+//log stuff
 console.log(window.innerWidth, '+', window.innerWidth)
+console.log("PLAYER ARRAY: ", playerArray)
+//inits for player turn and player phase within a turn
+var playerIndex = 0;
 
+//move to the next player
+function nextPlayer(){
+  playerIndex = (playerIndex + 1) % playerArray.length;
+  console.log("Next player: ", playerIndex);
+}
 
-
+var sectionOfTheGameIndex = 1// keeps track of what section of the game ie. 'claim contires', 'conquest' or end
+//this is called when the next phase button is pushed
+function nextPhaseHandler(){
+  if (sectionOfTheGameIndex == 0) {
+    //code for claim countires here
+  } else if (sectionOfTheGameIndex == 1) {
+    turnLoop()
+  } else {
+    //code for end of game here
+  }
+}
 
 //place troops 
 function placeTroopsPhase() {
@@ -324,7 +352,7 @@ function placeTroopsPhase() {
 
 //attackPhase
 function attackPhase() {
-  //unhide the attack button
+  showAttackBox()
   //when the next phase button is clicked
   //re hide the attack button
 }
@@ -356,33 +384,31 @@ function claimCountries() {
   //use the 'attack countrie' code to move a sigle troop to an unclamed countire
 
 
-//main game loop
+var conquestTurnIndex = 0;//keeps track of what phase the turns during the conquest part of the game
+//move to the next phase in a players turn
 function turnLoop() {
-
-  //possiblity to draw a card
-
-  placeTroopsPhase()//places troops needs to be defined
-
-  attackPhase()//initiates the attack phase of the turn
-
-  moveTroopsPhase()//this moves troops at the end of your turn from one ajacent countrie to another
-  
-  //possibliity to exchange cards
+  conquestTurnIndex = (conquestTurnIndex + 1) % 3;//index's from 0 - 2 like a loop
+  console.log(" -- Player Phase Index:", conquestTurnIndex);
+  if (conquestTurnIndex == 0) {
+    nextPlayer()
+    //places troops needs to be defined
+    //placeTroopsPhase()
+  } else if (conquestTurnIndex == 1) {
+    //initiates the attack phase of the turn
+    showAttackBox();
+  } else if (conquestTurnIndex == 2) {
+    hideAttackBox();//hides the attack box
+    //this moves troops at the end of your turn from one ajacent countrie to another
+    //moveTroopsPhase()
+  } 
 }
+
+//Replaced the loops with global variable counters instead because I thought it made more sense this way
 
 function startGame() {
-
-    claimCountries()
+    //display some begginging message to the players
+    //optional code for choosing player order could go here
     
-    //while the game is not over run turnLoop()
-    turnLoop()
     
 }
-
-
-//startGame()
-
-function nextPlayer(){
-  playerIndex = (playerIndex + 1) % playerArray.length;
-  console.log("Next player: ", playerIndex);
-}
+startGame()
