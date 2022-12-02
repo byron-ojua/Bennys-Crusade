@@ -12,7 +12,13 @@ var mapScale = 85
 
 
 var players = localStorage.getItem("playerNames")
+var colors = localStorage.getItem("playerColors")
 var playerArray = JSON.parse(players)
+var colorsArray = JSON.parse(colors)
+var playerIndex = 0
+var numTerritoriesUnclaimed = 42
+var isClaiming = true
+
 
 
 nextPhaseButton.addEventListener('click', function() {
@@ -30,36 +36,68 @@ shrinkMap.addEventListener('click', function() {
 })
 
 //select territory
+var territoriesClaimed = []
 document.querySelectorAll('.territory').forEach(item => {
   item.addEventListener('click', event => {
-    clearTimeout(tooltipTimer)
-    hideDice()
-    var territory = event.currentTarget
-    var territoryTroops = document.getElementById(territory.id + "-troops").textContent
-    
-    console.log("Territory selected")
-    console.log("--Name(ID):", territory.id)
-    console.log("--Troops:", territoryTroops)
-    if (attacker != undefined){
-      neighbors = attacker.dataset.neighbor
-      console.log("--Neighbors:", neighbors)
-      console.log("--Neighbors.length:", neighbors.length)
-      if (playerArray[playerIndex] != territory.dataset.owner)
-        if (neighbors.includes(territory.id)){
-          defender = territory
-          content = "defender"
-        }
-    }
-    //set the correct info box to the right values.
-    updateAttackBox(territory, territoryTroops, content)
+	if(isClaiming) {
+		if(numTerritoriesUnclaimed > 0) {
+			var currentPlayer = document.getElementById(playerIndex.toString())
+  			currentPlayer.style.width = "200px"
+			currentPlayer.style.opacity = "1"
+			var territoryClicked = event.currentTarget
+			var terr = document.getElementById(territoryClicked.id)
+			if(terr.getAttribute("data-owner").length == 0) {
+				terr.setAttribute("data-owner", playerArray[playerIndex])
+				var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
+				backgroundTroops.setAttribute("fill", colorsArray[playerIndex])
+				numTerritoriesUnclaimed--
 
-    console.log("")
-    if (content == "attacker"){
-      attacker = territory
-      clearAttackBox("defender")
-    }
-    content = "attacker"
-    return
+				currentPlayer.style.width = "150px"
+				currentPlayer.style.opacity = "0.78"
+				nextPlayer()
+				var currentPlayer = document.getElementById(playerIndex.toString())
+				currentPlayer.style.width = "200px"
+				currentPlayer.style.opacity = "1"
+			} else {
+				document.getElementById("territory-claimed-backdrop").style.display = 'block'
+				document.getElementById("territory-claimed").style.display = 'block'
+				var claimTerritoryClose = document.getElementById("territory-claimed-button")
+				claimTerritoryClose.addEventListener('click', function () {
+					document.getElementById("territory-claimed-backdrop").style.display = 'none'
+					document.getElementById("territory-claimed").style.display = 'none'
+				})
+			}
+		}
+	} else {
+		clearTimeout(tooltipTimer)
+		hideDice()
+		var territory = event.currentTarget
+		var territoryTroops = document.getElementById(territory.id + "-troops").textContent
+		
+		console.log("Territory selected")
+		console.log("--Name(ID):", territory.id)
+		console.log("--Troops:", territoryTroops)
+		if (attacker != undefined){
+		neighbors = attacker.dataset.neighbor
+		console.log("--Neighbors:", neighbors)
+		console.log("--Neighbors.length:", neighbors.length)
+		if (playerArray[playerIndex] != territory.dataset.owner)
+			if (neighbors.includes(territory.id)){
+			defender = territory
+			content = "defender"
+			}
+		}
+		//set the correct info box to the right values.
+		updateAttackBox(territory, territoryTroops, content)
+
+		console.log("")
+		if (content == "attacker"){
+		attacker = territory
+		clearAttackBox("defender")
+		}
+		content = "attacker"
+		return
+	}
   })
 
   item.onmouseenter = function(e){
@@ -264,14 +302,17 @@ window.onload = function() {
 	  var sidebar = document.getElementById(id)
 	  sidebar.style.background = 'linear-gradient(to right, white 2%, ' + colorsArray[i] + ' 110%) left';
   }
+  var startDeploy = document.getElementById("place_troop_button")
+  startDeploy.addEventListener('click', function () {
+	document.getElementById("place-troops-backdrop").style.display = 'none'
+	document.getElementById("place-troops").style.display = 'none'
+   })
+
   startGame()
 }
 
 console.log(window.innerWidth, '+', window.innerWidth)
 
-
-console.log("PLAYER ARRAY: ", playerArray)
-var playerIndex = 0
 
 
 
@@ -297,10 +338,23 @@ function moveTroopsPhase() {
 function claimCountries() {
   //make it so when each player is claiming, their side bar slides out a bit 
   //they claim one country at a time, then the next person chooses 
+  var numIDs = localStorage.getItem("numIDs")
+  var numIDsArray = JSON.parse(numIDs)
+  var currentPlayer = document.getElementById(playerIndex.toString())
+  currentPlayer.style.width = "200px"
+  currentPlayer.style.opacity = "1"
+  isClaiming = true
+  if(numTerritoriesUnclaimed == 0) {
+	isClaiming = false
+  }
+} 
+	
+
+
   
   //for number of countries
   //use the 'attack countrie' code to move a sigle troop to an unclamed countire
-}
+
 
 //main game loop
 function turnLoop() {
