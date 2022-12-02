@@ -17,7 +17,7 @@ var playerArray = JSON.parse(players)
 var colorsArray = JSON.parse(colors)
 var playerIndex = 0
 var numTerritoriesUnclaimed = 42
-var isClaiming = true
+var isClaiming = false
 
 
 
@@ -51,14 +51,24 @@ document.querySelectorAll('.territory').forEach(item => {
 				terr.setAttribute("data-owner", playerArray[playerIndex])
 				var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
 				backgroundTroops.setAttribute("fill", colorsArray[playerIndex])
-				numTerritoriesUnclaimed--
 
-				currentPlayer.style.width = "150px"
-				currentPlayer.style.opacity = "0.78"
-				nextPlayer()
-				var currentPlayer = document.getElementById(playerIndex.toString())
-				currentPlayer.style.width = "200px"
-				currentPlayer.style.opacity = "1"
+				if(numTerritoriesUnclaimed == 1) {
+					currentPlayer = document.getElementById(playerIndex.toString())
+					currentPlayer.style.width = "150px"
+					currentPlayer.style.opacity = ".78"
+					isClaiming = false
+					numTerritoriesUnclaimed--
+				} else {
+					numTerritoriesUnclaimed--
+
+					currentPlayer.style.width = "150px"
+					currentPlayer.style.opacity = "0.78"
+					nextPlayer()
+					var currentPlayer = document.getElementById(playerIndex.toString())
+					currentPlayer.style.width = "200px"
+					currentPlayer.style.opacity = "1"
+				}
+				
 			} else {
 				document.getElementById("territory-claimed-backdrop").style.display = 'block'
 				document.getElementById("territory-claimed").style.display = 'block'
@@ -68,7 +78,7 @@ document.querySelectorAll('.territory').forEach(item => {
 					document.getElementById("territory-claimed").style.display = 'none'
 				})
 			}
-		}
+		} 
 	} else {
 		clearTimeout(tooltipTimer)
 		hideDice()
@@ -372,9 +382,7 @@ function claimCountries() {
   currentPlayer.style.width = "200px"
   currentPlayer.style.opacity = "1"
   isClaiming = true
-  if(numTerritoriesUnclaimed == 0) {
-	isClaiming = false
-  }
+  
 } 
 	
 
@@ -384,15 +392,14 @@ function claimCountries() {
   //use the 'attack countrie' code to move a sigle troop to an unclamed countire
 
 
-var conquestTurnIndex = 0;//keeps track of what phase the turns during the conquest part of the game
+var conquestTurnIndex = -1;//keeps track of what phase the turns during the conquest part of the game
 //move to the next phase in a players turn
 function turnLoop() {
   conquestTurnIndex = (conquestTurnIndex + 1) % 3;//index's from 0 - 2 like a loop
   console.log(" -- Player Phase Index:", conquestTurnIndex);
   if (conquestTurnIndex == 0) {
-    nextPlayer()
-    //places troops needs to be defined
-    //placeTroopsPhase()
+    // nextPlayer()
+    claimCountries()
   } else if (conquestTurnIndex == 1) {
     //initiates the attack phase of the turn
     showAttackBox();
@@ -408,7 +415,6 @@ function turnLoop() {
 function startGame() {
     //display some begginging message to the players
     //optional code for choosing player order could go here
-    
+   turnLoop()
     
 }
-startGame()
