@@ -288,6 +288,7 @@ function nextPlayer(){
   console.log("Next player: ", playerIndex);
 }
 
+<<<<<<< Updated upstream
 var sectionOfTheGameIndex = 1// keeps track of what section of the game ie. 'claim contires', 'conquest' or end
 //this is called when the next phase button is pushed
 function nextPhaseHandler(){
@@ -300,11 +301,32 @@ function nextPhaseHandler(){
   }
 }
 
+=======
+var territoryArray = []
+>>>>>>> Stashed changes
 //place troops 
 function placeTroopsPhase() {
   //while you have remaining troops
   // ?? maybe use the 'attack move' code and have the attacking country be a pool of player troops
+
+  //Calculate amount of troops you get
+  var reserveCount = 0
+  var territoriesControlled = 0
+  for (var i = 0; i < territoryArray.length; i++){
+    var territory = document.getElementById(territoryArray[i])
+    if (playerArray[playerIndex] == territory.owner){
+      territoriesControlled += 1
+    }
+  }
+  reserveCount = Math.floor(territoriesControlled % 3)
+  //Continent Bonuses
+
+  //Turning in territory card sets
+
+  //Place all troops
+
 }
+
 
 //attackPhase
 function attackPhase() {
