@@ -353,3 +353,142 @@
     top: 10px;
     /* transition: ; */
 }
+
+
+#place-troops-backdrop {
+    /* display: none; */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+  }
+#place-troops{
+    /* display: none; */
+    top: 50%;
+    left: 50%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em;
+    margin-left: -15em;
+    border-radius: 35px;
+    background-color: rgb(139, 96, 40);
+	border: 2px solid black;
+    position: fixed;
+    z-index: 1010;
+    align-items: center;
+    flex-direction:column;
+    justify-content: center;
+}
+
+#place-troops-column {
+	font-size: 25px;
+	/* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-left: 10px;
+	font-family: "Treasure Map";
+}
+
+
+#place_troop_button {
+	margin-left: 200px;
+	margin-top: 65px;
+	margin-right: 200px;
+	font-size: 23px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	width: 200px;
+	border-radius: 10px;
+	background-color: grey;
+}
+
+#place_troop_button:hover {
+	margin-left: 200px;
+	margin-top: 65px;
+	margin-right: 200px;
+	font-size: 23px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	width: 200px;
+	border-radius: 10px;
+	background-color: wheat;
+	cursor: pointer;
+}
+
+#place-troops-text {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+#territory-claimed-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+  }
+
+#territory-claimed{
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em;
+    margin-left: -15em;
+    border-radius: 35px;
+    background-color: rgb(139, 96, 40);
+	border: 2px solid black;
+    position: fixed;
+    z-index: 1010;
+    align-items: center;
+    flex-direction:column;
+    justify-content: center;
+}
+
+#territory-claimed-column {
+	font-size: 25px;
+	/* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-left: 10px;
+	font-family: "Treasure Map";
+}
+
+
+#territory-claimed-button {
+	margin-left: 200px;
+	margin-top: 65px;
+	margin-right: 200px;
+	font-size: 23px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	width: 200px;
+	border-radius: 10px;
+	background-color: grey;
+}
+
+#territory-claimed-button:hover {
+	margin-left: 200px;
+	margin-top: 65px;
+	margin-right: 200px;
+	font-size: 23px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	width: 200px;
+	border-radius: 10px;
+	background-color: wheat;
+	cursor: pointer;
+}
+
+#territory-claimed-text {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

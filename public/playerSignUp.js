@@ -75,7 +75,7 @@ function beginGame(event) {
 			})
 			localStorage.setItem("playerNames", JSON.stringify(textArray))
 			localStorage.setItem("playerColors", JSON.stringify(colorArray))
-			// localStorage.setItem("numIDs", JSON.stringify(numIDArray))
+			localStorage.setItem("numIDs", JSON.stringify(numIDArray))
 			window.location.replace("./game.html")
 		}
 	} 
