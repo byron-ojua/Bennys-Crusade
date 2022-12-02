@@ -288,7 +288,6 @@ function nextPlayer(){
   console.log("Next player: ", playerIndex);
 }
 
-<<<<<<< Updated upstream
 var sectionOfTheGameIndex = 1// keeps track of what section of the game ie. 'claim contires', 'conquest' or end
 //this is called when the next phase button is pushed
 function nextPhaseHandler(){
@@ -301,9 +300,7 @@ function nextPhaseHandler(){
   }
 }
 
-=======
 var territoryArray = []
->>>>>>> Stashed changes
 //place troops 
 function placeTroopsPhase() {
   //while you have remaining troops
