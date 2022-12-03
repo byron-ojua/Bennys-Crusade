@@ -41,8 +41,8 @@ var territoriesClaimed = []
 document.querySelectorAll('.territory').forEach(item => {
   item.addEventListener('click', event => {//this determines what each of the countries do when clicked
 
-
     if(stageOfTheGameIndex == 0) {
+	  claimCountries()
       claimCountrySelection()
     } else if (stageOfTheGameIndex == 1) {//this is for attack?
       conquerCountrySelection()
@@ -75,7 +75,7 @@ document.querySelectorAll('.territory').forEach(item => {
 //country country code for claiming stage
 function claimCountrySelection(){
 
-  
+  claimCountries()
   if(numTerritoriesUnclaimed > 0) {
     var currentPlayer = document.getElementById(playerIndex.toString())
     currentPlayer.style.width = "200px"
@@ -94,9 +94,8 @@ function claimCountrySelection(){
         currentPlayer.style.opacity = ".78"
         isClaiming = false
         numTerritoriesUnclaimed--
-        if (numTerritoriesUnclaimed == 0) {
-          stageOfTheGameIndex = 1;//ends the claiming phase, could add a message here?
-        }
+        stageOfTheGameIndex = 1;//ends the claiming phase, could add a message here?
+        
       } else {
         numTerritoriesUnclaimed--
         currentPlayer.style.width = "150px"
@@ -451,7 +450,7 @@ function startGame() {
     //display some begginging message to the players
     //optional code for choosing player order could go here
     //turnLoop()
-    //claimCountries()
+    claimCountries()
     //console.log('start game')
     
 }
