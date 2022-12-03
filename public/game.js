@@ -70,8 +70,6 @@ document.querySelectorAll('.territory').forEach(item => {
   }
 })
 
-
-
 //country country code for claiming stage
 function claimCountrySelection(){
 
@@ -94,8 +92,10 @@ function claimCountrySelection(){
         currentPlayer.style.opacity = ".78"
         isClaiming = false
         numTerritoriesUnclaimed--
-        stageOfTheGameIndex = 1;//ends the claiming phase, could add a message here?
-        
+        if (numTerritoriesUnclaimed == 0) {
+          stageOfTheGameIndex = 1;//ends the claiming phase, could add a message here?
+          console.log("end of claiming phase");
+        }
       } else {
         numTerritoriesUnclaimed--
         currentPlayer.style.width = "150px"
@@ -107,6 +107,7 @@ function claimCountrySelection(){
         //console.log("Num of remaining terries yy", numTerritoriesUnclaimed);
         if (numTerritoriesUnclaimed == 0) {//ends the claiming phase, could add a message here?
           stageOfTheGameIndex = 1;
+          console.log("end of claiming phase");
         }
       }
     } else {
@@ -161,6 +162,21 @@ var homeRegion
 var newRegion
 var attackButton = document.getElementById("attack-box")
 attackButton.addEventListener('click', function(){//all the attack button code is here
+  
+  if (conquestTurnIndex == 0) {
+    //code for placing troops
+  } else if (conquestTurnIndex == 1) {
+    //code for attacking when button is pushed
+    attackButtonHandler()
+  } else if (conquestTurnIndex == 2) {
+    //code for moving troop
+  }
+
+})//end of attack button listener
+
+
+//is called by the attack button when in attack phase of a turn
+function attackButtonHandler() {
   hideDice()
   console.log("Attack clicked")
   var attackerTroops = document.getElementById("attacker-troops").textContent
@@ -212,7 +228,7 @@ attackButton.addEventListener('click', function(){//all the attack button code i
       }
     }
 
-  }else{ 
+  } else{ 
     console.log("--Not enough troops")
   }
   if (defenderTroops == 0){
@@ -223,7 +239,8 @@ attackButton.addEventListener('click', function(){//all the attack button code i
   }
   updateAttackBox(attacker, attackerTroops, "attacker")
   updateAttackBox(defender, defenderTroops, "defender")
-})//end of attack button listener
+}
+
 
 //Setting send troops variables
 var homeTroops = document.getElementById("home-region")
@@ -248,6 +265,7 @@ function sendTroops(){
   countryName.textContent = homeRegion + "   -->   " + newRegion
   homeButton.removeEventListener()
 }
+
 
 //Conquer Menu Buttons
 var homeButton = document.getElementById("home-button")
@@ -311,15 +329,7 @@ function clearAttackBox(attackerOrDefender){
   document.getElementById(attackerOrDefender+"-region").textContent = ""
   document.getElementById(attackerOrDefender+"-troops").textContent = ""
 }
-//hide and show attack functions *marked for deletion
-function showAttackBox(){
-  console.log(" -- Showing attack button")
-  attackButton.style.display = 'block'
-}
-function hideAttackBox(){
-  console.log(" -- Hiding attack button")
-  attackButton.style.display = 'none'
-}
+
 
 //code for compass roatation
 var sign = .25
@@ -343,6 +353,13 @@ startDeploy.addEventListener('click', function () {
 
 //is called when window is loaded
 window.onload = function() {
+
+  var numIDs = localStorage.getItem("numIDs")
+  var numIDsArray = JSON.parse(numIDs) //only instance of this variable this is not called, might delete it
+  var currentPlayer = document.getElementById(playerIndex.toString())
+  currentPlayer.style.width = "200px"
+  currentPlayer.style.opacity = "1"
+
   //writes the player names to the side
   var colors = localStorage.getItem("playerColors")//this code gets the stuff for the player tabs
   var colorsArray = JSON.parse(colors)
@@ -353,7 +370,6 @@ window.onload = function() {
     sidebar.style.background = 'linear-gradient(to right, white 2%, ' + colorsArray[i] + ' 110%) left';//this will throw an error if the colors array is empty, so the place troops button wont work
   }//end of colorsArray loop
   
-  startGame()//might change it so it saves game data idk
 }
 
 
@@ -370,60 +386,7 @@ function nextPlayer(){
 }
 
 
-
 var territoryArray = []
-//place troops 
-function placeTroopsPhase() {
-  //while you have remaining troops
-  // ?? maybe use the 'attack move' code and have the attacking country be a pool of player troops
-
-  //Calculate amount of troops you get
-  var reserveCount = 0
-  var territoriesControlled = 0
-  for (var i = 0; i < territoryArray.length; i++){
-    var territory = document.getElementById(territoryArray[i])
-    if (playerArray[playerIndex] == territory.owner){
-      territoriesControlled += 1
-    }
-  }
-  reserveCount = Math.floor(territoriesControlled % 3)
-  //Continent Bonuses
-
-  //Turning in territory card sets
-
-  //Place all troops
-
-}
-
-
-//attackPhase
-function attackPhase() {
-  showAttackBox()
-  //when the next phase button is clicked
-  //re hide the attack button
-}
-
-//moves troops 
-function moveTroopsPhase() {
-  //use the 'attack move code' to click and move troops once when they are ajacent
-}
-
-//claim the counties at the beginning of the game
-function claimCountries() {
-  //make it so when each player is claiming, their side bar slides out a bit 
-  //they claim one country at a time, then the next person chooses 
-  var numIDs = localStorage.getItem("numIDs")
-  var numIDsArray = JSON.parse(numIDs) //only instance of this variable this is not called, might delete it
-  var currentPlayer = document.getElementById(playerIndex.toString())
-  currentPlayer.style.width = "200px"
-  currentPlayer.style.opacity = "1"
-  //isClaiming = true
-  
-} 
-	
-
-
-
 var conquestTurnIndex = -1;//keeps track of what phase the turns during the conquest part of the game
 //move to the next phase in a players turn
 function turnLoop() {
@@ -431,12 +394,11 @@ function turnLoop() {
   console.log(" -- Player Phase Index:", conquestTurnIndex);
   if (conquestTurnIndex == 0) {
     // nextPlayer()
-    claimCountries()
+    //claimCountries()
   } else if (conquestTurnIndex == 1) {
     //initiates the attack phase of the turn
-    showAttackBox();
+    
   } else if (conquestTurnIndex == 2) {
-    hideAttackBox();//hides the attack box
     //this moves troops at the end of your turn from one ajacent countrie to another
     //moveTroopsPhase()
   } 
