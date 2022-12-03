@@ -42,38 +42,13 @@ document.querySelectorAll('.territory').forEach(item => {
   item.addEventListener('click', event => {//this determines what each of the countries do when clicked
 
 
-	if(stageOfTheGameIndex == 0) {
-		claimCountrySelection()
-	} else {//this is for attack?
-		clearTimeout(tooltipTimer)
-		hideDice()
-		var territory = event.currentTarget
-		var territoryTroops = document.getElementById(territory.id + "-troops").textContent
-		
-		console.log("Territory selected")
-		console.log("--Name(ID):", territory.id)
-		console.log("--Troops:", territoryTroops)
-		if (attacker != undefined){
-		neighbors = attacker.dataset.neighbor
-		console.log("--Neighbors:", neighbors)
-		console.log("--Neighbors.length:", neighbors.length)
-		if (playerArray[playerIndex] != territory.dataset.owner)
-			if (neighbors.includes(territory.id)){
-			defender = territory
-			content = "defender"
-			}
-		}
-		//set the correct info box to the right values.
-		updateAttackBox(territory, territoryTroops, content)
-
-		console.log("")
-		if (content == "attacker"){
-		attacker = territory
-		clearAttackBox("defender")
-		}
-		content = "attacker"
-		return
-	}
+    if(stageOfTheGameIndex == 0) {
+      claimCountrySelection()
+    } else if (stageOfTheGameIndex == 1) {//this is for attack?
+      conquerCountrySelection()
+    } else {
+      console.log('whoops');
+    }
   })
 
   item.onmouseenter = function(e){
@@ -99,6 +74,8 @@ document.querySelectorAll('.territory').forEach(item => {
 
 //country country code for claiming stage
 function claimCountrySelection(){
+
+  
   if(numTerritoriesUnclaimed > 0) {
     var currentPlayer = document.getElementById(playerIndex.toString())
     currentPlayer.style.width = "200px"
@@ -106,6 +83,7 @@ function claimCountrySelection(){
     var territoryClicked = event.currentTarget
     var terr = document.getElementById(territoryClicked.id)
     if(terr.getAttribute("data-owner").length == 0) {
+      
       terr.setAttribute("data-owner", playerArray[playerIndex])
       var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
       backgroundTroops.setAttribute("fill", colorsArray[playerIndex])
@@ -116,15 +94,21 @@ function claimCountrySelection(){
         currentPlayer.style.opacity = ".78"
         isClaiming = false
         numTerritoriesUnclaimed--
+        if (numTerritoriesUnclaimed == 0) {
+          stageOfTheGameIndex = 1;//ends the claiming phase, could add a message here?
+        }
       } else {
         numTerritoriesUnclaimed--
-
         currentPlayer.style.width = "150px"
         currentPlayer.style.opacity = "0.78"
         nextPlayer()
         var currentPlayer = document.getElementById(playerIndex.toString())
         currentPlayer.style.width = "200px"
         currentPlayer.style.opacity = "1"
+        //console.log("Num of remaining terries yy", numTerritoriesUnclaimed);
+        if (numTerritoriesUnclaimed == 0) {//ends the claiming phase, could add a message here?
+          stageOfTheGameIndex = 1;
+        }
       }
     } else {
       document.getElementById("territory-claimed-backdrop").style.display = 'block'
@@ -135,10 +119,40 @@ function claimCountrySelection(){
         document.getElementById("territory-claimed").style.display = 'none'
       })
     }
-  } 
+  }
 
 }//end of claim country handler
 
+function conquerCountrySelection(){
+  clearTimeout(tooltipTimer)
+  hideDice()
+  var territory = event.currentTarget
+  var territoryTroops = document.getElementById(territory.id + "-troops").textContent
+  
+  console.log("Territory selected")
+  console.log("--Name(ID):", territory.id)
+  console.log("--Troops:", territoryTroops)
+  if (attacker != undefined){
+  neighbors = attacker.dataset.neighbor
+  console.log("--Neighbors:", neighbors)
+  console.log("--Neighbors.length:", neighbors.length)
+  if (playerArray[playerIndex] != territory.dataset.owner)
+    if (neighbors.includes(territory.id)){
+    defender = territory
+    content = "defender"
+    }
+  }
+  //set the correct info box to the right values.
+  updateAttackBox(territory, territoryTroops, content)
+
+  console.log("")
+  if (content == "attacker"){
+  attacker = territory
+  clearAttackBox("defender")
+  }
+  content = "attacker"
+  return
+}//end of Conquor country Selection
 
 
 //Attack button when two countries are selected
