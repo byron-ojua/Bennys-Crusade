@@ -42,7 +42,7 @@ document.querySelectorAll('.territory').forEach(item => {
   item.addEventListener('click', event => {//this determines what each of the countries do when clicked
 
     if(stageOfTheGameIndex == 0) {
-	  claimCountries()
+	  //claimCountries()
       claimCountrySelection()
     } else if (stageOfTheGameIndex == 1) {//this is for attack?
       conquerCountrySelection()
@@ -73,7 +73,7 @@ document.querySelectorAll('.territory').forEach(item => {
 //country country code for claiming stage
 function claimCountrySelection(){
 
-  claimCountries()
+ // claimCountries()
   if(numTerritoriesUnclaimed > 0) {
     var currentPlayer = document.getElementById(playerIndex.toString())
     currentPlayer.style.width = "200px"
@@ -412,7 +412,7 @@ function startGame() {
     //display some begginging message to the players
     //optional code for choosing player order could go here
     //turnLoop()
-    claimCountries()
+    //claimCountries()
     //console.log('start game')
     
 }
