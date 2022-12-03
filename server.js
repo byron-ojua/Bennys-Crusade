@@ -9,7 +9,7 @@ var path = require("path")
 var express = require('express');
 var exphbs = require('express-handlebars');
 var favicon = require('serve-favicon')
-var port = 3000
+var port = process.env.PORT || 3000
 var app = express();
 var mapData = require("./mapData.json")
 
