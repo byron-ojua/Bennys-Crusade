@@ -39,47 +39,12 @@ shrinkMap.addEventListener('click', function() {
 //select territory
 var territoriesClaimed = []
 document.querySelectorAll('.territory').forEach(item => {
-  item.addEventListener('click', event => {
+  item.addEventListener('click', event => {//this determines what each of the countries do when clicked
+
+
 	if(stageOfTheGameIndex == 0) {
-		if(numTerritoriesUnclaimed > 0) {
-			var currentPlayer = document.getElementById(playerIndex.toString())
-  		currentPlayer.style.width = "200px"
-			currentPlayer.style.opacity = "1"
-			var territoryClicked = event.currentTarget
-			var terr = document.getElementById(territoryClicked.id)
-			if(terr.getAttribute("data-owner").length == 0) {
-				terr.setAttribute("data-owner", playerArray[playerIndex])
-				var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
-				backgroundTroops.setAttribute("fill", colorsArray[playerIndex])
-
-				if(numTerritoriesUnclaimed == 1) {
-					currentPlayer = document.getElementById(playerIndex.toString())
-					currentPlayer.style.width = "150px"
-					currentPlayer.style.opacity = ".78"
-					isClaiming = false
-					numTerritoriesUnclaimed--
-				} else {
-					numTerritoriesUnclaimed--
-
-					currentPlayer.style.width = "150px"
-					currentPlayer.style.opacity = "0.78"
-					nextPlayer()
-					var currentPlayer = document.getElementById(playerIndex.toString())
-					currentPlayer.style.width = "200px"
-					currentPlayer.style.opacity = "1"
-				}
-				
-			} else {
-				document.getElementById("territory-claimed-backdrop").style.display = 'block'
-				document.getElementById("territory-claimed").style.display = 'block'
-				var claimTerritoryClose = document.getElementById("territory-claimed-button")
-				claimTerritoryClose.addEventListener('click', function () {
-					document.getElementById("territory-claimed-backdrop").style.display = 'none'
-					document.getElementById("territory-claimed").style.display = 'none'
-				})
-			}
-		} 
-	} else {
+		claimCountrySelection()
+	} else {//this is for attack?
 		clearTimeout(tooltipTimer)
 		hideDice()
 		var territory = event.currentTarget
@@ -129,6 +94,52 @@ document.querySelectorAll('.territory').forEach(item => {
 
   }
 })
+
+
+
+//country country code for claiming stage
+function claimCountrySelection(){
+  if(numTerritoriesUnclaimed > 0) {
+    var currentPlayer = document.getElementById(playerIndex.toString())
+    currentPlayer.style.width = "200px"
+    currentPlayer.style.opacity = "1"
+    var territoryClicked = event.currentTarget
+    var terr = document.getElementById(territoryClicked.id)
+    if(terr.getAttribute("data-owner").length == 0) {
+      terr.setAttribute("data-owner", playerArray[playerIndex])
+      var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
+      backgroundTroops.setAttribute("fill", colorsArray[playerIndex])
+
+      if(numTerritoriesUnclaimed == 1) {
+        currentPlayer = document.getElementById(playerIndex.toString())
+        currentPlayer.style.width = "150px"
+        currentPlayer.style.opacity = ".78"
+        isClaiming = false
+        numTerritoriesUnclaimed--
+      } else {
+        numTerritoriesUnclaimed--
+
+        currentPlayer.style.width = "150px"
+        currentPlayer.style.opacity = "0.78"
+        nextPlayer()
+        var currentPlayer = document.getElementById(playerIndex.toString())
+        currentPlayer.style.width = "200px"
+        currentPlayer.style.opacity = "1"
+      }
+    } else {
+      document.getElementById("territory-claimed-backdrop").style.display = 'block'
+      document.getElementById("territory-claimed").style.display = 'block'
+      var claimTerritoryClose = document.getElementById("territory-claimed-button")
+      claimTerritoryClose.addEventListener('click', function () {
+        document.getElementById("territory-claimed-backdrop").style.display = 'none'
+        document.getElementById("territory-claimed").style.display = 'none'
+      })
+    }
+  } 
+
+}//end of claim country handler
+
+
 
 //Attack button when two countries are selected
 //Setting attack variables
