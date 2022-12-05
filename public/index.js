@@ -5,7 +5,7 @@ var cannon = document.getElementById("cannon")
 var compass = document.getElementById("compass")
 
 cannon.style.position = 'absolute';
-screen.orientation.lock("landscape");
+// screen.orientation.lock("landscape");
 hoverPos = playGame.getBoundingClientRect()
 cannon.style.top = playGame.getBoundingClientRect().top - 20 + 'px';
 cannon.style.left = playGame.getBoundingClientRect().left - 125 + 'px';
@@ -45,6 +45,6 @@ learnToPlay.addEventListener("click", function () {
     window.open("https://www.youtube.com/watch?v=5g48vXnnf30", "_blank");
 })
 
-screen.addEventListener("orientationchange", () => {
-    console.log(`The orientation of the screen is: ${screen.orientation}`);
-})
+// screen.addEventListener("orientationchange", () => {
+//     console.log(`The orientation of the screen is: ${screen.orientation}`);
+// })
