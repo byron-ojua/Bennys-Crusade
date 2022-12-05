@@ -20,9 +20,7 @@ var playerIndex = 0;
 var numTerritoriesUnclaimed = 42;
 
 
-
 nextPhaseButton.addEventListener('click', function() {
-  //nextPlayer()
   turnLoop();
 })
 
@@ -241,7 +239,6 @@ function attackButtonHandler() {
   updateAttackBox(defender, defenderTroops, "defender")
 }
 
-
 //Setting send troops variables
 var homeTroops = document.getElementById("home-region")
 var newTroops = document.getElementById("new-region")
@@ -265,7 +262,6 @@ function sendTroops(){
   countryName.textContent = homeRegion + "   -->   " + newRegion
   homeButton.removeEventListener()
 }
-
 
 //Conquer Menu Buttons
 var homeButton = document.getElementById("home-button")
@@ -330,7 +326,6 @@ function clearAttackBox(attackerOrDefender){
   document.getElementById(attackerOrDefender+"-troops").textContent = ""
 }
 
-
 //code for compass roatation
 var sign = .25
 var x = 0
@@ -342,8 +337,7 @@ setInterval(function () {
   }
 }, 100)
 
-//called for claiming troops
-
+//claim troops button
 var startDeploy = document.getElementById("place_troop_button")
 startDeploy.addEventListener('click', function () {   
   //this code hides the button
@@ -372,7 +366,6 @@ window.onload = function() {
   
 }
 
-
 //log stuff
 console.log(window.innerWidth, '+', window.innerWidth)
 console.log("PLAYER ARRAY: ", playerArray)
@@ -382,9 +375,8 @@ var playerIndex = 0;
 //move to the next player
 function nextPlayer(){
   playerIndex = (playerIndex + 1) % playerArray.length;
-  console.log("Next player: ", playerIndex);
+  console.log("Current Player: ", playerIndex);
 }
-
 
 var territoryArray = []
 var conquestTurnIndex = -1;//keeps track of what phase the turns during the conquest part of the game
@@ -393,7 +385,7 @@ function turnLoop() {
   conquestTurnIndex = (conquestTurnIndex + 1) % 3;//index's from 0 - 2 like a loop
   console.log(" -- Player Phase Index:", conquestTurnIndex);
   if (conquestTurnIndex == 0) {
-    // nextPlayer()
+    nextPlayer()
     //claimCountries()
   } else if (conquestTurnIndex == 1) {
     //initiates the attack phase of the turn
