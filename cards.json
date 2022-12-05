@@ -1,0 +1,296 @@
+[
+    {
+        "name": "Greenland",
+        "troops": "",
+        "id": "greenland",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Alaska",
+        "troops": "",
+        "id": "alaska",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "Northwest Territory",
+        "troops": "",
+        "id": "northwest-territory",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Alberta",
+        "troops": "",
+        "id": "alberta",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Ontario",
+        "troops": "",
+        "id": "ontario",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Quebec",
+        "troops": "",
+        "id": "quebec",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Western US",
+        "troops": "",
+        "id": "western-us",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Eastern US",
+        "troops": "",
+        "id": "eastern-us",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Central America",
+        "troops": "",
+        "id": "central-america",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Venezuela",
+        "troops": "",
+        "id": "venezuela",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "Peru",
+        "troops": "",
+        "id": "peru",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "Brazil",
+        "troops": "",
+        "id": "brazil",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Argentina",
+        "troops": "",
+        "id": "argentina",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "North Africa",
+        "troops": "",
+        "id": "north-africa",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Egypt",
+        "troops": "",
+        "id": "egypt",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "Great Britain",
+        "troops": "",
+        "id": "great-britain",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Congo",
+        "troops": "",
+        "id": "congo",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "East Africa",
+        "troops": "",
+        "id": "east-africa",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "South Africa",
+        "troops": "",
+        "id": "south-africa",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Madagascar",
+        "troops": "",
+        "id": "madagascar",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Western Australia",
+        "troops": "",
+        "id": "western-australia",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Eastern Australia",
+        "troops": "",
+        "id": "eastern-australia",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "New Guinea",
+        "troops": "",
+        "id": "new-guinea",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "Indonesia",
+        "troops": "",
+        "id": "indonesia",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Ukraine",
+        "troops": "",
+        "id": "ukraine",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Northern Europe",
+        "troops": "",
+        "id": "northern-europe",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Iceland",
+        "troops": "",
+        "id": "iceland",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "Scandinavia",
+        "troops": "",
+        "id": "scandinavia",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Western Europe",
+        "troops": "",
+        "id": "western-europe",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Southern Europe",
+        "troops": "",
+        "id": "southern-europe",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "Ural",
+        "troops": "",
+        "id": "ural",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Siberia",
+        "troops": "",
+        "id": "siberia",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Yakutsk",
+        "troops": "",
+        "id": "yakutsk",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Kamchatka",
+        "troops": "",
+        "id": "kamchatka",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "Irkutsk",
+        "troops": "",
+        "id": "irkutsk",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Afghanistan",
+        "troops": "",
+        "id": "afghanistan",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Mongolia",
+        "troops": "",
+        "id": "mongolia",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "Japan",
+        "troops": "",
+        "id": "japan",
+        "class": "card",
+        "icon": "artillery"
+    },
+    {
+        "name": "China",
+        "troops": "",
+        "id": "china",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "Middle East",
+        "troops": "",
+        "id": "middle-east",
+        "class": "card",
+        "icon": "infantry"
+    },
+    {
+        "name": "India",
+        "troops": "",
+        "id": "india",
+        "class": "card",
+        "icon": "calvery"
+    },
+    {
+        "name": "Siam",
+        "troops": "",
+        "id": "siam",
+        "class": "card",
+        "icon": "infantry"
+    }
+]
