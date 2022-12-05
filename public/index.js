@@ -3,6 +3,7 @@ var learnToPlay = document.getElementById("how-to-play")
 // var highScores = document.getElementById("high-scores")
 var cannon = document.getElementById("cannon")
 var compass = document.getElementById("compass")
+var myScreen = window.screen
 
 cannon.style.position = 'absolute';
 hoverPos = playGame.getBoundingClientRect()
@@ -44,6 +45,6 @@ learnToPlay.addEventListener("click", function () {
     window.open("https://www.youtube.com/watch?v=5g48vXnnf30", "_blank");
 })
 
-screen.addEventListener("orientationchange", () => {
+myScreen.addEventListener("orientationchange", () => {
     console.log(`The orientation of the screen is: ${screen.orientation}`);
 })
