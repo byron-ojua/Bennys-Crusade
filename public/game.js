@@ -164,7 +164,9 @@ function attackCountrySelection(event) {
   return
 }
 
-function moveCountrySelection(event)
+function moveCountrySelection(event) {
+  
+}
 
 
 function conquerCountrySelection(event) {
