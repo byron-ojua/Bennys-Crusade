@@ -44,6 +44,6 @@ learnToPlay.addEventListener("click", function () {
     window.open("https://www.youtube.com/watch?v=5g48vXnnf30", "_blank");
 })
 
-// screen.addEventListener("orientationchange", () => {
-//     console.log(`The orientation of the screen is: ${screen.orientation}`);
-// })
+screen.addEventListener("orientationchange", () => {
+    console.log(`The orientation of the screen is: ${screen.orientation}`);
+})
