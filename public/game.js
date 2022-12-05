@@ -302,7 +302,13 @@ function sendTroops() {
 
   var tempRegion = document.getElementById(newRegion)
   tempRegion.setAttribute("data-owner", playerArray[playerIndex])
-  tempRegion.setAttribute("fill", colorsArray[playerIndex])
+
+  var tempTroops = document.getElementById(newRegion + "-troops")
+  tempTroops.setAttribute("fill", colorsArray[playerIndex])
+
+  console.log('Colors array', colorsArray)
+  console.log('Temp Region', tempRegion)
+  console.log('new colorr', colorsArray[playerIndex])
 
 }//set troops end
 
