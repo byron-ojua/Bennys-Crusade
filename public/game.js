@@ -20,6 +20,7 @@ var playerIndex = 0;
 var numTerritoriesUnclaimed = 42;
 
 
+
 nextPhaseButton.addEventListener('click', function() {
   turnLoop();
 })
@@ -121,7 +122,8 @@ function claimCountrySelection(){
 
 }//end of claim country handler
 
-function conquerCountrySelection(){
+
+function attackCountrySelection () {
   clearTimeout(tooltipTimer)
   hideDice()
   var territory = event.currentTarget
@@ -134,7 +136,7 @@ function conquerCountrySelection(){
   console.log("--Troops:", territoryTroops)
   console.log("Active player:", playerArray[playerIndex])
 
-  if (playerArray[playerIndex] == territoryOwner){
+  if (playerArray[playerIndex] == territoryOwner) {
     attacker = territory
     clearAttackBox("defender")
     updateAttackBox(territoryOwner, territory, territoryTroops, "attacker")
@@ -155,7 +157,16 @@ function conquerCountrySelection(){
   }
   //set the correct info box to the right values.
   return
+}//end of attack country selection
+
+function conquerCountrySelection() {
+  attackCountrySelection();
 }//end of Conquor country Selection
+
+
+
+
+
 
 
 //Attack button when two countries are selected
@@ -399,25 +410,8 @@ function turnLoop() {
   console.log(" -- Player Phase Index:", conquestTurnIndex);
   if (conquestTurnIndex == 0) {
     nextPlayer()
-    //claimCountries()
-  } else if (conquestTurnIndex == 1) {
-    //initiates the attack phase of the turn
-    
-  } else if (conquestTurnIndex == 2) {
-    //this moves troops at the end of your turn from one ajacent countrie to another
-    //moveTroopsPhase()
   } 
 }
 
 //Replaced the loops with global variable counters instead because I thought it made more sense this way
 
-
-
-function startGame() {
-    //display some begginging message to the players
-    //optional code for choosing player order could go here
-    //turnLoop()
-    //claimCountries()
-    //console.log('start game')
-    
-}
