@@ -5,7 +5,6 @@ var cannon = document.getElementById("cannon")
 var compass = document.getElementById("compass")
 
 cannon.style.position = 'absolute';
-screen.orientation.lock("landscape");
 hoverPos = playGame.getBoundingClientRect()
 cannon.style.top = playGame.getBoundingClientRect().top - 20 + 'px';
 cannon.style.left = playGame.getBoundingClientRect().left - 125 + 'px';
