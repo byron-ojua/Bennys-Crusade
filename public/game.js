@@ -164,9 +164,20 @@ function attackCountrySelection(event) {
   return
 }
 
+function moveCountrySelection(event)
+
 
 function conquerCountrySelection(event) {
-  attackCountrySelection(event);
+  if (conquestTurnIndex == 0) {
+    //code for placing trools
+    console.log("Placeing troops")
+  } else if (conquestTurnIndex == 1) {
+    //attack Code
+    attackCountrySelection(event);
+  } else if (conquestTurnIndex == 2) {
+    //move code
+  } 
+ 
 }//end of Conquor country Selection
 
 
@@ -416,7 +427,9 @@ function turnLoop() {
   console.log(" -- Player Phase Index:", conquestTurnIndex);
   if (conquestTurnIndex == 0) {
     nextPlayer()
-  } 
+  } else if(conquestTurnIndex == 1) {
+    attack
+  }
 }
 
 //Replaced the loops with global variable counters instead because I thought it made more sense this way
