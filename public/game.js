@@ -44,7 +44,7 @@ document.querySelectorAll('.territory').forEach(item => {
 	  //claimCountries()
       claimCountrySelection()
     } else if (stageOfTheGameIndex == 1) {//this is for attack?
-      conquerCountrySelection()
+      conquerCountrySelection(event)
     } else {
       console.log('whoops');
     }
@@ -69,8 +69,10 @@ document.querySelectorAll('.territory').forEach(item => {
   }
 })
 
+
+
 //country country code for claiming stage
-function claimCountrySelection(){
+function claimCountrySelection() {
 
  // claimCountries()
   if(numTerritoriesUnclaimed > 0) {
@@ -123,13 +125,15 @@ function claimCountrySelection(){
 }//end of claim country handler
 
 
-function attackCountrySelection () {
+
+function attackCountrySelection(event) {
   clearTimeout(tooltipTimer)
   hideDice()
   var territory = event.currentTarget
+  
   var territoryTroops = document.getElementById(territory.id + "-troops").textContent
   var territoryOwner = territory.getAttribute("data-owner")
-  
+ 
   console.log("Territory selected")
   console.log("--Territory(ID):", territory.id)
   console.log("--owner:", territoryOwner)
@@ -137,13 +141,14 @@ function attackCountrySelection () {
   console.log("Active player:", playerArray[playerIndex])
 
   if (playerArray[playerIndex] == territoryOwner) {
+    console.log("WE GET HERE")
     attacker = territory
     clearAttackBox("defender")
     updateAttackBox(territoryOwner, territory, territoryTroops, "attacker")
     return
   }
   
-  if (!attacker.dataset.neighbor){return}
+  if (!attacker.dataset.neighbor){return}//code breaks when null
 
   neighbors = attacker.dataset.neighbor
   console.log("--Neighbors:", neighbors)
@@ -157,10 +162,11 @@ function attackCountrySelection () {
   }
   //set the correct info box to the right values.
   return
-}//end of attack country selection
+}
 
-function conquerCountrySelection() {
-  attackCountrySelection();
+
+function conquerCountrySelection(event) {
+  attackCountrySelection(event);
 }//end of Conquor country Selection
 
 
