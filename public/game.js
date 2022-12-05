@@ -165,19 +165,17 @@ function attackCountrySelection(event) {
 }
 
 function moveCountrySelection(event) {
-  
-}
 
+}
 
 function conquerCountrySelection(event) {
   if (conquestTurnIndex == 0) {
     //code for placing trools
     console.log("Placeing troops")
   } else if (conquestTurnIndex == 1) {
-    //attack Code
     attackCountrySelection(event);
   } else if (conquestTurnIndex == 2) {
-    //move code
+    moveCountrySelection(event)
   } 
  
 }//end of Conquor country Selection
@@ -278,7 +276,8 @@ function attackButtonHandler() {
 var homeTroops = document.getElementById("home-region")
 var newTroops = document.getElementById("new-region")
 var countryName = document.getElementById("country-names")
-function sendTroops(){
+
+function sendTroops() {
   console.log("Conquered New Territory!")
   console.log("--Total troops:", troops)
   console.log("--Home Region:", homeRegion)
@@ -291,16 +290,21 @@ function sendTroops(){
   console.log("homeTroops", homeTroops)
   homeTroops.textContent = troops-1
 
-
   newTroops.textContent = 1
 
   countryName.textContent = homeRegion + "   -->   " + newRegion
 
   //change owner dataset of defending territory to new player
   //this might work?
-  document.getElementById(newRegion+"-owner").textContent = playerArray[playerIndex]
-  // mapData.defender.dataset("owner") = playerArray[playerIndex]
-}
+  //document.getElementById(newRegion+"-owner").textContent = playerArray[playerIndex]
+  var test = document.getElementById(newRegion)
+  var test2 = test.getAttribute("data-owner")
+
+  var tempRegion = document.getElementById(newRegion)
+  tempRegion.setAttribute("data-owner", playerArray[playerIndex])
+  tempRegion.setAttribute("fill", colorsArray[playerIndex])
+
+}//set troops end
 
 //Conquer Menu Buttons
 var homeButton = document.getElementById("home-button")
@@ -344,9 +348,9 @@ function hideDice(){
   }
 }
 function showConquerBox(){
-console.log("showingConquerBox")
-document.getElementById("conquer-box").style.display = "flex"
-document.getElementById("conquer-backdrop").style.display = "block"
+  console.log("showingConquerBox")
+  document.getElementById("conquer-box").style.display = "flex"
+  document.getElementById("conquer-backdrop").style.display = "block"
 }
 function hideConquerBox(){
   document.getElementById("conquer-box").style.display = "none"
