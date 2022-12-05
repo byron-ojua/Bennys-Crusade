@@ -39,8 +39,8 @@ var territoriesClaimed = []
 document.querySelectorAll('.territory').forEach(item => {
   item.addEventListener('click', event => {//this determines what each of the countries do when clicked
 
-
     if(stageOfTheGameIndex == 0) {
+	  //claimCountries()
       claimCountrySelection()
     } else if (stageOfTheGameIndex == 1) {//this is for attack?
       conquerCountrySelection()
@@ -71,7 +71,7 @@ document.querySelectorAll('.territory').forEach(item => {
 //country country code for claiming stage
 function claimCountrySelection(){
 
-
+ // claimCountries()
   if(numTerritoriesUnclaimed > 0) {
     var currentPlayer = document.getElementById(playerIndex.toString())
     currentPlayer.style.width = "200px"
@@ -126,29 +126,34 @@ function conquerCountrySelection(){
   hideDice()
   var territory = event.currentTarget
   var territoryTroops = document.getElementById(territory.id + "-troops").textContent
+  var territoryOwner = territory.getAttribute("data-owner")
   
   console.log("Territory selected")
-  console.log("--Name(ID):", territory.id)
+  console.log("--Territory(ID):", territory.id)
+  console.log("--owner:", territoryOwner)
   console.log("--Troops:", territoryTroops)
-  if (attacker != undefined){
+  console.log("Active player:", playerArray[playerIndex])
+
+  if (playerArray[playerIndex] == territoryOwner){
+    attacker = territory
+    clearAttackBox("defender")
+    updateAttackBox(territoryOwner, territory, territoryTroops, "attacker")
+    return
+  }
+  
+  if (!attacker.dataset.neighbor){return}
+
   neighbors = attacker.dataset.neighbor
   console.log("--Neighbors:", neighbors)
   console.log("--Neighbors.length:", neighbors.length)
-  if (playerArray[playerIndex] != territory.dataset.owner)
-    if (neighbors.includes(territory.id)){
+  if (neighbors.includes(territory.id)){
     defender = territory
-    content = "defender"
-    }
+    updateAttackBox(territoryOwner, territory, territoryTroops, "defender")
+  }else {
+    clearAttackBox("defender")
+    clearAttackBox("attacker")
   }
   //set the correct info box to the right values.
-  updateAttackBox(territory, territoryTroops, content)
-
-  console.log("")
-  if (content == "attacker"){
-  attacker = territory
-  clearAttackBox("defender")
-  }
-  content = "attacker"
   return
 }//end of Conquor country Selection
 
@@ -181,7 +186,7 @@ function attackButtonHandler() {
   var defenderTroops = document.getElementById("defender-troops").textContent
   var attackDice = document.getElementById("attack-dice")
   var defenseDice = document.getElementById("defense-dice")
-
+  var defenderOwner = document.getElementById("defender-owner").textContent
 
   if (attackerTroops > 1 && defenderTroops > 0){
     console.log("--Rolling Dice!")
@@ -235,8 +240,8 @@ function attackButtonHandler() {
     newRegion = defender.id
     sendTroops()
   }
-  updateAttackBox(attacker, attackerTroops, "attacker")
-  updateAttackBox(defender, defenderTroops, "defender")
+  updateAttackBox(playerArray[playerIndex], attacker, attackerTroops, "attacker")
+  updateAttackBox(defenderOwner, defender, defenderTroops, "defender")
 }
 
 //Setting send troops variables
@@ -260,7 +265,11 @@ function sendTroops(){
   newTroops.textContent = 1
 
   countryName.textContent = homeRegion + "   -->   " + newRegion
-  homeButton.removeEventListener()
+
+  //change owner dataset of defending territory to new player
+  //this might work?
+  document.getElementById(newRegion+"-owner").textContent = playerArray[playerIndex]
+  // mapData.defender.dataset("owner") = playerArray[playerIndex]
 }
 
 //Conquer Menu Buttons
@@ -313,16 +322,18 @@ function hideConquerBox(){
   document.getElementById("conquer-box").style.display = "none"
   document.getElementById("conquer-backdrop").style.display = "none"
 }
-function updateAttackBox(territory, territoryTroops, content) {
+function updateAttackBox(territoryOwner, territory, territoryTroops, content) {
   var ownerRegion = document.getElementById(content+"-region")
   var ownerTroops = document.getElementById(content+"-troops")
-ownerRegion.textContent = territory.dataset.name
-// ownerRegion.textContent = territory.id
-ownerTroops.textContent = territoryTroops
+  var ownerName = document.getElementById(content+"-owner")
+  ownerRegion.textContent = territory.dataset.name
+  ownerName.textContent = territoryOwner
+  ownerTroops.textContent = territoryTroops
 }
 //this clears the attack box
 function clearAttackBox(attackerOrDefender){
   document.getElementById(attackerOrDefender+"-region").textContent = ""
+  document.getElementById(attackerOrDefender+"-owner").textContent = ""
   document.getElementById(attackerOrDefender+"-troops").textContent = ""
 }
 
@@ -376,6 +387,8 @@ var playerIndex = 0;
 function nextPlayer(){
   playerIndex = (playerIndex + 1) % playerArray.length;
   console.log("Current Player: ", playerIndex);
+  clearAttackBox("defender")
+  clearAttackBox("attacker")
 }
 
 var territoryArray = []
@@ -394,4 +407,17 @@ function turnLoop() {
     //this moves troops at the end of your turn from one ajacent countrie to another
     //moveTroopsPhase()
   } 
+}
+
+//Replaced the loops with global variable counters instead because I thought it made more sense this way
+
+
+
+function startGame() {
+    //display some begginging message to the players
+    //optional code for choosing player order could go here
+    //turnLoop()
+    //claimCountries()
+    //console.log('start game')
+    
 }
