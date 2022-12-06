@@ -27,7 +27,7 @@ var numTerritoriesUnclaimed = 42;
 document.getElementById("done-attacking-button").addEventListener('click', function() { //moves the user onto their move phase
   currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Move turn"
   conquestTurnIndex = 2 //modifying when we call conquest turn index so we can just change it manually
-  conquerCountrySelection()
+  //conquerCountrySelection()
   attackDoneButton.style.display = 'none'
 })
 document.getElementById("not-done-attacking-button").addEventListener('click', function() {
@@ -121,7 +121,8 @@ function claimCountrySelection() {
 		      playerIndex = 0
 		      currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
 		      conquestTurnIndex = 0
-		      conquerCountrySelection()
+          stageOfTheGameIndex += 1;
+		      //conquerCountrySelection()//this code is
           console.log("end of claiming phase");
         }
       } else {
