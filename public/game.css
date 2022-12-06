@@ -361,6 +361,7 @@ body {
     z-index: 4;
     background-color: aqua;
     border-radius: 50%;
+    pointer-events: none;
 }
 
 #phase-bar{
