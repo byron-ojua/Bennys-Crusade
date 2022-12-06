@@ -35,16 +35,16 @@ document.getElementById("not-done-attacking-button").addEventListener('click', f
 })
 
 nextPhaseOverlay.addEventListener('click', function() {
-  if(conquestTurnIndex == 1) {
+  if (conquestTurnIndex == 0){
+    currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
+	  conquestTurnIndex = 1 //modifying when we call conquest turn index so we can just change it manually
+  } else if(conquestTurnIndex == 1) {
 	  attackDoneButton.style.display = "block"
-  } if (conquestTurnIndex == 2){
+  } else if (conquestTurnIndex == 2){
     playerIndex = (playerIndex + 1) % playerArray.length
     currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
 	  conquestTurnIndex = 0 //modifying when we call conquest turn index so we can just change it manually
 	}
-  currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
-	conquestTurnIndex = 1 //modifying when we call conquest turn index so we can just change it manually
-  //turnLoop();
 })
 
 growMap.addEventListener('click', function() {
@@ -172,7 +172,7 @@ function placeCountrySelection(event) {
     defender = territory
     clearAttackBox("attacker")
     updateAttackBox(territoryOwner, territory, territoryTroops, "defender")
-    console.log("Sneed Troops")
+    //console.log("Sneed Troops")
     
   }
 }
@@ -201,7 +201,7 @@ function attackCountrySelection(event) {
     return
   }
   
-  if (!attacker.dataset.neighbor){return}//code breaks when null
+  if (!attacker){return}//code breaks when null
 
   neighbors = attacker.dataset.neighbor
   console.log("--Neighbors:", neighbors)
