@@ -22,21 +22,27 @@ var colorsArray = JSON.parse(colors)
 var playerIndex = 0;
 var numTerritoriesUnclaimed = 42;
 
-
+//End attack phase buttons
+document.getElementById("done-attacking-button").addEventListener('click', function() { //moves the user onto their move phase
+  currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Move turn"
+  conquestTurnIndex = 2 //modifying when we call conquest turn index so we can just change it manually
+  conquerCountrySelection()
+  attackDoneButton.style.display = 'none'
+})
+document.getElementById("not-done-attacking-button").addEventListener('click', function() {
+  attackDoneButton.style.display = 'none'
+})
 
 nextPhaseOverlay.addEventListener('click', function() {
   if(conquestTurnIndex == 1) {
-	attackDoneButton.style.display = "block"
-	document.getElementById("done-attacking-button").addEventListener('click', function() { //moves the user onto their move phase
-		currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Move turn"
-		conquestTurnIndex = 2 //modifying when we call conquest turn index so we can just change it manually
-		conquerCountrySelection()
-		attackDoneButton.style.display = 'none'
-	})
-	document.getElementById("not-done-attacking-button").addEventListener('click', function() {
-		attackDoneButton.style.display = 'none'
-	})
-  }
+	  attackDoneButton.style.display = "block"
+  } if (conquestTurnIndex == 2){
+    playerIndex = (playerIndex + 1) % playerArray.length
+    currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
+	  conquestTurnIndex = 0 //modifying when we call conquest turn index so we can just change it manually
+	}
+  currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
+	conquestTurnIndex = 1 //modifying when we call conquest turn index so we can just change it manually
   //turnLoop();
 })
 
@@ -109,12 +115,12 @@ function claimCountrySelection() {
         isClaiming = false
         numTerritoriesUnclaimed--
         if (numTerritoriesUnclaimed == 0) {
-		  phaseButton.style.display = "block"
+		      phaseButton.style.display = "block"
           stageOfTheGameIndex = 1;//ends the claiming phase, could add a message here?
-		  playerIndex = 0
-		  currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
-		  conquestTurnIndex = 1
-		  conquerCountrySelection()
+		      playerIndex = 0
+		      currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
+		      conquestTurnIndex = 0
+		      conquerCountrySelection()
           console.log("end of claiming phase");
         }
       } else {
@@ -126,7 +132,7 @@ function claimCountrySelection() {
         currentPlayer.style.width = "200px"
         currentPlayer.style.opacity = "1"
         if (numTerritoriesUnclaimed == 0) {//ends the claiming phase, could add a message here?
-          stageOfTheGameIndex = 1;
+          stageOfTheGameIndex = 0;
 		  
           console.log("end of claiming phase");
         }
@@ -134,6 +140,7 @@ function claimCountrySelection() {
     } else {
       document.getElementById("territory-claimed-backdrop").style.display = 'block'
       var claimTerritoryClose = document.getElementById("territory-claimed-button")
+
       claimTerritoryClose.addEventListener('click', function () {
         document.getElementById("territory-claimed-backdrop").style.display = 'none'
       })
@@ -198,9 +205,9 @@ function conquerCountrySelection(event) {
     attackCountrySelection(event);
   } else if (conquestTurnIndex == 2) {
     moveCountrySelection(event)
-  } 
- 
-}//end of Conquor country Selection
+  }  
+}
+//end of Conquor country Selection
 
 
 
