@@ -1,0 +1,18 @@
+
+<div class="backdrop" id="{{popUpID}}">
+	<div class="buttonOverlay">
+		<div class="column">
+			<div class="overlayText"></div>
+			<p>{{overlayText}}</p>
+			<div class="rowOfButtons">
+				{{#each buttons}}
+				<button type="button" class="popUpButtonStyle" id="{{this.id}}">
+					<p>{{this.buttonText}}</p>
+				</button>
+				{{/each}}
+			</div>
+			
+		</div>
+	</div>
+</div>
+

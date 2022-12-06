@@ -1,0 +1,36 @@
+[
+	{
+		"popUpID": "territory-claimed-backdrop", 
+		"overlayText": "That territory has already been chosen, pick another.", 
+		"buttons": [
+			{
+				"id": "territory-claimed-button", 
+				"buttonText": "Ok"
+			}
+		]
+	}, 
+	{
+		"popUpID": "place-troops-backdrop", 
+		"overlayText": "Welcome to Risk! To start, each player will pick 1 territory to control until every territory has been taken. To pick a territory, click on it and the color of the text will change to your color.", 
+		"buttons": [
+			{
+				"id": "place_troop_button", 
+				"buttonText": "Start Deploying"
+			}
+		]
+	},
+	{
+		"popUpID": "done-attacking-backdrop", 
+		"overlayText": "Are you sure you want to stop attacking? If so, you can move your troops between your controlled territories once you click Ok.", 
+		"buttons": [
+			{
+				"id": "done-attacking-button", 
+				"buttonText": "Yes"
+			},
+			{
+				"id": "not-done-attacking-button", 
+				"buttonText": "No"
+			}
+		]
+	}
+]
