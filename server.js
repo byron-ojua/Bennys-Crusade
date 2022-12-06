@@ -12,6 +12,8 @@ var favicon = require('serve-favicon')
 var port = process.env.PORT || 3000
 var app = express();
 var mapData = require("./mapData.json")
+var popUpButtonData = require('./popUpButtons.json')
+
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.engine('handlebars', exphbs.engine({}))
@@ -52,7 +54,8 @@ app.get('/game.html', function(req, res, next) {
 	}
 	res.status(200).render('game', {
 		sidebars: personArray,
-		mapElems: mapData
+		mapElems: mapData,
+		popUps: popUpButtonData
 	})
 })
 

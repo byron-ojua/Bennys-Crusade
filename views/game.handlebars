@@ -151,8 +151,10 @@
             <button id="next-phase" type="button">Next Phase</button>
         </div>
         </center>
-
-		<div id="place-troops-backdrop">
+		{{#each popUps}}
+		  	{{> infoPopUp}}
+		{{/each}}
+		{{!-- <div id="place-troops-backdrop">
 			<div id="place-troops">
 				<div id="place-troops-column">
 					<div id="place-troops-text"></div>
@@ -173,7 +175,8 @@
 					</button>
 				</div>
 			</div>
-		</div>
+		</div> --}}
+		
 		
     </body>
 </html>

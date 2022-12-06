@@ -3,6 +3,10 @@
     src: "./treasuremap.ttf";
 }
 
+body {
+	overflow: visible
+}
+
 .north-america{
     fill: rgb(248, 248, 93);
 }
@@ -70,6 +74,7 @@
     bottom: 20%;
     left: 2%;
 }
+
 #defense-dice{
     position:relative;
     display:inline-flex;
@@ -80,6 +85,7 @@
     height: 100%;
     width: 30%;
 }
+
 #attack-dice{
     display: inline-flex;
     flex-direction: row;
@@ -89,6 +95,7 @@
     height: 100%;
     width: 45%;
 }
+
 .dice{
     text-align: center;
     flex-direction: column;
@@ -147,6 +154,7 @@
 .player-info{
     display: inline;
 }
+
 .info{
     padding: 11px 0px 5px 10px;
     color:rgb(99, 65, 20);
@@ -198,7 +206,6 @@
     font-weight: 700;
 }
 
-
 #conquer-backdrop {
     display: none;
     position: fixed;
@@ -210,6 +217,7 @@
     background-color: rgba(0, 0, 0, 0.85);
     z-index: 1000;
   }
+
 #conquer-box{
     display: none;
     top: 50%;
@@ -227,6 +235,7 @@
     flex-direction:column;
     justify-content: center;
 }
+
 #country-names{
     display:flex;
     flex-direction: column;
@@ -236,6 +245,7 @@
     justify-content: center;
     font-size: xx-large;
 }
+
 #conquer-infobox{
     display:flex;
     flex-direction: row;
@@ -245,6 +255,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .conquer-info{
     text-align: center;
     flex-direction:row;
@@ -261,10 +272,12 @@
     background-color: rgb(139, 96, 40);
     border: none;
 }
+
 #conquer-infobox button:hover{
     cursor:pointer;
     font-size: 5em;
 }
+
 .conquer-troop{
    padding: 10px;
    margin: 40px;
@@ -273,12 +286,14 @@
    font-size:4em;
    z-index: 1020;
 }
+
 #conquer-done{
     height:10%;
     width:fit-content;
     background-color: rgb(73, 45, 8);
     margin-bottom:1%;
 }
+
 #conquer-done:hover{
     cursor:pointer;
 }
@@ -313,6 +328,7 @@
     align-items: center;
     font-weight: bold;
 }
+
 #user-sidebars {
 	display: flex;
 	flex-direction: column;
@@ -351,14 +367,102 @@
 #phase-bar{
     display: flex;
     flex-direction: column;
-    position:absolute;
     top: 10px;
-    /* transition: ; */
+	border: 5px solid rgb(139, 96, 40);
+    background-color: burlywood;
+    border-radius: 20px;
+	width: 150px;
+    height: 70px;
+	right: 4%;
+    position: fixed;
+}
+
+#next-phase {
+	width: 85px;
+	height: 40px;
+	border-radius: 20px;
+	align-self: center;
+	background-color: bisque;
+}
+
+#next-phase:hover {
+	cursor: pointer;
+	background-color: white;
 }
 
 
-#place-troops-backdrop {
-    /* display: none; */
+/* #place-troops-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+  } */
+
+/* #place-troops{
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em;
+    margin-left: -15em;
+    border-radius: 35px;
+    background-color: rgb(139, 96, 40);
+	border: 2px solid black;
+    position: fixed;
+    z-index: 1010;
+    align-items: center;
+    flex-direction:column;
+    justify-content: center;
+} */
+
+/* #place-troops-column {
+	font-size: 25px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-left: 10px;
+	font-family: "Treasure Map";
+} */
+
+
+/* #place_troop_button {
+	margin-left: 200px;
+	margin-top: 65px;
+	margin-right: 200px;
+	font-size: 23px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	width: 200px;
+	border-radius: 10px;
+	background-color: grey;
+} */
+
+/* #place_troop_button:hover {
+	margin-left: 200px;
+	margin-top: 65px;
+	margin-right: 200px;
+	font-size: 23px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	width: 200px;
+	border-radius: 10px;
+	background-color: wheat;
+	cursor: pointer;
+} */
+
+/* #place-troops-text {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+} */
+
+
+.backdrop {
+    display: none;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -368,7 +472,19 @@
     background-color: rgba(0, 0, 0, 0.85);
     z-index: 1000;
   }
-#place-troops{
+
+.rowOfButtons {
+	display: flex;
+	flex-direction: row; 
+	align-self: center;
+	/* margin-left: 100px;
+	margin-right: 100px; */
+	/* justify-content: space-around; */
+	
+	/* width: 600px; */
+}
+
+.buttonOverlay{
     /* display: none; */
     top: 50%;
     left: 50%;
@@ -386,7 +502,7 @@
     justify-content: center;
 }
 
-#place-troops-column {
+.column {
 	font-size: 25px;
 	/* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
 	display: flex;
@@ -397,8 +513,7 @@
 	font-family: "Treasure Map";
 }
 
-
-#place_troop_button {
+.popUpButtonStyle {
 	margin-left: 200px;
 	margin-top: 65px;
 	margin-right: 200px;
@@ -409,7 +524,7 @@
 	background-color: grey;
 }
 
-#place_troop_button:hover {
+.popUpButtonStyle:hover {
 	margin-left: 200px;
 	margin-top: 65px;
 	margin-right: 200px;
@@ -421,76 +536,17 @@
 	cursor: pointer;
 }
 
-#place-troops-text {
+.overlayText {
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-
-#territory-claimed-backdrop {
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.85);
-    z-index: 1000;
-  }
-
-#territory-claimed{
-    display: none;
-    top: 50%;
-    left: 50%;
-    width: 30em;
-    height: 18em;
-    margin-top: -9em;
-    margin-left: -15em;
-    border-radius: 35px;
-    background-color: rgb(139, 96, 40);
-	border: 2px solid black;
-    position: fixed;
-    z-index: 1010;
-    align-items: center;
-    flex-direction:column;
-    justify-content: center;
+#done-attacking-button {
+	/* position: fixed;  */
+	margin-left: 600px;
+	margin-right: -600px;
 }
 
-#territory-claimed-column {
-	font-size: 25px;
-	/* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin-left: 10px;
-	font-family: "Treasure Map";
-}
-
-
-#territory-claimed-button {
-	margin-left: 200px;
-	margin-top: 65px;
-	margin-right: 200px;
-	font-size: 23px;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	width: 200px;
-	border-radius: 10px;
-	background-color: grey;
-}
-
-#territory-claimed-button:hover {
-	margin-left: 200px;
-	margin-top: 65px;
-	margin-right: 200px;
-	font-size: 23px;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	width: 200px;
-	border-radius: 10px;
-	background-color: wheat;
-	cursor: pointer;
-}
-
-#territory-claimed-text {
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+#not-done-attacking-button {
+	/* position: fixed;  */
+	margin-right: 600px;
 }

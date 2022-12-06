@@ -3,7 +3,10 @@ var tooltip = document.getElementById("tooltip")
 var growMap = document.getElementById("map-size-grow")
 var shrinkMap = document.getElementById("map-size-shrink")
 var map = document.getElementById("map-overlay")
-var nextPhaseButton = document.getElementById("phase-bar")
+var nextPhaseOverlay = document.getElementById("phase-bar")
+var phaseButton = document.getElementById("next-phase")
+var currentPhase = document.getElementById("current-phase")
+var attackDoneButton = document.getElementById("done-attacking-backdrop")
 var content = "attacker"
 var attacker
 var defender
@@ -22,8 +25,20 @@ var numTerritoriesUnclaimed = 42;
 
 
 
-nextPhaseButton.addEventListener('click', function() {
-  turnLoop();
+nextPhaseOverlay.addEventListener('click', function() {
+  if(conquestTurnIndex == 1) {
+	attackDoneButton.style.display = "block"
+	document.getElementById("done-attacking-button").addEventListener('click', function() { //moves the user onto their move phase
+		currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Move turn"
+		conquestTurnIndex = 2 //modifying when we call conquest turn index so we can just change it manually
+		conquerCountrySelection()
+		attackDoneButton.style.display = 'none'
+	})
+	document.getElementById("not-done-attacking-button").addEventListener('click', function() {
+		attackDoneButton.style.display = 'none'
+	})
+  }
+  //turnLoop();
 })
 
 growMap.addEventListener('click', function() {
@@ -95,7 +110,12 @@ function claimCountrySelection() {
         isClaiming = false
         numTerritoriesUnclaimed--
         if (numTerritoriesUnclaimed == 0) {
+		  phaseButton.style.display = "block"
           stageOfTheGameIndex = 1;//ends the claiming phase, could add a message here?
+		  playerIndex = 0
+		  currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
+		  conquestTurnIndex = 1
+		  conquerCountrySelection()
           console.log("end of claiming phase");
         }
       } else {
@@ -106,19 +126,17 @@ function claimCountrySelection() {
         var currentPlayer = document.getElementById(playerIndex.toString())
         currentPlayer.style.width = "200px"
         currentPlayer.style.opacity = "1"
-        //console.log("Num of remaining terries yy", numTerritoriesUnclaimed);
         if (numTerritoriesUnclaimed == 0) {//ends the claiming phase, could add a message here?
           stageOfTheGameIndex = 1;
+		  
           console.log("end of claiming phase");
         }
       }
     } else {
       document.getElementById("territory-claimed-backdrop").style.display = 'block'
-      document.getElementById("territory-claimed").style.display = 'block'
       var claimTerritoryClose = document.getElementById("territory-claimed-button")
       claimTerritoryClose.addEventListener('click', function () {
         document.getElementById("territory-claimed-backdrop").style.display = 'none'
-        document.getElementById("territory-claimed").style.display = 'none'
       })
     }
   }
@@ -170,7 +188,6 @@ function attackCountrySelection(event) {
   console.log("Active player:", playerArray[playerIndex])
 
   if (playerArray[playerIndex] == territoryOwner) {
-    //console.log("WE GET HERE")
     attacker = territory
     clearAttackBox("defender")
     updateAttackBox(territoryOwner, territory, territoryTroops, "attacker")
@@ -194,8 +211,13 @@ function attackCountrySelection(event) {
 }// end attack selection
 
 function moveCountrySelection(event) {
-
+	var attackButton = document.getElementById("attack-box")
+	attackButton.style.display = 'none'
+	var currentPlayer = playerArray[playerIndex] //getting the current player's name 
+	console.log("CURRENT PLAYER: ", currentPlayer)
 }
+
+
 
 function conquerCountrySelection(event) {
   if (conquestTurnIndex == 0) {
@@ -453,7 +475,7 @@ var startDeploy = document.getElementById("place_troop_button")
 startDeploy.addEventListener('click', function () {   
   //this code hides the button
   document.getElementById("place-troops-backdrop").style.display = 'none'
-  document.getElementById("place-troops").style.display = 'none'
+//   document.getElementById("place-troops").style.display = 'none'
 })
 
 //is called when window is loaded
@@ -464,16 +486,23 @@ window.onload = function() {
   var currentPlayer = document.getElementById(playerIndex.toString())
   currentPlayer.style.width = "200px"
   currentPlayer.style.opacity = "1"
+  var deployButton = document.getElementById("place-troops-backdrop")
+  deployButton.style.display = 'block'
 
   //writes the player names to the side
   var colors = localStorage.getItem("playerColors")//this code gets the stuff for the player tabs
   var colorsArray = JSON.parse(colors)
   for (var i = 0; i < colorsArray.length; i++) {   //this code initalised the player tabs
-    var id = i.toString()
+    var id = i.toString()	
     var sidebar = document.getElementById(id)
     console.log(colorsArray[0]);
     sidebar.style.background = 'linear-gradient(to right, white 2%, ' + colorsArray[i] + ' 110%) left';//this will throw an error if the colors array is empty, so the place troops button wont work
   }//end of colorsArray loop
+
+  
+  attackDoneButton.style.display = "none"
+  phaseButton.style.display = "none"
+
   
 }
 
@@ -499,9 +528,7 @@ function turnLoop() {
   console.log(" -- Player Phase Index:", conquestTurnIndex);
   if (conquestTurnIndex == 0) {
     nextPlayer()
-  } else if(conquestTurnIndex == 1) {
-    attack
-  }
+  } 
 }
 
 //Replaced the loops with global variable counters instead because I thought it made more sense this way
