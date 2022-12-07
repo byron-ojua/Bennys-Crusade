@@ -477,7 +477,7 @@ function attackButtonHandler() {
   var defenseDice = document.getElementById("defense-dice")
   var defenderOwner = document.getElementById("defender-owner").textContent
 
-  if (attackerTroops > 1 && defenderTroops > 0){
+  if (attackerTroops > 1 && defenderTroops > 0 && attackerTroops && defenderTroops){
     console.log("--Rolling Dice!")
 
     //Roll Attack Dice
@@ -523,7 +523,8 @@ function attackButtonHandler() {
   } else { 
     console.log("--Not enough troops")
   }
-  if (defenderTroops == 0){
+
+  if (defenderTroops === 0){
     troops = attackerTroops
     homeRegion = attacker.id
     newRegion = defender.id // I changed a lot of this
