@@ -306,7 +306,7 @@ body {
 
 #tooltip {
     position: fixed;
-    height: 100px;
+    height: 125px;
     width: 175px;
     border-radius: 10px;
     display: none;
