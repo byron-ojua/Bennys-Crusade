@@ -221,9 +221,7 @@ function reinforceClaimedCountries() {
       currentPlayer.style.opacity = "1"
 
       //if this was the last reinforcement placed, move to next game stage
-      if (playerIndex == playerArray.length-1 && troopReserveArray[playerIndex] == 1){
-        territoryTroops.textContent = parseInt(territoryTroops.textContent) +1
-        troopReserveArray[playerIndex] -= 1
+      if (playerIndex == playerArray.length-1 && troopReserveArray[playerIndex] == 0){
         //Switch to next stage of game
         phaseButton.style.display = "block"
         //stageOfTheGameIndex = 0;//ends the claiming phase, could add a message here?
@@ -238,6 +236,7 @@ function reinforceClaimedCountries() {
         currentPlayer.style.width = "200px"
         // conquerCountrySelection()
         stageOfTheGameIndex = 1;
+        conquestTurnIndex = 0
         // placeCountrySelection()
         console.log("end of reinforcing phase")
       }
