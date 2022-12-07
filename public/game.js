@@ -19,7 +19,7 @@ var players = localStorage.getItem("playerNames")
 var colors = localStorage.getItem("playerColors")
 var playerArray = JSON.parse(players)
 var colorsArray = JSON.parse(colors)
-var troopReserveArray = [10, 8, 6, 4, 2]
+var troopReserveArray = [10, 8, 6, 4, 2];
 var playerIndex = 0;
 var numTerritoriesUnclaimed = 42;
 
@@ -131,7 +131,7 @@ function claimCountrySelection() {
 		      conquestTurnIndex = 0
 		      // conquerCountrySelection()
           stageOfTheGameIndex += 1;
-          // placeCountrySelection()
+          
           console.log("end of claiming phase");
         }
       } else {
@@ -258,10 +258,13 @@ var troops
 var homeRegion
 var newRegion
 var attackButton = document.getElementById("attack-box")
+
 attackButton.addEventListener('click', function(){//all the attack button code is here
   
   if (conquestTurnIndex == 0) {
     //code for placing troops
+    console.log('attack box clicked')
+    placeButtonHandler()
   } else if (conquestTurnIndex == 1) {
     //code for attacking when button is pushed
     attackButtonHandler()
@@ -271,21 +274,31 @@ attackButton.addEventListener('click', function(){//all the attack button code i
 
 })//end of attack button listener
 
+var newLimit = 0;
 
 function placeButtonHandler() {
-
+  console.log('current reserve num', troopReserveArray[playerIndex])
+  console.log('current reserve num', troopReserveArray[playerIndex])
   var attackerTroops = troopReserveArray[playerIndex]
-  var defenderTroops = document.getElementById("defender-troops").textContent
-  var defenderOwner = document.getElementById("defender-owner").textContent
+
+  homeRegion = document.getElementById("pool")
+  newRegion = defender.id
+
+  homeRegion.textContent = attackerTroops
+
+  newRegion.textContent = document.getElementById(defender.id + "-troops").textContent
+
+  newLimit = newRegion.textContent
+  //var defenderTroops = document.getElementById("defender-troops").textContent
+
 
   if (attackerTroops > 1 ){
-  
+    console.log("place button")
+    countryName.textContent = homeRegion + "   --->   " + newRegion  
+    showConquerBox()
+    //sendTroops()
   }
   
-}
-
-function placeTroops() {
-
 }
 
 //is called by the attack button when in attack phase of a turn
@@ -347,7 +360,7 @@ function attackButtonHandler() {
   if (defenderTroops == 0){
     troops = attackerTroops
     homeRegion = attacker.id
-    newRegion = defender.id // I changed a lot of this
+    newRegion = defender.id
     sendTroops()
   }
   updateAttackBox(playerArray[playerIndex], attacker, attackerTroops, "attacker")
@@ -359,7 +372,12 @@ var homeTroops = document.getElementById("home-region")
 var newTroops = document.getElementById("new-region")
 var countryName = document.getElementById("country-names")
 
+
+
+
 function sendTroops() {
+
+
   console.log("Conquered New Territory!")
   console.log("--Total troops:", troops)
   console.log("--Home Region:", homeRegion)
@@ -374,18 +392,13 @@ function sendTroops() {
 
   newTroops.textContent = 1
 
-  countryName.textContent = homeRegion + "   -->   " + newRegion
-
-  
+  countryName.textContent = homeRegion + "   --->   " + newRegion  //sets the text on the conquor box
   var tempRegion = document.getElementById(newRegion)
   tempRegion.setAttribute("data-owner", playerArray[playerIndex])
 
   var tempTroops = document.getElementById(newRegion + "-troops")
   tempTroops.setAttribute("fill", colorsArray[playerIndex])
 
-  console.log('Colors array', colorsArray)
-  console.log('Temp Region', tempRegion)
-  console.log('new colorr', colorsArray[playerIndex])
 
 }//send troops end
 
@@ -399,7 +412,10 @@ confirmConquer.addEventListener('click', confirmAddTroops)
 
 function addHomeTroops(){
   if (conquestTurnIndex == 0) {
-    //placing code
+    console.log("Adding troops to reserve")
+    if (newTroops.textContent < newLimit){return}
+      newTroops.textContent = parseInt(newTroops.textContent) - 1
+      //homeTroops.textContent = parseInt(homeTroops.textContent) + 1
   } else if (conquestTurnIndex == 1) {
     console.log("Adding troops to home territory")
     if (newTroops.textContent <= 1){return}
@@ -411,7 +427,10 @@ function addHomeTroops(){
 }//end addHome Troops
 function addNewTroops(){
   if (conquestTurnIndex == 0) {
-    //place troops code
+    console.log("Placeing troops to new territory")
+    if (homeTroops.textContent <= 1){return}
+      newTroops.textContent = parseInt(newTroops.textContent) + 1
+      homeTroops.textContent = parseInt(homeTroops.textContent) - 1
   } else if (conquestTurnIndex == 1){
     console.log("Adding troops to new territory")
     if (homeTroops.textContent <= 1){return}
@@ -425,6 +444,9 @@ function addNewTroops(){
 function confirmAddTroops(){
   
   if (conquestTurnIndex == 0) {
+    clearAttackBox("attacker")
+    clearAttackBox("defender")
+    hideConquerBox()
     //placing code
   } else if (conquestTurnIndex == 1) {
     //attacking code
