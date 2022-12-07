@@ -58,19 +58,18 @@ nextPhaseOverlay.addEventListener('click', function() {
   if (conquestTurnIndex == 0){
     attackDoneButton.style.display = 'none'
     currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
-	  turnLoop() //modifying when we call conquest turn index so we can just change it manually
+    nextPlayer()
+	  //modifying when we call conquest turn index so we can just change it manually
   } else if(conquestTurnIndex == 1) {
 	  attackDoneButton.style.display = "block"
   } else if (conquestTurnIndex == 2) {
     var currentPlayer = document.getElementById(playerIndex.toString())
-    currentPlayer.style.width = "150px"
-
-    playerIndex = (playerIndex + 1) % playerArray.length
-    currentPlayer = document.getElementById(playerIndex.toString())
-    currentPlayer.style.width = "200px"
+    currentPlayer.style.width = "150px"    
     
     currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
 	  turnLoop() //modifying when we call conquest turn index so we can just change it manually
+    currentPlayer = document.getElementById(playerIndex.toString())
+    currentPlayer.style.width = "200px"
 	}
 })
 
@@ -225,20 +224,20 @@ function reinforceClaimedCountries() {
         //Switch to next stage of game
         phaseButton.style.display = "block"
         //stageOfTheGameIndex = 0;//ends the claiming phase, could add a message here?
-        currentPlayer.style.width = "150px"
-        currentPlayer.style.opacity = "0.78"
         
         var currentPlayer = document.getElementById(playerIndex.toString())
-        currentPlayer.style.width = "200px"
-        currentPlayer.style.opacity = "1"
-		    // done-attacking-backdrop
-        currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
-        currentPlayer.style.width = "200px"
-        // conquerCountrySelection()
+        
         stageOfTheGameIndex = 1;
          
         conquestTurnIndex = -1
+        
+        currentPlayer.style.width = "150px"
+        currentPlayer.style.opacity = "0.78"
         turnLoop()
+        currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
+        currentPlayer.style.width = "200px"
+        currentPlayer.style.opacity = "1"
+        
         // placeCountrySelection()
         console.log("end of reinforcing phase")
       }
@@ -365,9 +364,7 @@ function moveCountrySelection(event) {
 					var countryName = document.getElementById("country-names")
 					homeTroops.textContent = territoryTroops
 					newTroops.textContent = newTerritoryTroops
-					countryName.textContent = territoryMovingFrom.id + "   -->   " + territoryMovingTo.id
-          turnLoop()
-					
+					countryName.textContent = territoryMovingFrom.id + "   -->   " + territoryMovingTo.id					
 					
 					conquestTurnIndex = 0
 
@@ -803,13 +800,13 @@ function calculateReinforcements() {
   var northAmerica = 0
   var southAmerica = 0
   var africa = 0
-  console.log("Calculating Reinforcements")
-  console.log("Troop Reserve Array", troopReserveArray)
-  console.log("allOwnerTerritoryArray", allOwnerTerritoriesArray[playerIndex])
-  console.log("allOwnerTerritoryArray.length", allOwnerTerritoriesArray[playerIndex].length)
+  // console.log("Calculating Reinforcements")
+  // console.log("Troop Reserve Array", troopReserveArray)
+  // console.log("allOwnerTerritoryArray", allOwnerTerritoriesArray[playerIndex])
+  // console.log("allOwnerTerritoryArray.length", allOwnerTerritoriesArray[playerIndex].length)
 
   for (var i = 0; i < allOwnerTerritoriesArray[playerIndex].length; i++){
-    console.log("---document.getElementById(allOwnerTerritoriesArray[playerIndex][i]))", document.getElementById(allOwnerTerritoriesArray[playerIndex][i]))
+    // consolelog(---document.getElementById(allOwnerTerritoriesArray[playerIndex][i])), document.getElementById(allOwnerTerritoriesArray[playerIndex][i]))
     // console.log("---document.getElementById(troopReserveArray[i]).classList", document.getElementById(troopReserveArray[i]).classList)
 
     if (document.getElementById(allOwnerTerritoriesArray[playerIndex][i]).classList.contains("australia")){
