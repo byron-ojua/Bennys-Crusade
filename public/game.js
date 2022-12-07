@@ -245,6 +245,7 @@ function reinforceClaimedCountries() {
 
 
 function placeCountrySelection(event) {
+  calculateReinforcements()
   clearTimeout(tooltipTimer)
 
   var territory = event.currentTarget
@@ -779,17 +780,63 @@ function calculateReinforcements() {
   var southAmerica = 0
   var africa = 0
 
-  for (var i = 0; i < territoryArray.length; i++){
-    var territory = document.getElementById(territoryArray[i])
-    if (playerArray[playerIndex] == territory.owner){
-      territoriesControlled += 1
+  for (var i = 0; i < troopReserveArray[playerIndex].length; i++){
+    if (document.getElementById(troopReserveArray[i]).classList == "australia"){
+      australia++
+      if (australia == 4){
+        reserveCount +=2
+        console.log("Australia Controlled By:", playerArray[playerIndex])
+      }
+    }
+    if (document.getElementById(troopReserveArray[i]).classList == "asia"){
+      asia++
+      if (asia == 11){
+        reserveCount +=7
+        console.log("Asia Controlled By:", playerArray[playerIndex])
+      }
+    }
+    if (document.getElementById(troopReserveArray[i]).classList == "north-america"){
+      northAmerica++
+      if (northAmerica == 9){
+        reserveCount +=5
+        console.log("North America Controlled By:", playerArray[playerIndex])
+      }
+    }
+    if (document.getElementById(troopReserveArray[i]).classList == "south-america"){
+      southAmerica++
+      if (southAmerica == 4){
+        reserveCount +=2
+        console.log("South America Controlled By:", playerArray[playerIndex])
+      }
+    }
+    if (document.getElementById(troopReserveArray[i]).classList == "Africa"){
+      africa++
+      if (africa == 6){
+        reserveCount +=3
+        console.log("Australia Controlled By:", playerArray[playerIndex])
+      }
+    }
+    if (document.getElementById(troopReserveArray[i]).classList == "australia"){
+      australia++
+      if (australia == 4){
+        reserveCount +=2
+        console.log("Australia Controlled By:", playerArray[playerIndex])
+      }
+    }
+    if (document.getElementById(troopReserveArray[i]).classList == "europe"){
+      europe++
+      if (europe == 7){
+        reserveCount +=5
+        console.log("Europe Controlled By:", playerArray[playerIndex])
+      }
     }
   }
-  reserveCount = Math.floor(territoriesControlled % 3)
+  reserveCount += Math.floor((asia+australia+northAmerica+southAmerica+africa+europe) % 3)
   //Continent Bonuses
 
   //Turning in territory card sets
   troopReserveArray[playerIndex] = reserveCount
+  console.log("Reserve:", troopReserveArray)
   //Place all troops
 
 }
