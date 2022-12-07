@@ -32,6 +32,16 @@
 				"buttonText": "No"
 			}
 		]
+	},
+	{
+		"popUpID": "not-correct-country-to-reinforce-backdrop", 
+		"overlayText": "Select a country that is your own to reinforce.", 
+		"buttons": [
+			{
+				"id": "not-correct-country-to-reinforce-button", 
+				"buttonText": "Ok"
+			}
+		]
 	}
 	
 ]

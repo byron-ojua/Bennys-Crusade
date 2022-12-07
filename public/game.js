@@ -13,6 +13,9 @@ var defender
 var tooltipTimer
 var mapScale = 85
 var isMoving = false
+var copyOfTerritoryMoveTo
+var copyOfTerritoryMoveFrom
+
 
 var stageOfTheGameIndex = 0// keeps track of what stage of the game ie. 'claim contires', 'conquest' or end
 
@@ -58,7 +61,7 @@ nextPhaseOverlay.addEventListener('click', function() {
 	  conquestTurnIndex = 1 //modifying when we call conquest turn index so we can just change it manually
   } else if(conquestTurnIndex == 1) {
 	  attackDoneButton.style.display = "block"
-  } else if (conquestTurnIndex == 2){
+  } else if (conquestTurnIndex == 2) {
     var currentPlayer = document.getElementById(playerIndex.toString())
     currentPlayer.style.width = "150px"
 
@@ -186,6 +189,10 @@ function claimCountrySelection() {
 }//end of claim country handler
 
 
+var notCorrectCountryButton = document.getElementById("not-correct-country-to-reinforce-button").addEventListener('click', function () {
+	document.getElementById("not-correct-country-to-reinforce-backdrop").style.display = 'none'
+})
+
 function reinforceClaimedCountries() {
   console.log("Reinforcing....")
   // claimCountries()
@@ -224,7 +231,7 @@ function reinforceClaimedCountries() {
         var currentPlayer = document.getElementById(playerIndex.toString())
         currentPlayer.style.width = "200px"
         currentPlayer.style.opacity = "1"
-
+		done-attacking-backdrop
         currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
         currentPlayer.style.width = "200px"
         conquestTurnIndex = 0
@@ -234,6 +241,8 @@ function reinforceClaimedCountries() {
         console.log("end of reinforcing phase")
       }
     } else {
+	  document.getElementById("not-correct-country-to-reinforce-backdrop").style.display = 'block'
+	   
       console.log(">Invalid Country:", terr.id)
       console.log(">--Owner:", terr.getAttribute('data-owner'))
     }
@@ -342,7 +351,8 @@ function moveCountrySelection(event) {
 					territoryTroops = document.getElementById("attacker-troops").textContent
 					var newTerritoryTroops = document.getElementById(territoryMovingTo.id + "-troops").textContent
 					updateAttackBox(territoryOwner, territoryMovingTo, newTerritoryTroops, "defender")
-					conquestTurnIndex = 0
+					
+
 					showConquerBox()
 					var homeTroops = document.getElementById("home-region")
 					var newTroops = document.getElementById("new-region")
@@ -350,7 +360,15 @@ function moveCountrySelection(event) {
 					homeTroops.textContent = territoryTroops
 					newTroops.textContent = newTerritoryTroops
 					countryName.textContent = territoryMovingFrom.id + "   -->   " + territoryMovingTo.id
+					nextPlayer()
+					
+					conquestTurnIndex = 0
 
+					copyOfTerritoryMoveFrom = territoryMovingFrom
+					copyOfTerritoryMoveTo = territoryMovingTo
+
+					territoryMovingTo = undefined
+					territoryMovingFrom = undefined
 					isMoving = true
 					break
 				} else {
@@ -524,7 +542,7 @@ function attackButtonHandler() {
     console.log("--Not enough troops")
   }
 
-  if (defenderTroops === 0){
+  if (defenderTroops == 0) {
     troops = attackerTroops
     homeRegion = attacker.id
     newRegion = defender.id // I changed a lot of this
@@ -632,8 +650,8 @@ function confirmAddTroops(){
     //moveing code
   }
     if(isMoving) {
-		document.getElementById(territoryMovingFrom.id + "-troops").textContent = homeTroops.textContent
-		document.getElementById(territoryMovingTo.id + "-troops").textContent = newTroops.textContent
+		document.getElementById(copyOfTerritoryMoveFrom.id + "-troops").textContent = homeTroops.textContent
+		document.getElementById(copyOfTerritoryMoveTo.id + "-troops").textContent = newTroops.textContent
 		content = "attacker"
 		attacker = undefined
 		defender = undefined
@@ -793,3 +811,33 @@ function calculateReinforcements() {
   //Place all troops
 
 }
+
+var mapLeft = 0
+var mapTop = 0
+var moveScale = 5
+document.addEventListener('keydown', (event) => {
+  var name = event.key;
+  var code = event.code;
+  // Alert the key name and key code on keydown
+
+  if(name === 'd'){
+    mapLeft += moveScale
+    map.style.marginLeft = mapLeft + 'px'
+  } else if (name === 'a') {
+    mapLeft -= moveScale
+    map.style.marginLeft = mapLeft + 'px'
+  } else if (name === 'w') {
+    mapTop -= moveScale
+    map.style.marginTop = mapTop + 'px'
+  }else if (name === 's') {
+    mapTop += moveScale
+    map.style.marginTop = mapTop + 'px'
+  }else if (name === 'r') {
+	mapScale = 85
+  	map.style.scale = mapScale + "%"
+    mapTop = 0
+    mapLeft = 0
+    map.style.marginTop = mapTop + 'px'
+    map.style.marginLeft = mapLeft + 'px'
+  }
+}, false);
