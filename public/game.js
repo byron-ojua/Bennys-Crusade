@@ -92,7 +92,7 @@ document.querySelectorAll('.territory').forEach(item => {
       claimCountrySelection()
     } else if (stageOfTheGameIndex == 3){
       reinforceClaimedCountries()
-    }else if(stageOfTheGameIndex == 1) {//this is for attack?
+    } else if(stageOfTheGameIndex == 1) {//this is for attack?
       conquerCountrySelection(event)
     } else {
       console.log('whoops');
