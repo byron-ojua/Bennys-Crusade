@@ -51,6 +51,12 @@ body {
     stroke: black;
 }
 
+.sea-border {
+    stroke-dasharray: 5;
+    stroke-width: 2px;
+    stroke: black;
+}
+
 #map-container {
     display: flex;
     width: 100%;
