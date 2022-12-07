@@ -68,3 +68,13 @@ h1{
 #benny-logo{
     margin-top: 50px;
 }
+
+a {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+
+a:hover{
+    text-decoration: underline;
+}
