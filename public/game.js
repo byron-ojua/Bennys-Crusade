@@ -250,15 +250,15 @@ function placeCountrySelection(event) {
   console.log("--owner:", territoryOwner)
   console.log("--Troops:", territoryTroops)
   console.log("Active player:", playerArray[playerIndex])
+  console.log("-- reserve count")
 
   if (playerArray[playerIndex] == territoryOwner) {
-    //console.log("WE GET HERE")
-    defender = territory
-    clearAttackBox("attacker")
-    updateAttackBox(territoryOwner, territory, territoryTroops, "defender")
-    //console.log("Sneed Troops")
-    
+    if(troopReserveArray[playerIndex] > 0) {
+      territoryTroops.textContent += 1;
+
+    }
   }
+  
 }
 
 function attackCountrySelection(event) {
@@ -336,7 +336,7 @@ attackButton.addEventListener('click', function(){//all the attack button code i
   if (conquestTurnIndex == 0) {
     //code for placing troops
     console.log('attack box clicked')
-    placeButtonHandler()
+    //placeButtonHandler()
   } else if (conquestTurnIndex == 1) {
     //code for attacking when button is pushed
     attackButtonHandler()
