@@ -1,4 +1,5 @@
 var playGame = document.getElementById("play-game")
+var credits = document.getElementById("credits")
 var learnToPlay = document.getElementById("how-to-play")
 // var highScores = document.getElementById("high-scores")
 var cannon = document.getElementById("cannon")
@@ -43,4 +44,8 @@ playGame.addEventListener("click", function () {
 
 learnToPlay.addEventListener("click", function () {
     window.open("https://www.youtube.com/watch?v=5g48vXnnf30", "_blank");
+})
+
+credits.addEventListener("click", function () {
+    window.location.replace("./credits.html")
 })

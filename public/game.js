@@ -231,7 +231,7 @@ function reinforceClaimedCountries() {
         var currentPlayer = document.getElementById(playerIndex.toString())
         currentPlayer.style.width = "200px"
         currentPlayer.style.opacity = "1"
-		    done-attacking-backdrop
+		    // done-attacking-backdrop
         currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
         currentPlayer.style.width = "200px"
         conquestTurnIndex = 0
@@ -254,7 +254,7 @@ function reinforceClaimedCountries() {
 
 
 function placeCountrySelection(event) {
-  calculateReinforcements()
+  
   clearTimeout(tooltipTimer)
 
   var territory = event.currentTarget
@@ -270,12 +270,11 @@ function placeCountrySelection(event) {
   console.log("--Troops:", territoryTroops)
   console.log("Active player:", playerArray[playerIndex])
   console.log("-- reserve count")
+  console.log("")
+  if ((playerArray[playerIndex] == territoryOwner) && (troopReserveArray[playerIndex] > 0)) {
 
-  if (playerArray[playerIndex] == territoryOwner) {
-    if(troopReserveArray[playerIndex] > 0) {
-      territoryTroops.textContent += 1;
+    territoryTroops.textContent += 1;
 
-    }
   }
   
 }
@@ -781,6 +780,7 @@ function turnLoop() {
   console.log(" -- Player Phase Index:", conquestTurnIndex);
   if (conquestTurnIndex == 0) {
     nextPlayer()
+    calculateReinforcements()
   } 
 }
 
@@ -799,49 +799,49 @@ function calculateReinforcements() {
   var africa = 0
 
   for (var i = 0; i < troopReserveArray[playerIndex].length; i++){
-    if (document.getElementById(troopReserveArray[i]).classList == "australia"){
+    if (document.getElementById(troopReserveArray[i]).classList.contains("australia")){
       australia++
       if (australia == 4){
         reserveCount +=2
         console.log("Australia Controlled By:", playerArray[playerIndex])
       }
     }
-    if (document.getElementById(troopReserveArray[i]).classList == "asia"){
+    if (document.getElementById(troopReserveArray[i]).classList.contains("asia")){
       asia++
       if (asia == 11){
         reserveCount +=7
         console.log("Asia Controlled By:", playerArray[playerIndex])
       }
     }
-    if (document.getElementById(troopReserveArray[i]).classList == "north-america"){
+    if (document.getElementById(troopReserveArray[i]).classList.contains("north-america")){
       northAmerica++
       if (northAmerica == 9){
         reserveCount +=5
         console.log("North America Controlled By:", playerArray[playerIndex])
       }
     }
-    if (document.getElementById(troopReserveArray[i]).classList == "south-america"){
+    if (document.getElementById(troopReserveArray[i]).classList.contains("south-america")){
       southAmerica++
       if (southAmerica == 4){
         reserveCount +=2
         console.log("South America Controlled By:", playerArray[playerIndex])
       }
     }
-    if (document.getElementById(troopReserveArray[i]).classList == "Africa"){
+    if (document.getElementById(troopReserveArray[i]).classList.contains("africa")){
       africa++
       if (africa == 6){
         reserveCount +=3
         console.log("Australia Controlled By:", playerArray[playerIndex])
       }
     }
-    if (document.getElementById(troopReserveArray[i]).classList == "australia"){
+    if (document.getElementById(troopReserveArray[i]).classList.contains("australia")){
       australia++
       if (australia == 4){
         reserveCount +=2
         console.log("Australia Controlled By:", playerArray[playerIndex])
       }
     }
-    if (document.getElementById(troopReserveArray[i]).classList == "europe"){
+    if (document.getElementById(troopReserveArray[i]).classList.contains("europe")){
       europe++
       if (europe == 7){
         reserveCount +=5

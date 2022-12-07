@@ -63,8 +63,8 @@ app.get('/game.html', function(req, res, next) {
 app.use(express.static('public'));
 
 app.get('*', function (req, res) {
-	// res.status(404).render('404', ({}))
-	res.status(404).send("There was an error")
+	res.status(404).render('404', ({}))
+	// res.status(404).send("There was an error")
   });
   
 
