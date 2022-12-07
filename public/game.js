@@ -24,6 +24,13 @@ var startingTroops = 50 - (playerArray.length * 5)
 var troopReserveArray = Array(playerArray.length).fill(startingTroops)
 var playerIndex = 0;
 var numTerritoriesUnclaimed = 42;
+var allOwnerTerritoriesArray = []
+//create array of countries owned for players
+for (var i = 0; i < playerArray.length; i++){
+  allOwnerTerritoriesArray.push([])
+}
+console.log("Territory Arrays", allOwnerTerritoriesArray)
+
 
 console.log("Troop reserves", troopReserveArray)
 //set troop reserve next to name
@@ -41,15 +48,7 @@ document.getElementById("not-done-attacking-button").addEventListener('click', f
 	attackDoneButton.style.display = 'none'
 })
 
-//End attack phase buttons
-document.getElementById("done-attacking-button").addEventListener('click', function() { //moves the user onto their move phase
-  currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Move turn"
-  conquestTurnIndex = 2 //modifying when we call conquest turn index so we can just change it manually
-  attackDoneButton.style.display = 'none'
-})
-document.getElementById("not-done-attacking-button").addEventListener('click', function() {
-  attackDoneButton.style.display = 'none'
-})
+
 
 nextPhaseOverlay.addEventListener('click', function() {
   //Start of game claim country
@@ -133,7 +132,9 @@ function claimCountrySelection() {
       var territoryTroops = document.getElementById(territoryClicked.id+"-troops")
       territoryTroops.textContent = 1
       terr.setAttribute("data-owner", playerArray[playerIndex])
-      
+      allOwnerTerritoriesArray[playerIndex].push(territoryClicked.id)
+      console.log("Territory Arrays:", allOwnerTerritoriesArray)
+
       troopReserveArray[playerIndex] -= 1
       console.log("Troops Reserve:", troopReserveArray)
       var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
@@ -213,7 +214,7 @@ function reinforceClaimedCountries() {
       currentPlayer.style.opacity = "1"
 
       //if this was the last reinforcement placed, move to next game stage
-      if (playerIndex+1 == playerArray.length && troopReserveArray[playerIndex] == 0){
+      if (playerIndex+1 == playerArray.length && troopReserveArray[playerIndex] == 1){
         //Switch to next stage of game
         phaseButton.style.display = "block"
         //stageOfTheGameIndex = 0;//ends the claiming phase, could add a message here?
@@ -476,7 +477,7 @@ function attackButtonHandler() {
   var defenseDice = document.getElementById("defense-dice")
   var defenderOwner = document.getElementById("defender-owner").textContent
 
-  if (attackerTroops > 1 && defenderTroops > 0){
+  if (attackerTroops > 1 && defenderTroops > 0 && attackerTroops && defenderTroops){
     console.log("--Rolling Dice!")
 
     //Roll Attack Dice
@@ -507,7 +508,7 @@ function attackButtonHandler() {
 
     //Resolve Troop losses
     console.log("Resolving Troop losses")
-    for (var i = 0; i < diceRollAttack.length && i < diceRollDefense.length; i++) {
+    for (var i = 0; i < diceRollAttack.length && i < diceRollDefense.length; i++){
       if (diceRollAttack[i] > diceRollDefense[i]){
         document.getElementById(defender.id + "-troops").textContent -= 1    
         defenderTroops = document.getElementById(defender.id + "-troops").textContent
@@ -522,10 +523,21 @@ function attackButtonHandler() {
   } else { 
     console.log("--Not enough troops")
   }
-  if (defenderTroops == 0) {
+
+  if (defenderTroops === 0){
     troops = attackerTroops
     homeRegion = attacker.id
-    newRegion = defender.id
+    newRegion = defender.id // I changed a lot of this
+
+    console.log("Territory Array:", allOwnerTerritoriesArray)
+    // removeNewRegion = allOwnerTerritoriesArray.indexOf(newRegion)
+    for (var i = 0; i < allOwnerTerritoriesArray.length; i++){
+      allOwnerTerritoriesArray[i].splice(newRegion, 1)
+    }
+
+    allOwnerTerritoriesArray[playerIndex].push(newRegion)
+
+    console.log("New Territory Array:", allOwnerTerritoriesArray)
     sendTroops()
   }
   updateAttackBox(playerArray[playerIndex], attacker, attackerTroops, "attacker")
@@ -632,6 +644,7 @@ function confirmAddTroops(){
 	} else {  	
 		document.getElementById(homeRegion + "-troops").textContent = homeTroops.textContent
 		document.getElementById(newRegion + "-troops").textContent = newTroops.textContent
+
 		content = "attacker"
 		attacker = undefined
 		defender = undefined
@@ -753,4 +766,30 @@ function turnLoop() {
 }
 
 //Replaced the loops with global variable counters instead because I thought it made more sense this way
+function calculateReinforcements() {
+  //while you have remaining troops
+  // ?? maybe use the 'attack move' code and have the attacking country be a pool of player troops
+  
+  //Calculate amount of troops you get
+  var reserveCount = 0
+  var australia = 0
+  var europe = 0
+  var asia = 0
+  var northAmerica = 0
+  var southAmerica = 0
+  var africa = 0
 
+  for (var i = 0; i < territoryArray.length; i++){
+    var territory = document.getElementById(territoryArray[i])
+    if (playerArray[playerIndex] == territory.owner){
+      territoriesControlled += 1
+    }
+  }
+  reserveCount = Math.floor(territoriesControlled % 3)
+  //Continent Bonuses
+
+  //Turning in territory card sets
+  troopReserveArray[playerIndex] = reserveCount
+  //Place all troops
+
+}
