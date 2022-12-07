@@ -1,7 +1,7 @@
 [
     {
         "name": "Greenland",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "northwest-territory quebec iceland ontario",
         "owner": "",
         "id": "greenland",
@@ -12,7 +12,7 @@
     },
     {
         "name": "Alaska",
-        "troops": "5",
+        "troops": "0",
         "neighbor": "kamchatka northwest-territory alberta",
         "owner": "",
         "id": "alaska",
@@ -23,7 +23,7 @@
     },
     {
         "name": "Northwest Territory",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "alaska greenland alberta ontario",
         "owner": "",
         "id": "northwest-territory",
@@ -34,7 +34,7 @@
     },
     {
         "name": "Alberta",
-        "troops": "10",
+        "troops": "0",
         "neighbor": "alaska northwest-territory ontario western-us",
         "owner": "",
         "id": "alberta",
@@ -45,7 +45,7 @@
     },
     {
         "name": "Ontario",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "greenland alberta northwest-territory western-us eastern-us quebec",
         "owner": "",
         "id": "ontario",
@@ -56,7 +56,7 @@
     },
     {
         "name": "Quebec",
-        "troops": "12",
+        "troops": "0",
         "neighbor": "greenland ontario eastern-us",
         "owner": "",
         "id": "quebec",
@@ -67,7 +67,7 @@
     },
     {
         "name": "Western US",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "eastern-us central-america alberta ontario",
         "owner": "",
         "id": "western-us",
@@ -78,7 +78,7 @@
     },
     {
         "name": "Eastern US",
-        "troops": "7",
+        "troops": "0",
         "neighbor": "western-us alberta quebec central-america ontario",
         "owner": "",
         "id": "eastern-us",
@@ -89,7 +89,7 @@
     },
     {
         "name": "Central America",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "western-us eastern-us venezuela",
         "owner": "",
         "id": "central-america",
@@ -100,7 +100,7 @@
     },
     {
         "name": "Venezuela",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "brazil peru central-america",
         "owner": "",
         "id": "venezuela",
@@ -111,7 +111,7 @@
     },
     {
         "name": "Peru",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "venezuela brazil argentina",
         "owner": "",
         "id": "peru",
@@ -122,7 +122,7 @@
     },
     {
         "name": "Brazil",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "venezuela peru argentina north-africa",
         "owner": "",
         "id": "brazil",
@@ -133,7 +133,7 @@
     },
     {
         "name": "Argentina",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "peru brazil",
         "owner": "",
         "id": "argentina",
@@ -144,7 +144,7 @@
     },
     {
         "name": "North Africa",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "brazil egypt congo east-africa",
         "owner": "",
         "id": "north-africa",
@@ -155,7 +155,7 @@
     },
     {
         "name": "Egypt",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "north-africa east-africa middle-east southern-europe",
         "owner": "",
         "id": "egypt",
@@ -166,8 +166,8 @@
     },
     {
         "name": "Congo",
-        "troops": "1",
-        "neighbor": "north-africa east-africa south-africa",
+        "troops": "0",
+        "neighbor": "orth-africa east-africa south-africa",
         "owner": "",
         "id": "congo",
         "class": "africa territory",
@@ -177,7 +177,7 @@
     },
     {
         "name": "East Africa",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "egypt congo south-africa madagascar",
         "owner": "",
         "id": "east-africa",
@@ -188,7 +188,7 @@
     },
     {
         "name": "South Africa",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "congo east-africa madagascar",
         "owner": "",
         "id": "south-africa",
@@ -199,7 +199,7 @@
     },
     {
         "name": "Madagascar",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "south-africa east-africa",
         "owner": "",
         "id": "madagascar",
@@ -210,7 +210,7 @@
     },
     {
         "name": "Western Australia",
-        "troops": "2",
+        "troops": "0",
         "neighbor": "eastern-australia indonesia",
         "owner": "",
         "id": "western-australia",
@@ -221,7 +221,7 @@
     },
     {
         "name": "Eastern Australia",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "new-guinea western-australia",
         "owner": "",
         "id": "eastern-australia",
@@ -232,7 +232,7 @@
     },
     {
         "name": "New Guinea",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "indonesia eastern-australia",
         "owner": "",
         "id": "new-guinea",
@@ -243,7 +243,7 @@
     },
     {
         "name": "Indonesia",
-        "troops": "6",
+        "troops": "0",
         "neighbor": "siam new-guinea western-australia",
         "owner": "",
         "id": "indonesia",
@@ -259,7 +259,7 @@
     },
     {
         "name": "Ukraine",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "scandinavia northern-europe southern-europe middle-east afghanistan ural",
         "owner": "",
         "id": "ukraine",
@@ -270,7 +270,7 @@
     },
     {
         "name": "Great Britain",
-        "troops": "6",
+        "troops": "0",
         "neighbor": "iceland scandinavia northern-europe western-europe",
         "owner": "",
         "id": "great-britain",
@@ -284,7 +284,7 @@
     },
     {
         "name": "Northern Europe",
-        "troops": "3",
+        "troops": "0",
         "neighbor": "ukraine western-europe southern-europe great-britain scandinavia",
         "owner": "",
         "id": "northern-europe",
@@ -295,7 +295,7 @@
     },
     {
         "name": "Iceland",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "greenland great-britain scandinavia",
         "owner": "",
         "id": "iceland",
@@ -306,7 +306,7 @@
     },
     {
         "name": "Scandinavia",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "iceland ukraine great-britain northern-europe",
         "owner": "",
         "id": "scandinavia",
@@ -317,7 +317,7 @@
     },
     {
         "name": "Western Europe",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "northern-europe southern-europe great-britain",
         "owner": "",
         "id": "western-europe",
@@ -328,7 +328,7 @@
     },
     {
         "name": "Southern Europe",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "northern-europe north-africa western-europe ukraine egypt middle-east",
         "owner": "",
         "id": "southern-europe",
@@ -339,7 +339,7 @@
     },
     {
         "name": "Ural",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "ukraine afghanistan china siberia",
         "owner": "",
         "id": "ural",
@@ -350,7 +350,7 @@
     },
     {
         "name": "Siberia",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "ural china mongolia irkutsk yakutsk",
         "owner": "",
         "id": "siberia",
@@ -361,7 +361,7 @@
     },
     {
         "name": "Yakutsk",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "kamchatka irkutsk siberia",
         "owner": "",
         "id": "yakutsk",
@@ -372,7 +372,7 @@
     },
     {
         "name": "Kamchatka",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "irkutsk yakutsk japan mongolia alaska",
         "owner": "",
         "id": "kamchatka",
@@ -383,7 +383,7 @@
     },
     {
         "name": "Irkutsk",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "ukraine ural china india middle-east",
         "owner": "",
         "id": "irkutsk",
@@ -394,7 +394,7 @@
     },
     {
         "name": "Afghanistan",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "ukraine ural china india middle-east",
         "owner": "",
         "id": "afghanistan",
@@ -405,7 +405,7 @@
     },
     {
         "name": "Mongolia",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "siberia irkutsk kamchatka china japan",
         "owner": "",
         "id": "mongolia",
@@ -416,7 +416,7 @@
     },
     {
         "name": "Japan",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "kamchatka mongolia",
         "owner": "",
         "id": "japan",
@@ -427,7 +427,7 @@
     },
     {
         "name": "China",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "mongolia siberia ural india afghanistan siam",
         "owner": "",
         "id": "china",
@@ -438,7 +438,7 @@
     },
     {
         "name": "Middle East",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "egypt southern-europe ukraine afghanistan india",
         "owner": "",
         "id": "middle-east",
@@ -449,7 +449,7 @@
     },
     {
         "name": "India",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "middle-east afghanistan china siam",
         "owner": "",
         "id": "india",
@@ -460,7 +460,7 @@
     },
     {
         "name": "Siam",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "indonesia india china",
         "owner": "",
         "id": "siam",
@@ -469,4 +469,6 @@
         "labelY": "462.17",
         "path": ["m979,519.83c0.6,-0.6 1.07,-1.39 1,-2.23c-0.07,-0.9 -0.47,-1.58 -0.68,-2.43c-0.18,-0.72 -0.48,-1.49 -0.65,-2.34c-0.18,-0.86 -0.58,-1.54 -0.81,-2.32c-0.23,-0.78 -0.55,-1.5 -0.89,-2.25c-0.33,-0.75 -0.78,-1.44 -0.94,-2.19c-0.2,-0.88 -0.14,-1.74 -0.31,-2.57c-0.17,-0.84 -0.06,-1.76 -0.06,-2.66c0,-0.87 -0.12,-1.68 -0.48,-2.48c-0.36,-0.82 -0.69,-1.52 -1.22,-2.22c-0.51,-0.67 -1.1,-1.23 -1.63,-1.81c-0.53,-0.58 -0.8,-1.08 -1.56,-1.51c-0.74,-0.42 -0.4,-1.68 0.31,-2.1c0.7,-0.41 1.61,-0.39 1.9,-1.05c0.35,-0.79 -0.02,-1.96 0.67,-2.44c0.68,-0.48 1.41,0.21 2.3,0.28c0.82,0.06 1.4,0.62 1.79,1.31c0.41,0.74 1.13,1.22 1.78,1.71c0.67,0.51 1.2,1.11 1.89,1.54c0.78,0.48 1.56,0.8 2.27,1.12c0.79,0.35 1.7,0.35 2.58,0.28c0.39,-0.03 0.13,0.78 0.06,1.72c-0.07,0.86 -0.25,1.8 0,2.67c0.18,0.63 1.06,0.88 1.66,1.48c0.6,0.61 1.11,1.24 1.58,1.94c0.49,0.73 0.96,1.5 1.1,2.35c0.14,0.88 0.23,1.73 0.33,2.56c0.1,0.85 0.57,1.87 1.36,2.01c0.81,0.14 1.09,-1.01 1.7,-1.53c0.7,-0.6 1.17,-1.37 1.94,-1.86c0.7,-0.43 1.3,-1.1 1.63,-1.94c0.31,-0.81 0.47,-1.69 1.1,-2.4c0.52,-0.59 1.13,-1.21 1.64,-1.9c0.47,-0.64 1.04,-1.33 1.39,-2.11c0.35,-0.77 0.73,-1.53 1.34,-2.17c0.58,-0.61 0.87,-1.5 1.27,-2.17c0.44,-0.73 0.91,-1.42 1.47,-1.95c0.64,-0.6 1.16,-1.3 1.61,-2.09c0.42,-0.73 0.34,-1.66 0.51,-2.51c0.17,-0.86 0.04,-1.77 0.04,-2.64c0,-0.9 0,-1.8 0,-2.68c0,-0.9 -0.03,-1.78 -0.33,-2.59c-0.28,-0.73 -0.16,-1.64 -0.41,-2.5c-0.24,-0.83 -0.76,-1.6 -0.93,-2.41c-0.18,-0.91 -0.54,-1.6 -0.99,-2.36c-0.44,-0.75 -0.43,-1.68 -0.67,-2.5c-0.26,-0.85 -0.44,-1.6 -0.67,-2.53c-0.2,-0.82 -0.31,-1.69 -0.66,-2.51c-0.36,-0.85 -0.8,-1.59 -1.37,-2.33c-0.48,-0.63 -1.03,-1.39 -1.69,-2.06c-0.6,-0.61 -0.88,-1.46 -1.46,-2.11c-0.6,-0.68 -1.05,-1.4 -1.68,-1.84c-0.64,-0.45 -1.38,-0.69 -2.28,-0.66c-0.87,0.03 -1.67,0.36 -2.52,0.5c-0.68,0.11 -0.68,-0.79 -0.68,-1.67c0,-0.89 0.04,-1.77 0,-2.66c-0.04,-0.87 -0.66,-1.58 -0.88,-2.42c-0.23,-0.87 0.12,-2.05 -0.57,-2.41c-0.78,-0.4 -1.77,-0.07 -2.67,0c-0.87,0.07 -1.68,0.35 -2.36,-0.14c-0.69,-0.5 -1.42,-0.99 -1.86,-1.74c-0.45,-0.75 -1.2,-1.06 -1.32,-1.79c-0.15,-0.87 0,-1.77 0,-2.67c0,-0.89 0,-1.73 0,-2.66c0,-0.87 0.17,-1.69 0.33,-2.57c0.16,-0.87 0.02,-1.76 0.33,-2.62c0.29,-0.81 0.5,-1.71 1.03,-2.35c0.57,-0.69 1.27,-1.2 2.08,-1.01c0.86,0.2 1.58,0.56 2.3,0.88c0.78,0.35 1.4,0.95 2.24,1.3c0.78,0.33 1.59,0.56 2.39,0.99c0.64,0.34 1.39,1.29 2.06,1.01c0.62,-0.25 0.04,-1.38 -0.59,-1.97c-0.59,-0.54 -0.98,-1.33 -1.6,-1.9c-0.65,-0.6 -1.35,-1.25 -1.57,-2.09c-0.22,-0.82 -0.08,-1.73 -0.33,-2.53c-0.25,-0.78 -0.91,-1.04 -1.53,-1.67c-0.62,-0.63 -1.04,-1.35 -1.62,-1.95c-0.59,-0.61 -0.95,-1.17 -1.19,-1.99c-0.19,-0.67 -0.54,-1.42 -1,-2.15c-0.42,-0.66 -0.92,-1.41 -1.48,-1.96c-0.64,-0.64 -1.15,-1.3 -1.86,-1.84c-0.59,-0.45 -1.35,-0.93 -2.2,-0.93c-0.91,0 -1.77,-0.11 -2.57,-0.28c-0.85,-0.18 -1.76,0.16 -2.22,0.8c-0.51,0.71 -0.78,1.5 -1.55,1.83c-0.73,0.31 -1.37,0.93 -2.23,1.27c-0.76,0.3 -1.57,0.55 -2.24,0.9c-0.74,0.39 -1.37,0.86 -1.99,1.48c-0.64,0.64 -1.17,1.22 -1.8,1.81c-0.59,0.55 -1.38,0.91 -2.16,1.22c-0.82,0.32 -1.67,0.47 -2.56,0.63c-0.89,0.17 -1.69,-0.15 -2.29,-0.7c-0.65,-0.59 -1.59,-0.64 -2.4,-0.97c-0.8,-0.32 -1.17,-0.92 -1.51,-1.67c-0.33,-0.74 -0.66,-1.51 -1.04,-2.09c-0.44,-0.68 -1.07,-1.28 -1.75,-1.74c-0.71,-0.47 -1.3,-1.09 -1.83,-1.69c-0.57,-0.63 -0.82,-1.55 -1.31,-2.24c-0.51,-0.73 -1.01,-1.4 -1.35,-2.07c-0.37,-0.74 -0.58,-1.62 -1.2,-2.18c-0.65,-0.58 -1.53,-0.87 -2.3,-1.23c-0.77,-0.35 -1.54,-0.59 -2.4,-0.76c-0.87,-0.17 -1.78,-1.06 -2.42,-0.52c-0.66,0.55 -0.18,1.75 -0.58,2.41c-0.42,0.71 -0.99,1.31 -1.73,1.88c-0.67,0.52 -1.26,1.13 -2.04,1.59c-0.66,0.39 -1.29,0.86 -1.87,1.52c-0.59,0.67 -0.94,1.42 -1.12,2.26c-0.18,0.87 -0.94,1.1 -1.36,1.79c-0.48,0.78 -0.78,1.61 -0.95,2.48c-0.17,0.86 0.29,1.58 -0.35,2.1c-0.62,0.51 -1.22,1.16 -1.91,1.73c-0.68,0.57 -1.1,1.27 -1.45,2c-0.4,0.83 -0.61,1.61 -0.65,2.51c-0.04,0.88 -0.13,1.65 -0.52,2.25c-0.43,0.64 -1.18,1.02 -1.95,1.34c-0.77,0.32 -1.39,0.87 -1.86,1.53c-0.5,0.7 -0.49,1.62 -0.66,2.49c-0.16,0.86 0,1.79 0,2.67c0,0.87 -0.13,1.65 -0.63,2.3c-0.45,0.59 0.62,0.54 1.31,0.88c0.8,0.39 0.87,1.36 1.28,2.08c0.41,0.73 0.72,1.57 1.19,2.32c0.43,0.7 1.29,1.13 1.64,1.82c0.4,0.79 0.99,1.32 1.78,1.57c0.75,0.23 1.61,0.37 2.08,1.1c0.44,0.69 0.21,1.65 0.38,2.5c0.17,0.84 0.1,1.73 0.45,2.54c0.34,0.8 0.59,1.56 1.15,2.22c0.5,0.6 0.95,1.2 1.32,1.97c0.36,0.77 1.04,1.35 1.38,2.17c0.33,0.78 0.91,1.4 1.56,2.05c0.62,0.62 1.14,1.31 1.74,1.93c0.53,0.54 0.92,1.37 1.51,1.99c0.6,0.63 1.19,1.16 1.76,1.87c0.55,0.69 0.85,1.53 1.44,2.16c0.61,0.64 1.32,0.71 2.1,0.51c0.87,-0.22 1.73,-0.33 2.55,-0.33c0.96,0 1.83,0.09 2.33,0.77c0.52,0.7 0.33,1.66 0.35,2.62c0.01,0.85 0.87,0.97 1.77,0.94c0.9,-0.03 1.72,-0.5 2.6,-0.33c0.84,0.16 1.63,0.61 2.47,0.83c0.83,0.22 1.75,0.5 2.26,1.26c0.47,0.7 0.58,1.62 1.02,2.36c0.44,0.73 0.66,1.57 0.83,2.44c0.17,0.87 0.55,1.54 0.84,2.33c0.29,0.81 0.93,1.44 1.22,2.26c0.3,0.87 -0.45,1.62 -0.63,2.51c-0.16,0.83 -0.04,1.78 -0.04,2.64c0,0.92 -0.1,1.79 0,2.71c0.09,0.83 0.72,1.46 1.07,2.25c0.35,0.77 1.07,1.32 1.42,2.08c0.33,0.73 0.46,1.6 0.51,2.49c0.05,0.9 0,1.78 0,2.67c0,0.91 0.19,1.79 0,2.67c-0.17,0.8 -0.33,1.64 -0.33,2.54c0,0.91 -0.02,1.77 0.43,2.52c0.46,0.74 1.22,1.29 1.79,1.84c0.6,0.59 1.19,1.12 1.68,1.85c0.51,0.75 1.16,1.37 1.71,2.1c0.52,0.69 0.96,1.39 1.51,2.1c0.54,0.7 0.98,1.43 1.55,1.97c0.57,0.53 1.48,0.74 2.33,1.01c0.78,0.25 1.68,0.26 2.44,-0.07c0.76,-0.34 1.67,-0.48 2.29,-1c0.69,-0.58 0.94,-1.24 0.94,-2.14c0,-0.91 -0.2,-1.72 -0.67,-2.41l-0.33,-0.78l-0.01,-0.88"]
     }
+    
+    
 ]

@@ -20,9 +20,17 @@ var players = localStorage.getItem("playerNames")
 var colors = localStorage.getItem("playerColors")
 var playerArray = JSON.parse(players)
 var colorsArray = JSON.parse(colors)
+var startingTroops = 50 - (playerArray.length * 5)
+var troopReserveArray = Array(playerArray.length).fill(startingTroops)
 var playerIndex = 0;
 var numTerritoriesUnclaimed = 42;
 
+console.log("Troop reserves", troopReserveArray)
+//set troop reserve next to name
+// for (var i = 0; i < playerArray.length; i++){
+//   var player = document.getElementById(i)
+//   player.textContent = player.dataset.name + ":"+ troopReserveArray[i]
+// }
 
 document.getElementById("done-attacking-button").addEventListener('click', function() { //moves the user onto their move phase
 	currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Move turn"
@@ -33,12 +41,35 @@ document.getElementById("not-done-attacking-button").addEventListener('click', f
 	attackDoneButton.style.display = 'none'
 })
 
+//End attack phase buttons
+document.getElementById("done-attacking-button").addEventListener('click', function() { //moves the user onto their move phase
+  currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Move turn"
+  conquestTurnIndex = 2 //modifying when we call conquest turn index so we can just change it manually
+  attackDoneButton.style.display = 'none'
+})
+document.getElementById("not-done-attacking-button").addEventListener('click', function() {
+  attackDoneButton.style.display = 'none'
+})
+
 nextPhaseOverlay.addEventListener('click', function() {
-  if(conquestTurnIndex == 1) {
-	attackDoneButton.style.display = "block"
-	
-  }
-  //turnLoop();
+  //Start of game claim country
+  if (conquestTurnIndex == 0){
+    attackDoneButton.style.display = 'none'
+    currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
+	  conquestTurnIndex = 1 //modifying when we call conquest turn index so we can just change it manually
+  } else if(conquestTurnIndex == 1) {
+	  attackDoneButton.style.display = "block"
+  } else if (conquestTurnIndex == 2){
+    var currentPlayer = document.getElementById(playerIndex.toString())
+    currentPlayer.style.width = "150px"
+
+    playerIndex = (playerIndex + 1) % playerArray.length
+    currentPlayer = document.getElementById(playerIndex.toString())
+    currentPlayer.style.width = "200px"
+    
+    currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
+	  conquestTurnIndex = 0 //modifying when we call conquest turn index so we can just change it manually
+	}
 })
 
 growMap.addEventListener('click', function() {
@@ -59,7 +90,9 @@ document.querySelectorAll('.territory').forEach(item => {
     if(stageOfTheGameIndex == 0) {
 	  //claimCountries()
       claimCountrySelection()
-    } else if (stageOfTheGameIndex == 1) {//this is for attack?
+    } else if (stageOfTheGameIndex == 3){
+      reinforceClaimedCountries()
+    }else if(stageOfTheGameIndex == 1) {//this is for attack?
       conquerCountrySelection(event)
     } else {
       console.log('whoops');
@@ -97,8 +130,12 @@ function claimCountrySelection() {
     var territoryClicked = event.currentTarget
     var terr = document.getElementById(territoryClicked.id)
     if(terr.getAttribute("data-owner").length == 0) {
-      
+      var territoryTroops = document.getElementById(territoryClicked.id+"-troops")
+      territoryTroops.textContent = 1
       terr.setAttribute("data-owner", playerArray[playerIndex])
+      
+      troopReserveArray[playerIndex] -= 1
+      console.log("Troops Reserve:", troopReserveArray)
       var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
       backgroundTroops.setAttribute("fill", colorsArray[playerIndex])
 
@@ -109,11 +146,16 @@ function claimCountrySelection() {
         isClaiming = false
         numTerritoriesUnclaimed--
         if (numTerritoriesUnclaimed == 0) {
-		  phaseButton.style.display = "block"
-          stageOfTheGameIndex = 1; //ends the claiming phase, could add a message here?
-		  playerIndex = 0
-		  currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
-		  conquestTurnIndex = 1
+          //Change game to reinforce mode
+          currentPlayer.style.width = "150px"
+          currentPlayer.style.opacity = "0.78"
+          nextPlayer()
+          var currentPlayer = document.getElementById(playerIndex.toString())
+          currentPlayer.style.width = "200px"
+          currentPlayer.style.opacity = "1"
+          currentPhase.textContent = "Reinforce Claimed Countries"
+          stageOfTheGameIndex = 3;
+          // placeCountrySelection()
           console.log("end of claiming phase");
         }
       } else {
@@ -125,7 +167,7 @@ function claimCountrySelection() {
         currentPlayer.style.width = "200px"
         currentPlayer.style.opacity = "1"
         if (numTerritoriesUnclaimed == 0) {//ends the claiming phase, could add a message here?
-          stageOfTheGameIndex = 1;
+          stageOfTheGameIndex = 0;
 		  
           console.log("end of claiming phase");
         }
@@ -133,6 +175,7 @@ function claimCountrySelection() {
     } else {
       document.getElementById("territory-claimed-backdrop").style.display = 'block'
       var claimTerritoryClose = document.getElementById("territory-claimed-button")
+
       claimTerritoryClose.addEventListener('click', function () {
         document.getElementById("territory-claimed-backdrop").style.display = 'none'
       })
@@ -142,6 +185,89 @@ function claimCountrySelection() {
 }//end of claim country handler
 
 
+function reinforceClaimedCountries() {
+  console.log("Reinforcing....")
+  // claimCountries()
+  //  if(troopReserveArray[playerArray.length] > 0) {
+     var currentPlayer = document.getElementById(playerIndex.toString())
+     currentPlayer.style.width = "200px"
+     currentPlayer.style.opacity = "1"
+
+     var territoryClicked = event.currentTarget
+     var terr = document.getElementById(territoryClicked.id)
+
+     if(terr.getAttribute("data-owner") == playerArray[playerIndex]) {
+      console.log(">Adding Troops to", event.currentTarget.id)
+      var territoryTroops = document.getElementById(territoryClicked.id+"-troops")
+
+      //Increase amount of troops in territory by 1
+      territoryTroops.textContent = parseInt(territoryTroops.textContent) +1
+      troopReserveArray[playerIndex] -= 1
+      currentPlayer.style.width = "150px"
+      currentPlayer.style.opacity = "0.78"
+      console.log(">--troop array", troopReserveArray)
+
+      nextPlayer()           
+      var currentPlayer = document.getElementById(playerIndex.toString())
+      currentPlayer.style.width = "200px"
+      currentPlayer.style.opacity = "1"
+
+      //if this was the last reinforcement placed, move to next game stage
+      if (playerIndex+1 == playerArray.length && troopReserveArray[playerIndex] == 0){
+        //Switch to next stage of game
+        phaseButton.style.display = "block"
+        //stageOfTheGameIndex = 0;//ends the claiming phase, could add a message here?
+        currentPlayer.style.width = "150px"
+        currentPlayer.style.opacity = "0.78"
+        nextPlayer()
+        var currentPlayer = document.getElementById(playerIndex.toString())
+        currentPlayer.style.width = "200px"
+        currentPlayer.style.opacity = "1"
+
+        currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
+        currentPlayer.style.width = "200px"
+        conquestTurnIndex = 0
+        // conquerCountrySelection()
+        stageOfTheGameIndex = 1;
+        // placeCountrySelection()
+        console.log("end of reinforcing phase")
+      }
+    } else {
+      console.log(">Invalid Country:", terr.id)
+      console.log(">--Owner:", terr.getAttribute('data-owner'))
+    }
+  //  } 
+ }
+
+
+
+
+
+function placeCountrySelection(event) {
+  clearTimeout(tooltipTimer)
+
+  var territory = event.currentTarget
+  var territoryTroops = document.getElementById(territory.id + "-troops").textContent
+  var territoryOwner = territory.getAttribute("data-owner")
+
+  //updateAttackBox(territoryOwner, territory, territoryTroops, "attacker")
+  //updateAttackBox(playerArray[playerIndex], "Troop Reserve", 10, "attacker")
+
+  console.log("Territory selected")
+  console.log("--Territory(ID):", territory.id)
+  console.log("--owner:", territoryOwner)
+  console.log("--Troops:", territoryTroops)
+  console.log("Active player:", playerArray[playerIndex])
+  console.log("-- reserve count")
+
+  if (playerArray[playerIndex] == territoryOwner) {
+    if(troopReserveArray[playerIndex] > 0) {
+      territoryTroops.textContent += 1;
+
+    }
+  }
+  
+}
 
 function attackCountrySelection(event) {
   clearTimeout(tooltipTimer)
@@ -149,7 +275,6 @@ function attackCountrySelection(event) {
   var attackButton = document.getElementById("attack-box")
   attackButton.style.display = 'block'
   var territory = event.currentTarget
-  
   var territoryTroops = document.getElementById(territory.id + "-troops").textContent
   var territoryOwner = territory.getAttribute("data-owner")
  
@@ -166,7 +291,7 @@ function attackCountrySelection(event) {
     return
   }
   
-  if (!attacker.dataset.neighbor){return}//code breaks when null
+  if (!attacker){return}//code breaks when null
 
   neighbors = attacker.dataset.neighbor
   console.log("--Neighbors:", neighbors)
@@ -180,7 +305,7 @@ function attackCountrySelection(event) {
   }
   //set the correct info box to the right values.
   return
-}
+}// end attack selection
 
 var territoryMovingFrom
 var territoryMovingTo
@@ -279,15 +404,17 @@ function parseNeighbors(territoryToCheck, goalTerritory) {
 
 function conquerCountrySelection(event) {
   if (conquestTurnIndex == 0) {
-    //code for placing trools
+    //place troops
+    placeCountrySelection(event)
     console.log("Placeing troops")
   } else if (conquestTurnIndex == 1) {
+    
     attackCountrySelection(event);
   } else if (conquestTurnIndex == 2) {
     moveCountrySelection(event)
-  } 
- 
-}//end of Conquor country Selection
+  }  
+}
+//end of Conquor country Selection
 
 
 //Attack button when two countries are selected
@@ -296,10 +423,13 @@ var troops
 var homeRegion
 var newRegion
 var attackButton = document.getElementById("attack-box")
+
 attackButton.addEventListener('click', function(){//all the attack button code is here
   
   if (conquestTurnIndex == 0) {
     //code for placing troops
+    console.log('attack box clicked')
+    //placeButtonHandler()
   } else if (conquestTurnIndex == 1) {
     //code for attacking when button is pushed
     attackButtonHandler()
@@ -309,6 +439,32 @@ attackButton.addEventListener('click', function(){//all the attack button code i
 
 })//end of attack button listener
 
+var newLimit = 0;
+
+function placeButtonHandler() {
+  console.log('current reserve num', troopReserveArray[playerIndex])
+  console.log('current reserve num', troopReserveArray[playerIndex])
+  var attackerTroops = troopReserveArray[playerIndex]
+
+  homeRegion = document.getElementById("pool")
+  newRegion = defender.id
+
+  homeRegion.textContent = attackerTroops
+
+  newRegion.textContent = document.getElementById(defender.id + "-troops").textContent
+
+  newLimit = newRegion.textContent
+  //var defenderTroops = document.getElementById("defender-troops").textContent
+
+
+  if (attackerTroops > 1 ){
+    console.log("place button")
+    countryName.textContent = homeRegion + "   --->   " + newRegion  
+    showConquerBox()
+    //sendTroops()
+  }
+  
+}
 
 //is called by the attack button when in attack phase of a turn
 function attackButtonHandler() {
@@ -363,7 +519,7 @@ function attackButtonHandler() {
       }
     }
 
-  } else{ 
+  } else { 
     console.log("--Not enough troops")
   }
   if (defenderTroops == 0) {
@@ -381,7 +537,12 @@ var homeTroops = document.getElementById("home-region")
 var newTroops = document.getElementById("new-region")
 var countryName = document.getElementById("country-names")
 
+
+
+
 function sendTroops() {
+
+
   console.log("Conquered New Territory!")
   console.log("--Total troops:", troops)
   console.log("--Home Region:", homeRegion)
@@ -396,25 +557,15 @@ function sendTroops() {
 
   newTroops.textContent = 1
 
-  countryName.textContent = homeRegion + "   -->   " + newRegion
-
-  //change owner dataset of defending territory to new player
-  //this might work?
-  //document.getElementById(newRegion+"-owner").textContent = playerArray[playerIndex]
-  var test = document.getElementById(newRegion)
-  var test2 = test.getAttribute("data-owner")
-
+  countryName.textContent = homeRegion + "   --->   " + newRegion  //sets the text on the conquor box
   var tempRegion = document.getElementById(newRegion)
   tempRegion.setAttribute("data-owner", playerArray[playerIndex])
 
   var tempTroops = document.getElementById(newRegion + "-troops")
   tempTroops.setAttribute("fill", colorsArray[playerIndex])
 
-  console.log('Colors array', colorsArray)
-  console.log('Temp Region', tempRegion)
-  console.log('new colorr', colorsArray[playerIndex])
 
-}//set troops end
+}//send troops end
 
 //Conquer Menu Buttons
 var homeButton = document.getElementById("home-button")
@@ -425,42 +576,73 @@ var confirmConquer = document.getElementById("conquer-done")
 confirmConquer.addEventListener('click', confirmAddTroops)
 
 function addHomeTroops(){
-  console.log("Adding troops to home territory")
-  if (newTroops.textContent <= 1){return}
-    newTroops.textContent = parseInt(newTroops.textContent) - 1
-    homeTroops.textContent = parseInt(homeTroops.textContent) + 1
-}
+  if (conquestTurnIndex == 0) {
+    console.log("Adding troops to reserve")
+    if (newTroops.textContent < newLimit){return}
+      newTroops.textContent = parseInt(newTroops.textContent) - 1
+      //homeTroops.textContent = parseInt(homeTroops.textContent) + 1
+  } else if (conquestTurnIndex == 1) {
+    console.log("Adding troops to home territory")
+    if (newTroops.textContent <= 1){return}
+      newTroops.textContent = parseInt(newTroops.textContent) - 1
+      homeTroops.textContent = parseInt(homeTroops.textContent) + 1
+  } else if (conquestTurnIndex == 2) {
+    //move code
+  }
+}//end addHome Troops
 function addNewTroops(){
-  console.log("Adding troops to new territory")
-  if (homeTroops.textContent <= 1){return}
-    newTroops.textContent = parseInt(newTroops.textContent) + 1
-    homeTroops.textContent = parseInt(homeTroops.textContent) - 1
-}
-function confirmAddTroops(){
-  console.log("Confirming troops placement")
-   if(isMoving) {
-	document.getElementById(territoryMovingFrom.id + "-troops").textContent = homeTroops.textContent
-	document.getElementById(territoryMovingTo.id + "-troops").textContent = newTroops.textContent
-	content = "attacker"
-	attacker = undefined
-	defender = undefined
-	clearAttackBox("attacker")
-	clearAttackBox("defender")
-	isMoving = false
-	hideConquerBox()
-   } else {
-	document.getElementById(homeRegion + "-troops").textContent = homeTroops.textContent
-	document.getElementById(newRegion + "-troops").textContent = newTroops.textContent
-	content = "attacker"
-	attacker = undefined
-	defender = undefined
-	clearAttackBox("attacker")
-	clearAttackBox("defender")
+  if (conquestTurnIndex == 0) {
+    console.log("Placeing troops to new territory")
+    if (homeTroops.textContent <= 1){return}
+      newTroops.textContent = parseInt(newTroops.textContent) + 1
+      homeTroops.textContent = parseInt(homeTroops.textContent) - 1
+  } else if (conquestTurnIndex == 1){
+    console.log("Adding troops to new territory")
+    if (homeTroops.textContent <= 1){return}
+      newTroops.textContent = parseInt(newTroops.textContent) + 1
+      homeTroops.textContent = parseInt(homeTroops.textContent) - 1
+  } else if (conquestTurnIndex == 2) {
+    //move code
+  }
+}//end add new troops
 
-  	hideConquerBox()
-   }
+function confirmAddTroops(){
+  
+  if (conquestTurnIndex == 0) {
+    clearAttackBox("attacker")
+    clearAttackBox("defender")
+    hideConquerBox()
+    //placing code
+  } else if (conquestTurnIndex == 1) {
+    //attacking code
+    console.log("Confirming troops placement")
+  } else if (conquestTurnIndex == 2) {
+    //moveing code
+  }
+    if(isMoving) {
+		document.getElementById(territoryMovingFrom.id + "-troops").textContent = homeTroops.textContent
+		document.getElementById(territoryMovingTo.id + "-troops").textContent = newTroops.textContent
+		content = "attacker"
+		attacker = undefined
+		defender = undefined
+		clearAttackBox("attacker")
+		clearAttackBox("defender")
+		isMoving = false
+		hideConquerBox()
+	} else {  	
+		document.getElementById(homeRegion + "-troops").textContent = homeTroops.textContent
+		document.getElementById(newRegion + "-troops").textContent = newTroops.textContent
+		content = "attacker"
+		attacker = undefined
+		defender = undefined
+		clearAttackBox("attacker")
+		clearAttackBox("defender")
+		hideConquerBox()
+	}
   
 }
+//end confirm add troops
+
 function hideDice(){
   console.log("hiding dice")
   diceBox = document.getElementById("dice-box")
