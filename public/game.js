@@ -231,7 +231,7 @@ function reinforceClaimedCountries() {
         var currentPlayer = document.getElementById(playerIndex.toString())
         currentPlayer.style.width = "200px"
         currentPlayer.style.opacity = "1"
-		done-attacking-backdrop
+		    done-attacking-backdrop
         currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
         currentPlayer.style.width = "200px"
         conquestTurnIndex = 0
