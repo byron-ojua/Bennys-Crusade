@@ -19,9 +19,18 @@ var players = localStorage.getItem("playerNames")
 var colors = localStorage.getItem("playerColors")
 var playerArray = JSON.parse(players)
 var colorsArray = JSON.parse(colors)
-var troopReserveArray = [10, 8, 6, 4, 2]
+var startingTroops = 50 - (playerArray.length * 5)
+var troopReserveArray = Array(playerArray.length).fill(startingTroops)
 var playerIndex = 0;
 var numTerritoriesUnclaimed = 42;
+
+console.log("Troop reserves", troopReserveArray)
+//set troop reserve next to name
+// for (var i = 0; i < playerArray.length; i++){
+//   var player = document.getElementById(i)
+//   player.textContent = player.dataset.name + ":"+ troopReserveArray[i]
+// }
+
 
 //End attack phase buttons
 document.getElementById("done-attacking-button").addEventListener('click', function() { //moves the user onto their move phase
@@ -34,6 +43,7 @@ document.getElementById("not-done-attacking-button").addEventListener('click', f
 })
 
 nextPhaseOverlay.addEventListener('click', function() {
+  //Start of game claim country
   if (conquestTurnIndex == 0){
     attackDoneButton.style.display = 'none'
     currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
@@ -71,7 +81,9 @@ document.querySelectorAll('.territory').forEach(item => {
     if(stageOfTheGameIndex == 0) {
 	  //claimCountries()
       claimCountrySelection()
-    } else if (stageOfTheGameIndex == 1) {//this is for attack?
+    } else if (stageOfTheGameIndex == 3){
+      reinforceClaimedCountries()
+    }else if(stageOfTheGameIndex == 1) {//this is for attack?
       conquerCountrySelection(event)
     } else {
       console.log('whoops');
@@ -112,6 +124,8 @@ function claimCountrySelection() {
     if(terr.getAttribute("data-owner").length == 0) {
       
       terr.setAttribute("data-owner", playerArray[playerIndex])
+      troopReserveArray[playerIndex] -= 1
+      console.log("Troops Reserve:", troopReserveArray)
       var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
       backgroundTroops.setAttribute("fill", colorsArray[playerIndex])
 
@@ -122,15 +136,15 @@ function claimCountrySelection() {
         isClaiming = false
         numTerritoriesUnclaimed--
         if (numTerritoriesUnclaimed == 0) {
-          //Switch to next stage of game
-		      phaseButton.style.display = "block"
-          //stageOfTheGameIndex = 0;//ends the claiming phase, could add a message here?
-		      playerIndex = 0
-		      currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
+          //Change game to reinforce mode
+          currentPlayer.style.width = "150px"
+          currentPlayer.style.opacity = "0.78"
+          nextPlayer()
+          var currentPlayer = document.getElementById(playerIndex.toString())
           currentPlayer.style.width = "200px"
-		      conquestTurnIndex = 0
-		      // conquerCountrySelection()
-          stageOfTheGameIndex += 1;
+          currentPlayer.style.opacity = "1"
+          currentPhase.textContent = "Reinforce Claimed Countries"
+          stageOfTheGameIndex = 3;
           // placeCountrySelection()
           console.log("end of claiming phase");
         }
@@ -159,6 +173,64 @@ function claimCountrySelection() {
   }
 
 }//end of claim country handler
+
+
+function reinforceClaimedCountries() {
+  console.log("Reinforcing....")
+  // claimCountries()
+  //  if(troopReserveArray[playerArray.length] > 0) {
+     var currentPlayer = document.getElementById(playerIndex.toString())
+     currentPlayer.style.width = "200px"
+     currentPlayer.style.opacity = "1"
+
+     var territoryClicked = event.currentTarget
+     var terr = document.getElementById(territoryClicked.id)
+
+     if(terr.getAttribute("data-owner") == playerArray[playerIndex]) {
+      console.log(">Adding Troops to", event.currentTarget.id)
+      var territoryTroops = document.getElementById(territoryClicked.id+"-troops")
+
+      //Increase amount of troops in territory by 1
+      territoryTroops.textContent = parseInt(territoryTroops.textContent) +1
+      troopReserveArray[playerIndex] -= 1
+      currentPlayer.style.width = "150px"
+      currentPlayer.style.opacity = "0.78"
+      console.log(">--troop array", troopReserveArray)
+
+      nextPlayer()           
+      var currentPlayer = document.getElementById(playerIndex.toString())
+      currentPlayer.style.width = "200px"
+      currentPlayer.style.opacity = "1"
+
+      //if this was the last reinforcement placed, move to next game stage
+      if (playerIndex+1 == playerArray.length && troopReserveArray[playerIndex] == 0){
+        //Switch to next stage of game
+        phaseButton.style.display = "block"
+        //stageOfTheGameIndex = 0;//ends the claiming phase, could add a message here?
+        currentPlayer.style.width = "150px"
+        currentPlayer.style.opacity = "0.78"
+        nextPlayer()
+        var currentPlayer = document.getElementById(playerIndex.toString())
+        currentPlayer.style.width = "200px"
+        currentPlayer.style.opacity = "1"
+        
+        currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
+        currentPlayer.style.width = "200px"
+        conquestTurnIndex = 0
+        // conquerCountrySelection()
+        stageOfTheGameIndex = 1;
+        // placeCountrySelection()
+        console.log("end of reinforcing phase")
+      }
+    } else {
+      console.log(">Invalid Country:", terr.id)
+      console.log(">--Owner:", terr.getAttribute('data-owner'))
+    }
+  //  } 
+ }
+
+
+
 
 
 function placeCountrySelection(event) {
@@ -229,8 +301,6 @@ function moveCountrySelection(event) {
 	var currentPlayer = playerArray[playerIndex] //getting the current player's name 
 	console.log("CURRENT PLAYER: ", currentPlayer)
 }
-
-
 
 function conquerCountrySelection(event) {
   if (conquestTurnIndex == 0) {
