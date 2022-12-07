@@ -345,8 +345,12 @@ body {
 }
 
 .sidebar {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
 	/* background: linear-gradient(to right, white 2%, rgb(89, 208, 25) 110%) left; */
 	width: 150px;
+	/* 45px */
 	height: 45px;
 	border-bottom-right-radius: 20px;
  	border-top-right-radius: 20px;
@@ -357,11 +361,21 @@ body {
 }
 
 .sidebar-text {
+	/* display: flex;
+	flex-direction: column; */
 	margin-right: 15px;
-	font-size: 16px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 18px;
 	text-align: right;
 	font-family: "Treasure Map";
     -webkit-text-stroke: 1px black;
+}
+
+.reserveOrTroopCount {
+	margin: 0px;
+	padding-top: 0px;
+	font-size: 12px;
 }
 
 .troop-count{

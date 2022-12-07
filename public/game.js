@@ -45,6 +45,8 @@ console.log("Troop reserves", troopReserveArray)
 document.getElementById("done-attacking-button").addEventListener('click', function() { //moves the user onto their move phase
 	currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Move turn"
 	conquestTurnIndex = 2 //modifying when we call conquest turn index so we can just change it manually
+	clearAttackBox("attacker")
+	clearAttackBox("defender")
 	attackDoneButton.style.display = 'none'
 })
 document.getElementById("not-done-attacking-button").addEventListener('click', function() {
@@ -160,6 +162,12 @@ function claimCountrySelection() {
           currentPhase.textContent = "Reinforce Claimed Countries"
           stageOfTheGameIndex = 3;
           // placeCountrySelection()
+		  
+		  for(var i = 0; i < playerArray.length; i++) {
+			var currentUserSideBar = document.getElementById("player" + i)
+		    currentUserSideBar.style.display = "block"
+			currentUserSideBar.textContent = "Current Troop Reserve: " + startingTroops
+		  }
           console.log("end of claiming phase");
         }
       } else {
@@ -193,6 +201,11 @@ var notCorrectCountryButton = document.getElementById("not-correct-country-to-re
 	document.getElementById("not-correct-country-to-reinforce-backdrop").style.display = 'none'
 })
 
+function updateTroopReserveSidebar() {
+	var currentUserSideBar = document.getElementById("player" + playerIndex)
+	currentUserSideBar.textContent =  "Current Troop Reserve: " + troopReserveArray[playerIndex]
+}
+
 function reinforceClaimedCountries() {
   console.log("Reinforcing....")
   // claimCountries()
@@ -211,6 +224,7 @@ function reinforceClaimedCountries() {
       //Increase amount of troops in territory by 1
       territoryTroops.textContent = parseInt(territoryTroops.textContent) +1
       troopReserveArray[playerIndex] -= 1
+	  updateTroopReserveSidebar()
       currentPlayer.style.width = "150px"
       currentPlayer.style.opacity = "0.78"
       console.log(">--troop array", troopReserveArray)
@@ -750,6 +764,11 @@ window.onload = function() {
     console.log(colorsArray[0]);
     sidebar.style.background = 'linear-gradient(to right, white 2%, ' + colorsArray[i] + ' 110%) left';//this will throw an error if the colors array is empty, so the place troops button wont work
   }//end of colorsArray loop
+
+  for(var i = 0; i < playerArray.length; i++) {
+	var currentUserSideBar = document.getElementById("player" + i)
+	currentUserSideBar.style.display = "none"
+  }
 
   
   attackDoneButton.style.display = "none"
