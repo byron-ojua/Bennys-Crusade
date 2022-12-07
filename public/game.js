@@ -122,8 +122,10 @@ function claimCountrySelection() {
     var territoryClicked = event.currentTarget
     var terr = document.getElementById(territoryClicked.id)
     if(terr.getAttribute("data-owner").length == 0) {
-      
+      var territoryTroops = document.getElementById(territoryClicked.id+"-troops")
+      territoryTroops.textContent = 1
       terr.setAttribute("data-owner", playerArray[playerIndex])
+      
       troopReserveArray[playerIndex] -= 1
       console.log("Troops Reserve:", troopReserveArray)
       var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
@@ -213,7 +215,7 @@ function reinforceClaimedCountries() {
         var currentPlayer = document.getElementById(playerIndex.toString())
         currentPlayer.style.width = "200px"
         currentPlayer.style.opacity = "1"
-        
+
         currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
         currentPlayer.style.width = "200px"
         conquestTurnIndex = 0

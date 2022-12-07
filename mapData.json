@@ -1,7 +1,7 @@
 [
     {
         "name": "Greenland",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "northwest-territory quebec iceland ontario",
         "owner": "",
         "id": "greenland",
@@ -12,7 +12,7 @@
     },
     {
         "name": "Alaska",
-        "troops": "5",
+        "troops": "0",
         "neighbor": "kamchatka northwest-territory alberta",
         "owner": "",
         "id": "alaska",
@@ -23,7 +23,7 @@
     },
     {
         "name": "Northwest Territory",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "alaska greenland alberta ontario",
         "owner": "",
         "id": "northwest-territory",
@@ -34,7 +34,7 @@
     },
     {
         "name": "Alberta",
-        "troops": "10",
+        "troops": "0",
         "neighbor": "alaska northwest-territory ontario western-us",
         "owner": "",
         "id": "alberta",
@@ -45,7 +45,7 @@
     },
     {
         "name": "Ontario",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "greenland alberta northwest-territory western-us eastern-us quebec",
         "owner": "",
         "id": "ontario",
@@ -56,7 +56,7 @@
     },
     {
         "name": "Quebec",
-        "troops": "12",
+        "troops": "0",
         "neighbor": "greenland ontario eastern-us",
         "owner": "",
         "id": "quebec",
@@ -67,7 +67,7 @@
     },
     {
         "name": "Western US",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "eastern-us central-america alberta ontario",
         "owner": "",
         "id": "western-us",
@@ -78,7 +78,7 @@
     },
     {
         "name": "Eastern US",
-        "troops": "7",
+        "troops": "0",
         "neighbor": "western-us alberta quebec central-america ontario",
         "owner": "",
         "id": "eastern-us",
@@ -89,7 +89,7 @@
     },
     {
         "name": "Central America",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "western-us eastern-us venezuela",
         "owner": "",
         "id": "central-america",
@@ -100,7 +100,7 @@
     },
     {
         "name": "Venezuela",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "brazil peru central-america",
         "owner": "",
         "id": "venezuela",
@@ -111,7 +111,7 @@
     },
     {
         "name": "Peru",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "venezuela brazil argentina",
         "owner": "",
         "id": "peru",
@@ -122,7 +122,7 @@
     },
     {
         "name": "Brazil",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "venezuela peru argentina north-africa",
         "owner": "",
         "id": "brazil",
@@ -133,7 +133,7 @@
     },
     {
         "name": "Argentina",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "peru brazil",
         "owner": "",
         "id": "argentina",
@@ -144,7 +144,7 @@
     },
     {
         "name": "North Africa",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "brazil egypt congo east-africa",
         "owner": "",
         "id": "north-africa",
@@ -155,7 +155,7 @@
     },
     {
         "name": "Egypt",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "north-africa east-africa middle-east southern-europe",
         "owner": "",
         "id": "egypt",
@@ -166,7 +166,7 @@
     },
     {
         "name": "Congo",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "orth-africa east-africa south-africa",
         "owner": "",
         "id": "congo",
@@ -177,7 +177,7 @@
     },
     {
         "name": "East Africa",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "egypt congo south-africa madagascar",
         "owner": "",
         "id": "east-africa",
@@ -188,7 +188,7 @@
     },
     {
         "name": "South Africa",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "congo east-africa madagascar",
         "owner": "",
         "id": "south-africa",
@@ -199,7 +199,7 @@
     },
     {
         "name": "Madagascar",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "south-africa east-africa",
         "owner": "",
         "id": "madagascar",
@@ -210,7 +210,7 @@
     },
     {
         "name": "Western Australia",
-        "troops": "2",
+        "troops": "0",
         "neighbor": "eastern-australia indonesia",
         "owner": "",
         "id": "western-australia",
@@ -221,7 +221,7 @@
     },
     {
         "name": "Eastern Australia",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "new-guinea western-australia",
         "owner": "",
         "id": "eastern-australia",
@@ -232,7 +232,7 @@
     },
     {
         "name": "New Guinea",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "indonesia eastern-australia",
         "owner": "",
         "id": "new-guinea",
@@ -243,7 +243,7 @@
     },
     {
         "name": "Indonesia",
-        "troops": "6",
+        "troops": "0",
         "neighbor": "siam new-guinea western-australia",
         "owner": "",
         "id": "indonesia",
@@ -259,7 +259,7 @@
     },
     {
         "name": "Ukraine",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "scandinavia northern-europe southern-europe middle-east afghanistan ural",
         "owner": "",
         "id": "ukraine",
@@ -270,7 +270,7 @@
     },
     {
         "name": "Great Britain",
-        "troops": "6",
+        "troops": "0",
         "neighbor": "iceland scandinavia northern-europe western-europe",
         "owner": "",
         "id": "great-britain",
@@ -284,7 +284,7 @@
     },
     {
         "name": "Northern Europe",
-        "troops": "3",
+        "troops": "0",
         "neighbor": "ukraine western-europe southern-europe great-britain scandinavia",
         "owner": "",
         "id": "northern-europe",
@@ -295,7 +295,7 @@
     },
     {
         "name": "Iceland",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "greenland great-britain scandinavia",
         "owner": "",
         "id": "iceland",
@@ -306,7 +306,7 @@
     },
     {
         "name": "Scandinavia",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "iceland ukraine great-britain northern-europe",
         "owner": "",
         "id": "scandinavia",
@@ -317,7 +317,7 @@
     },
     {
         "name": "Western Europe",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "northern-europe southern-europe great-britain",
         "owner": "",
         "id": "western-europe",
@@ -328,7 +328,7 @@
     },
     {
         "name": "Southern Europe",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "northern-europe north-africa western-europe ukraine egypt middle-east",
         "owner": "",
         "id": "southern-europe",
@@ -339,7 +339,7 @@
     },
     {
         "name": "Ural",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "ukraine afghanistan china siberia",
         "owner": "",
         "id": "ural",
@@ -350,7 +350,7 @@
     },
     {
         "name": "Siberia",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "ural china mongolia irkutsk yakutsk",
         "owner": "",
         "id": "siberia",
@@ -361,7 +361,7 @@
     },
     {
         "name": "Yakutsk",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "kamchatka irkutsk siberia",
         "owner": "",
         "id": "yakutsk",
@@ -372,7 +372,7 @@
     },
     {
         "name": "Kamchatka",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "irkutsk yakutsk japan mongolia alaska",
         "owner": "",
         "id": "kamchatka",
@@ -383,7 +383,7 @@
     },
     {
         "name": "Irkutsk",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "ukraine ural china india middle-east",
         "owner": "",
         "id": "irkutsk",
@@ -394,7 +394,7 @@
     },
     {
         "name": "Afghanistan",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "ukraine ural china india middle-east",
         "owner": "",
         "id": "afghanistan",
@@ -405,7 +405,7 @@
     },
     {
         "name": "Mongolia",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "siberia irkutsk kamchatka china japan",
         "owner": "",
         "id": "mongolia",
@@ -416,7 +416,7 @@
     },
     {
         "name": "Japan",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "kamchatka mongolia",
         "owner": "",
         "id": "japan",
@@ -427,7 +427,7 @@
     },
     {
         "name": "China",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "mongolia siberia ural india afghanistan siam",
         "owner": "",
         "id": "china",
@@ -438,7 +438,7 @@
     },
     {
         "name": "Middle East",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "egypt southern-europe ukraine afghanistan india",
         "owner": "",
         "id": "middle-east",
@@ -449,7 +449,7 @@
     },
     {
         "name": "India",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "middle-east afghanistan china siam",
         "owner": "",
         "id": "india",
@@ -460,7 +460,7 @@
     },
     {
         "name": "Siam",
-        "troops": "1",
+        "troops": "0",
         "neighbor": "indonesia india china",
         "owner": "",
         "id": "siam",
