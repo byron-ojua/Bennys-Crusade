@@ -32,10 +32,10 @@ var allOwnerTerritoriesArray = []
 for (var i = 0; i < playerArray.length; i++){
   allOwnerTerritoriesArray.push([])
 }
-console.log("Territory Arrays", allOwnerTerritoriesArray)
+// console.log("Territory Arrays", allOwnerTerritoriesArray)
 
 
-console.log("Troop reserves", troopReserveArray)
+// console.log("Troop reserves", troopReserveArray)
 //set troop reserve next to name
 // for (var i = 0; i < playerArray.length; i++){
 //   var player = document.getElementById(i)
@@ -136,10 +136,10 @@ function claimCountrySelection() {
       territoryTroops.textContent = 1
       terr.setAttribute("data-owner", playerArray[playerIndex])
       allOwnerTerritoriesArray[playerIndex].push(territoryClicked.id)
-      console.log("Territory Arrays:", allOwnerTerritoriesArray)
+      // console.log("Territory Arrays:", allOwnerTerritoriesArray)
 
       troopReserveArray[playerIndex] -= 1
-      console.log("Troops Reserve:", troopReserveArray)
+      // console.log("Troops Reserve:", troopReserveArray)
       var backgroundTroops = document.getElementById(territoryClicked.id + "-troops")
       backgroundTroops.setAttribute("fill", colorsArray[playerIndex])
 
@@ -159,8 +159,8 @@ function claimCountrySelection() {
           currentPlayer.style.opacity = "1"
           currentPhase.textContent = "Reinforce Claimed Countries"
           stageOfTheGameIndex = 3;
-        
-          console.log("end of claiming phase");
+          // placeCountrySelection()
+          console.log("end of claiming phase(1)");
         }
       } else {
         numTerritoriesUnclaimed--
@@ -173,7 +173,7 @@ function claimCountrySelection() {
         if (numTerritoriesUnclaimed == 0) {//ends the claiming phase, could add a message here?
           stageOfTheGameIndex = 0;
 		  
-          console.log("end of claiming phase");
+          console.log("end of claiming phase(2)");
         }
       }
     } else {
@@ -194,7 +194,7 @@ var notCorrectCountryButton = document.getElementById("not-correct-country-to-re
 })
 
 function reinforceClaimedCountries() {
-  console.log("Reinforcing....")
+  // console.log("Reinforcing....")
   // claimCountries()
   //  if(troopReserveArray[playerArray.length] > 0) {
      var currentPlayer = document.getElementById(playerIndex.toString())
@@ -205,7 +205,7 @@ function reinforceClaimedCountries() {
      var terr = document.getElementById(territoryClicked.id)
 
      if(terr.getAttribute("data-owner") == playerArray[playerIndex]) {
-      console.log(">Adding Troops to", event.currentTarget.id)
+      // console.log(">Adding Troops to", event.currentTarget.id)
       var territoryTroops = document.getElementById(territoryClicked.id+"-troops")
 
       //Increase amount of troops in territory by 1
@@ -213,7 +213,7 @@ function reinforceClaimedCountries() {
       troopReserveArray[playerIndex] -= 1
       currentPlayer.style.width = "150px"
       currentPlayer.style.opacity = "0.78"
-      console.log(">--troop array", troopReserveArray)
+      // console.log(">--troop array", troopReserveArray)
 
       nextPlayer()           
       var currentPlayer = document.getElementById(playerIndex.toString())
@@ -221,7 +221,7 @@ function reinforceClaimedCountries() {
       currentPlayer.style.opacity = "1"
 
       //if this was the last reinforcement placed, move to next game stage
-      if (playerIndex+1 == playerArray.length && troopReserveArray[playerIndex] == 1){
+      if (playerIndex == playerArray.length-1 && troopReserveArray[playerIndex] == 0){
         //Switch to next stage of game
         phaseButton.style.display = "block"
         //stageOfTheGameIndex = 0;//ends the claiming phase, could add a message here?
@@ -234,10 +234,10 @@ function reinforceClaimedCountries() {
 		    // done-attacking-backdrop
         currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Reinforce turn"
         currentPlayer.style.width = "200px"
-        conquestTurnIndex = 0
         // conquerCountrySelection()
         stageOfTheGameIndex = 1;
-      
+        conquestTurnIndex = 0
+        // placeCountrySelection()
         console.log("end of reinforcing phase")
       }
     } else {
@@ -290,11 +290,11 @@ function attackCountrySelection(event) {
   var territoryTroops = document.getElementById(territory.id + "-troops").textContent
   var territoryOwner = territory.getAttribute("data-owner")
  
-  console.log("Territory selected")
-  console.log("--Territory(ID):", territory.id)
-  console.log("--owner:", territoryOwner)
-  console.log("--Troops:", territoryTroops)
-  console.log("Active player:", playerArray[playerIndex])
+  // console.log("Territory selected")
+  // console.log("--Territory(ID):", territory.id)
+  // console.log("--owner:", territoryOwner)
+  // console.log("--Troops:", territoryTroops)
+  // console.log("Active player:", playerArray[playerIndex])
 
   if (playerArray[playerIndex] == territoryOwner) {
     attacker = territory
@@ -306,8 +306,8 @@ function attackCountrySelection(event) {
   if (!attacker){return}//code breaks when null
 
   neighbors = attacker.dataset.neighbor
-  console.log("--Neighbors:", neighbors)
-  console.log("--Neighbors.length:", neighbors.length)
+  // console.log("--Neighbors:", neighbors)
+  // console.log("--Neighbors.length:", neighbors.length)
   if (neighbors.includes(territory.id)){
     defender = territory
     updateAttackBox(territoryOwner, territory, territoryTroops, "defender")
@@ -375,7 +375,7 @@ function moveCountrySelection(event) {
 					isMoving = true
 					break
 				} else {
-					console.log("NO PATH FOUND")
+					// console.log("NO PATH FOUND")
 				}
 			}
 		}
@@ -387,7 +387,7 @@ var alreadySearchedTerritories = []
 function parseNeighbors(territoryToCheck, goalTerritory) {
 	if(!alreadySearchedTerritories.includes(territoryToCheck)) {
 		console.log("GOAL TERRITORY IS: ", goalTerritory)
-		console.log("territoryToCheck TERRITORY IS: ", territoryToCheck)
+		// console.log("territoryToCheck TERRITORY IS: ", territoryToCheck)
 		if(document.getElementById(territoryToCheck).dataset.owner != playerArray[playerIndex]) {
 			return false
 		} else if(territoryToCheck == goalTerritory) {
@@ -427,10 +427,10 @@ function parseNeighbors(territoryToCheck, goalTerritory) {
 function conquerCountrySelection(event) {
   if (conquestTurnIndex == 0) {
     //place troops
+    calculateReinforcements()
     placeCountrySelection(event)
-    console.log("Placeing troops")
+    console.log("Placing troops")
   } else if (conquestTurnIndex == 1) {
-    
     attackCountrySelection(event);
   } else if (conquestTurnIndex == 2) {
     moveCountrySelection(event)
@@ -480,7 +480,7 @@ function placeButtonHandler() {
 
 
   if (attackerTroops > 1 ){
-    console.log("place button")
+    // console.log("place button")
     countryName.textContent = homeRegion + "   --->   " + newRegion  
     showConquerBox()
     //sendTroops()
@@ -491,7 +491,7 @@ function placeButtonHandler() {
 //is called by the attack button when in attack phase of a turn
 function attackButtonHandler() {
   hideDice()
-  console.log("Attack clicked")
+  // console.log("Attack clicked")
   var attackerTroops = document.getElementById("attacker-troops").textContent
   var defenderTroops = document.getElementById("defender-troops").textContent
   var attackDice = document.getElementById("attack-dice")
@@ -499,12 +499,12 @@ function attackButtonHandler() {
   var defenderOwner = document.getElementById("defender-owner").textContent
 
   if (attackerTroops > 1 && defenderTroops > 0 && attackerTroops && defenderTroops){
-    console.log("--Rolling Dice!")
+    // console.log("--Rolling Dice!")
 
     //Roll Attack Dice
     var diceRollAttack = []
     var allAttackDice = attackDice.querySelectorAll(".dice")
-    console.log("Revealing All Attack Dice")
+    // console.log("Revealing All Attack Dice")
     for (var i = 0; i < attackerTroops-1 && i <= 2; i++){
       diceRollAttack.push((Math.floor(Math.random() * 6))+1)
       allAttackDice[i].textContent = diceRollAttack[i]
@@ -514,7 +514,7 @@ function attackButtonHandler() {
     //Roll Defense Dice
     var diceRollDefense = [(Math.floor(Math.random() * 6))+1]
     var allDefenseDice = defenseDice.querySelectorAll(".dice")
-    console.log("Revealing All Defense Dice")
+    // console.log("Revealing All Defense Dice")
     allDefenseDice[0].textContent = diceRollDefense[0]
     allDefenseDice[0].style.display = "flex"
     if (defenderTroops > 1){
@@ -525,19 +525,19 @@ function attackButtonHandler() {
 
     diceRollAttack.sort().reverse()
     diceRollDefense.sort().reverse()
-    console.log("All Dice", diceRollDefense, diceRollAttack)
+    // console.log("All Dice", diceRollDefense, diceRollAttack)
 
     //Resolve Troop losses
-    console.log("Resolving Troop losses")
+    // console.log("Resolving Troop losses")
     for (var i = 0; i < diceRollAttack.length && i < diceRollDefense.length; i++){
       if (diceRollAttack[i] > diceRollDefense[i]){
         document.getElementById(defender.id + "-troops").textContent -= 1    
         defenderTroops = document.getElementById(defender.id + "-troops").textContent
-        console.log(">>>>Lost an Defender")    
+        // console.log(">>>>Lost an Defender")    
       } else {
         document.getElementById(attacker.id + "-troops").textContent -= 1
         attackerTroops = document.getElementById(attacker.id + "-troops").textContent
-        console.log(">>>>Lost a Attacker")    
+        // console.log(">>>>Lost a Attacker")    
       }
     }
 
@@ -550,7 +550,7 @@ function attackButtonHandler() {
     homeRegion = attacker.id
     newRegion = defender.id // I changed a lot of this
 
-    console.log("Territory Array:", allOwnerTerritoriesArray)
+    // console.log("Territory Array:", allOwnerTerritoriesArray)
     // removeNewRegion = allOwnerTerritoriesArray.indexOf(newRegion)
     for (var i = 0; i < allOwnerTerritoriesArray.length; i++){
       allOwnerTerritoriesArray[i].splice(newRegion, 1)
@@ -558,7 +558,7 @@ function attackButtonHandler() {
 
     allOwnerTerritoriesArray[playerIndex].push(newRegion)
 
-    console.log("New Territory Array:", allOwnerTerritoriesArray)
+    // console.log("New Territory Array:", allOwnerTerritoriesArray)
     sendTroops()
   }
   updateAttackBox(playerArray[playerIndex], attacker, attackerTroops, "attacker")
@@ -576,16 +576,16 @@ var countryName = document.getElementById("country-names")
 function sendTroops() {
 
 
-  console.log("Conquered New Territory!")
-  console.log("--Total troops:", troops)
-  console.log("--Home Region:", homeRegion)
-  console.log("--New Region:", newRegion)
+  // console.log("Conquered New Territory!")
+  // console.log("--Total troops:", troops)
+  // console.log("--Home Region:", homeRegion)
+  // console.log("--New Region:", newRegion)
 
   hideDice()
 
   showConquerBox()
 
-  console.log("homeTroops", homeTroops)
+  // console.log("homeTroops", homeTroops)
   homeTroops.textContent = troops-1
 
   newTroops.textContent = 1
@@ -610,12 +610,12 @@ confirmConquer.addEventListener('click', confirmAddTroops)
 
 function addHomeTroops(){
   if (conquestTurnIndex == 0) {
-    console.log("Adding troops to reserve")
+    // console.log("Adding troops to reserve")
     if (newTroops.textContent < newLimit){return}
       newTroops.textContent = parseInt(newTroops.textContent) - 1
       //homeTroops.textContent = parseInt(homeTroops.textContent) + 1
   } else if (conquestTurnIndex == 1) {
-    console.log("Adding troops to home territory")
+    // console.log("Adding troops to home territory")
     if (newTroops.textContent <= 1){return}
       newTroops.textContent = parseInt(newTroops.textContent) - 1
       homeTroops.textContent = parseInt(homeTroops.textContent) + 1
@@ -625,12 +625,12 @@ function addHomeTroops(){
 }//end addHome Troops
 function addNewTroops(){
   if (conquestTurnIndex == 0) {
-    console.log("Placeing troops to new territory")
+    // console.log("Placeing troops to new territory")
     if (homeTroops.textContent <= 1){return}
       newTroops.textContent = parseInt(newTroops.textContent) + 1
       homeTroops.textContent = parseInt(homeTroops.textContent) - 1
   } else if (conquestTurnIndex == 1){
-    console.log("Adding troops to new territory")
+    // console.log("Adding troops to new territory")
     if (homeTroops.textContent <= 1){return}
       newTroops.textContent = parseInt(newTroops.textContent) + 1
       homeTroops.textContent = parseInt(homeTroops.textContent) - 1
@@ -648,7 +648,7 @@ function confirmAddTroops(){
     //placing code
   } else if (conquestTurnIndex == 1) {
     //attacking code
-    console.log("Confirming troops placement")
+    // console.log("Confirming troops placement")
   } else if (conquestTurnIndex == 2) {
     //moveing code
   }
@@ -678,7 +678,7 @@ function confirmAddTroops(){
 //end confirm add troops
 
 function hideDice(){
-  console.log("hiding dice")
+  // console.log("hiding dice")
   diceBox = document.getElementById("dice-box")
   allDice = diceBox.querySelectorAll(".dice")
   for (var i = 0; i < allDice.length; i++){
@@ -686,7 +686,7 @@ function hideDice(){
   }
 }
 function showConquerBox() {
-  console.log("showingConquerBox")
+  // console.log("showingConquerBox")
   document.getElementById("conquer-box").style.display = "flex"
   document.getElementById("conquer-backdrop").style.display = "block"
 }
@@ -696,11 +696,11 @@ function hideConquerBox(){
 }
 function updateAttackBox(territoryOwner, territory, territoryTroops, content) {
 	var ownerRegion = document.getElementById(content+"-region")
-  	var ownerTroops = document.getElementById(content+"-troops")
+  var ownerTroops = document.getElementById(content+"-troops")
  	var ownerName = document.getElementById(content+"-owner")
-  	ownerRegion.textContent = territory.dataset.name
-  	ownerName.textContent = territoryOwner
-  	ownerTroops.textContent = territoryTroops
+  ownerRegion.textContent = territory.dataset.name
+  ownerName.textContent = territoryOwner
+  ownerTroops.textContent = territoryTroops
 }
 //this clears the attack box
 function clearAttackBox(attackerOrDefender) {
@@ -762,15 +762,15 @@ window.onload = function() {
 }
 
 //log stuff
-console.log(window.innerWidth, '+', window.innerWidth)
-console.log("PLAYER ARRAY: ", playerArray)
+// console.log(window.innerWidth, '+', window.innerWidth)
+// console.log("PLAYER ARRAY: ", playerArray)
 //inits for player turn and player phase within a turn
 var playerIndex = 0;
 
 //move to the next player
 function nextPlayer(){
   playerIndex = (playerIndex + 1) % playerArray.length;
-  console.log("Current Player: ", playerIndex);
+  // console.log("Current Player: ", playerIndex);
   clearAttackBox("defender")
   clearAttackBox("attacker")
 }
@@ -780,10 +780,9 @@ var conquestTurnIndex = -1;//keeps track of what phase the turns during the conq
 //move to the next phase in a players turn
 function turnLoop() {
   conquestTurnIndex = (conquestTurnIndex + 1) % 3;//index's from 0 - 2 like a loop
-  console.log(" -- Player Phase Index:", conquestTurnIndex);
+  // console.log(" -- Player Phase Index:", conquestTurnIndex);
   if (conquestTurnIndex == 0) {
     nextPlayer()
-    calculateReinforcements()
   } 
 }
 
@@ -800,51 +799,52 @@ function calculateReinforcements() {
   var northAmerica = 0
   var southAmerica = 0
   var africa = 0
+  console.log("Calculating Reinforcements")
+  console.log("Troop Reserve Array", troopReserveArray)
+  console.log("allOwnerTerritoryArray", allOwnerTerritoriesArray[playerIndex])
+  console.log("allOwnerTerritoryArray.length", allOwnerTerritoriesArray[playerIndex].length)
 
-  for (var i = 0; i < troopReserveArray[playerIndex].length; i++){
-    if (document.getElementById(troopReserveArray[i]).classList.contains("australia")){
+  for (var i = 0; i < allOwnerTerritoriesArray[playerIndex].length; i++){
+    console.log("---document.getElementById(allOwnerTerritoriesArray[playerIndex][i]))", document.getElementById(allOwnerTerritoriesArray[playerIndex][i]))
+    // console.log("---document.getElementById(troopReserveArray[i]).classList", document.getElementById(troopReserveArray[i]).classList)
+
+    if (document.getElementById(allOwnerTerritoriesArray[playerIndex][i]).classList.contains("australia")){
       australia++
       if (australia == 4){
         reserveCount +=2
         console.log("Australia Controlled By:", playerArray[playerIndex])
       }
-    }
-    if (document.getElementById(troopReserveArray[i]).classList.contains("asia")){
+    }else if (document.getElementById(allOwnerTerritoriesArray[playerIndex][i]).classList.contains("asia")){
       asia++
       if (asia == 11){
         reserveCount +=7
         console.log("Asia Controlled By:", playerArray[playerIndex])
       }
-    }
-    if (document.getElementById(troopReserveArray[i]).classList.contains("north-america")){
+    }else if (document.getElementById(allOwnerTerritoriesArray[playerIndex][i]).classList.contains("north-america")){
       northAmerica++
       if (northAmerica == 9){
         reserveCount +=5
         console.log("North America Controlled By:", playerArray[playerIndex])
       }
-    }
-    if (document.getElementById(troopReserveArray[i]).classList.contains("south-america")){
+    }else if (document.getElementById(allOwnerTerritoriesArray[playerIndex][i]).classList.contains("south-america")){
       southAmerica++
       if (southAmerica == 4){
         reserveCount +=2
         console.log("South America Controlled By:", playerArray[playerIndex])
       }
-    }
-    if (document.getElementById(troopReserveArray[i]).classList.contains("africa")){
+    }else if (document.getElementById(allOwnerTerritoriesArray[playerIndex][i]).classList.contains("africa")){
       africa++
       if (africa == 6){
         reserveCount +=3
         console.log("Australia Controlled By:", playerArray[playerIndex])
       }
-    }
-    if (document.getElementById(troopReserveArray[i]).classList.contains("australia")){
+    }else if (document.getElementById(allOwnerTerritoriesArray[playerIndex][i]).classList.contains("australia")){
       australia++
       if (australia == 4){
         reserveCount +=2
         console.log("Australia Controlled By:", playerArray[playerIndex])
       }
-    }
-    if (document.getElementById(troopReserveArray[i]).classList.contains("europe")){
+    }else if (document.getElementById(allOwnerTerritoriesArray[playerIndex][i]).classList.contains("europe")){
       europe++
       if (europe == 7){
         reserveCount +=5
@@ -852,7 +852,11 @@ function calculateReinforcements() {
       }
     }
   }
-  reserveCount += Math.floor((asia+australia+northAmerica+southAmerica+africa+europe) % 3)
+  console.log("reserve count before additional:", reserveCount)
+  console.log("--asia+australia+northAmerica+southAmerica+africa+europe",asia+australia+northAmerica+southAmerica+africa+europe)
+  console.log("--allOwnerTerritoriesArray[playerIndex].length", allOwnerTerritoriesArray[playerIndex].length)
+  reserveCount += Math.floor((asia+australia+northAmerica+southAmerica+africa+europe) / 3)
+  console.log("reserve count:", reserveCount)
   //Continent Bonuses
 
   //Turning in territory card sets
