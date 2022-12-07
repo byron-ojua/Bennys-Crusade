@@ -167,7 +167,7 @@
     {
         "name": "Congo",
         "troops": "1",
-        "neighbor": "orth-africa east-africa south-africa",
+        "neighbor": "north-africa east-africa south-africa",
         "owner": "",
         "id": "congo",
         "class": "africa territory",
