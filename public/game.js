@@ -60,7 +60,7 @@ nextPhaseOverlay.addEventListener('click', function() {
   if (conquestTurnIndex == 0){
     attackDoneButton.style.display = 'none'
     currentPhase.textContent = "Conquer Phase: " + playerArray[playerIndex] + "'s Attack turn"
-    nextPlayer()
+    turnLoop()
 	  //modifying when we call conquest turn index so we can just change it manually
   } else if(conquestTurnIndex == 1) {
 	  attackDoneButton.style.display = "block"
@@ -234,7 +234,7 @@ function reinforceClaimedCountries() {
       currentPlayer.style.opacity = "1"
 
       //if this was the last reinforcement placed, move to next game stage
-      if (playerIndex == playerArray.length-1 && troopReserveArray[playerIndex] == 0){
+      if (playerIndex == 0 && troopReserveArray[playerIndex] == 0){
         //Switch to next stage of game
         phaseButton.style.display = "block"
         //stageOfTheGameIndex = 0;//ends the claiming phase, could add a message here?
